@@ -35,14 +35,13 @@
             text-align: center;
         }
 
-        /* Sekcja Logo */
         .logo-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-bottom: -10px; /* Przestrzeń ucięta o 2/5 */
+            margin-bottom: -10px;
             padding: 0;
         }
 
@@ -55,7 +54,6 @@
             display: block;
         }
 
-        /* Kontener trzymający info o otwarciu i samą lampkę */
         #status-wrapper {
             display: flex;
             flex-direction: column;
@@ -64,16 +62,6 @@
             margin-top: 5px;
             z-index: 2;
             position: relative;
-        }
-
-        /* Napis z godziną ponownego otwarcia */
-        #reopen-info {
-            font-size: 0.65rem;
-            color: #888;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-            font-weight: 700;
-            display: none; /* Domyślnie ukryty, JS nim steruje */
         }
 
         #service-status {
@@ -87,6 +75,21 @@
             background: rgba(255,255,255,0.05);
             padding: 12px 20px;
             border-radius: 50px;
+            margin-bottom: 10px; /* Odstęp od tekstu ponownego otwarcia */
+        }
+
+        /* Napis z godziną ponownego otwarcia (przeniesiony pod status) */
+        #reopen-info {
+            font-size: 0.7rem;
+            color: #888;
+            letter-spacing: 2px;
+            font-weight: 700;
+            display: none; 
+        }
+
+        /* Klasa barwiąca samą datę na czerwono */
+        .reopen-time {
+            color: var(--accent-red);
         }
 
         .dot {
@@ -105,15 +108,15 @@
             100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
-        /* Pulsujący przycisk ZGŁOŚ NAPRAWĘ */
+        /* Pulsujący i pompujący przycisk ZGŁOŚ NAPRAWĘ */
         @keyframes pulseRedGlow {
-            0% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 12px rgba(139, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7); transform: scale(1); }
+            50% { box-shadow: 0 0 0 12px rgba(139, 0, 0, 0); transform: scale(1.04); }
+            100% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0); transform: scale(1); }
         }
 
         .pulse-urgent {
-            animation: pulseRedGlow 2s infinite !important;
+            animation: pulseRedGlow 2s infinite ease-in-out !important;
             border: 1px solid var(--accent-red) !important;
             border-left: 4px solid var(--accent-red) !important;
         }
@@ -249,11 +252,11 @@
         </div>
 
         <div id="status-wrapper">
-            <div id="reopen-info">PONOWNE OTWARCIE: JUTRO 09:30</div>
             <div id="service-status">
                 <div class="dot"></div>
                 <span id="status-text">SPRAWDZANIE...</span>
             </div>
+            <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">JUTRO 09:30</span></div>
         </div>
 
         <div class="section-box status-section-box">
@@ -320,7 +323,7 @@
 
         function updateStatus() {
             const now = new Date();
-            const day = now.getDay(); // 0-Niedziela, 1-Pon, ..., 6-Sob
+            const day = now.getDay(); 
             const currentTime = now.getHours() + (now.getMinutes() / 60);
             
             const statusDot = document.querySelector('.dot');
@@ -336,9 +339,7 @@
             let state = "closed";
             let reopenText = "";
             
-            // LOGIKA DNI I GODZIN
             if (day === 6) { 
-                // SOBOTA
                 if (currentTime < 12) {
                     state = "closed"; reopenText = "DZISIAJ 12:00";
                 } else if (currentTime >= 12 && currentTime < 15) {
@@ -347,18 +348,16 @@
                     state = "closed"; reopenText = "PONIEDZIAŁEK 09:30";
                 }
             } else if (day === 0) { 
-                // NIEDZIELA
                 state = "closed"; reopenText = "JUTRO 09:30";
             } else { 
-                // PONIEDZIAŁEK - PIĄTEK
                 if (isWeekOne) { 
                     if (currentTime < 9.5) { state = "closed"; reopenText = "DZISIAJ 09:30"; }
                     else if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
                     else {
                         state = "closed";
-                        if (day === 5) reopenText = "JUTRO 12:00"; // Piątek wieczór -> Sobota
-                        else reopenText = "JUTRO 09:30"; // Zwykły dzień wieczór -> Jutro
+                        if (day === 5) reopenText = "JUTRO 12:00"; 
+                        else reopenText = "JUTRO 09:30"; 
                     }
                 } else { 
                     if (currentTime < 9.5) { state = "closed"; reopenText = "DZISIAJ 09:30"; }
@@ -367,13 +366,12 @@
                     else if (currentTime >= 15.5 && currentTime < 18) state = "open";
                     else {
                         state = "closed";
-                        if (day === 5) reopenText = "JUTRO 12:00"; // Piątek wieczór -> Sobota
-                        else reopenText = "JUTRO 09:30"; // Zwykły dzień wieczór -> Jutro
+                        if (day === 5) reopenText = "JUTRO 12:00"; 
+                        else reopenText = "JUTRO 09:30"; 
                     }
                 }
             }
 
-            // STYLOWANIE STATUSÓW
             const styles = {
                 open: { color: "var(--status-open)", text: "SERWIS OTWARTY" },
                 online: { color: "var(--status-online)", text: "TYLKO KONTAKT ONLINE" },
@@ -384,14 +382,14 @@
             statusDot.style.color = styles[state].color;
             statusText.innerText = styles[state].text;
 
-            // ZARZĄDZANIE WIDOCZNOŚCIĄ INFO O OTWARCIU I PULSOWANIEM PRZYCISKU
             if (state === "closed") {
                 reopenInfo.style.display = "block";
-                reopenInfo.innerText = "PONOWNE OTWARCIE: " + reopenText;
-                btnZglos.classList.add("pulse-urgent"); // Włącza pulsowanie "Zgłoś naprawę"
+                // Wstrzykujemy tag <span>, by zabarwić samą datę na czerwono
+                reopenInfo.innerHTML = "PONOWNE OTWARCIE: <span class='reopen-time'>" + reopenText + "</span>";
+                btnZglos.classList.add("pulse-urgent"); 
             } else {
                 reopenInfo.style.display = "none";
-                btnZglos.classList.remove("pulse-urgent"); // Wyłącza pulsowanie
+                btnZglos.classList.remove("pulse-urgent"); 
             }
         }
 
