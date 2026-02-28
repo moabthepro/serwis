@@ -25,7 +25,6 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            /* Zmniejszony padding na samej górze z 10px na 2px */
             padding: 2px 20px 20px 20px;
             text-transform: uppercase;
         }
@@ -36,13 +35,14 @@
             text-align: center;
         }
 
+        /* Sekcja Logo */
         .logo-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-bottom: -10px; /* Całkowite zlikwidowanie odstępu i podciągnięcie w górę */
+            margin-bottom: -10px; /* Przestrzeń ucięta o 2/5 */
             padding: 0;
         }
 
@@ -51,27 +51,44 @@
             max-width: none;
             height: auto;
             margin-top: -50px; 
-            margin-bottom: -45px; /* Głębsze ucięcie przezroczystego tła z -35px na -45px */
+            margin-bottom: -45px; 
             display: block;
+        }
+
+        /* Kontener trzymający info o otwarciu i samą lampkę */
+        #status-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+            margin-top: 5px;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Napis z godziną ponownego otwarcia */
+        #reopen-info {
+            font-size: 0.65rem;
+            color: #888;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            font-weight: 700;
+            display: none; /* Domyślnie ukryty, JS nim steruje */
         }
 
         #service-status {
             font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             letter-spacing: 1.5px;
             background: rgba(255,255,255,0.05);
-            padding: 12px;
+            padding: 12px 20px;
             border-radius: 50px;
-            position: relative;
-            z-index: 2;
         }
 
-        /* Naprawiona, odporna na zgniatanie dioda */
         .dot {
             height: 12px;
             width: 12px;
@@ -88,6 +105,19 @@
             100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
+        /* Pulsujący przycisk ZGŁOŚ NAPRAWĘ */
+        @keyframes pulseRedGlow {
+            0% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(139, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0); }
+        }
+
+        .pulse-urgent {
+            animation: pulseRedGlow 2s infinite !important;
+            border: 1px solid var(--accent-red) !important;
+            border-left: 4px solid var(--accent-red) !important;
+        }
+
         .section-box {
             margin-bottom: 20px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
@@ -101,7 +131,6 @@
             box-shadow: 0 4px 15px rgba(139, 0, 0, 0.15);
         }
 
-        /* Powiększone nagłówki bez obramówki, sam cień */
         .section-header {
             font-size: 1.25rem;
             color: var(--accent-red);
@@ -219,9 +248,12 @@
             <img src="logo.png" alt="ZERO BYTES" class="main-logo">
         </div>
 
-        <div id="service-status">
-            <div class="dot"></div>
-            <span id="status-text">SPRAWDZANIE...</span>
+        <div id="status-wrapper">
+            <div id="reopen-info">PONOWNE OTWARCIE: JUTRO 09:30</div>
+            <div id="service-status">
+                <div class="dot"></div>
+                <span id="status-text">SPRAWDZANIE...</span>
+            </div>
         </div>
 
         <div class="section-box status-section-box">
@@ -233,7 +265,7 @@
         </div>
 
         <div class="section-box">
-            <a href="https://naprawa.zerobytes.pl" class="btn">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+            <a href="https://naprawa.zerobytes.pl" id="btn-zglos" class="btn">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
             <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
         </div>
 
@@ -288,28 +320,60 @@
 
         function updateStatus() {
             const now = new Date();
-            const day = now.getDay(); 
+            const day = now.getDay(); // 0-Niedziela, 1-Pon, ..., 6-Sob
             const currentTime = now.getHours() + (now.getMinutes() / 60);
+            
             const statusDot = document.querySelector('.dot');
             const statusText = document.getElementById('status-text');
+            const reopenInfo = document.getElementById('reopen-info');
+            const btnZglos = document.getElementById('btn-zglos');
 
             const startDate = new Date('2026-02-23'); 
             const diffInTime = now.getTime() - startDate.getTime();
             const weeks = Math.floor(diffInTime / (1000 * 3600 * 24 * 7));
+            const isWeekOne = (weeks % 2 === 0);
 
             let state = "closed";
+            let reopenText = "";
             
-            if (day >= 1 && day <= 5) {
-                if (weeks % 2 === 0) { 
-                    if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
+            // LOGIKA DNI I GODZIN
+            if (day === 6) { 
+                // SOBOTA
+                if (currentTime < 12) {
+                    state = "closed"; reopenText = "DZISIAJ 12:00";
+                } else if (currentTime >= 12 && currentTime < 15) {
+                    state = "open";
+                } else {
+                    state = "closed"; reopenText = "PONIEDZIAŁEK 09:30";
+                }
+            } else if (day === 0) { 
+                // NIEDZIELA
+                state = "closed"; reopenText = "JUTRO 09:30";
+            } else { 
+                // PONIEDZIAŁEK - PIĄTEK
+                if (isWeekOne) { 
+                    if (currentTime < 9.5) { state = "closed"; reopenText = "DZISIAJ 09:30"; }
+                    else if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
+                    else {
+                        state = "closed";
+                        if (day === 5) reopenText = "JUTRO 12:00"; // Piątek wieczór -> Sobota
+                        else reopenText = "JUTRO 09:30"; // Zwykły dzień wieczór -> Jutro
+                    }
                 } else { 
-                    if (currentTime >= 9.5 && currentTime < 12) state = "open";
+                    if (currentTime < 9.5) { state = "closed"; reopenText = "DZISIAJ 09:30"; }
+                    else if (currentTime >= 9.5 && currentTime < 12) state = "open";
                     else if (currentTime >= 12 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18) state = "open";
+                    else {
+                        state = "closed";
+                        if (day === 5) reopenText = "JUTRO 12:00"; // Piątek wieczór -> Sobota
+                        else reopenText = "JUTRO 09:30"; // Zwykły dzień wieczór -> Jutro
+                    }
                 }
             }
 
+            // STYLOWANIE STATUSÓW
             const styles = {
                 open: { color: "var(--status-open)", text: "SERWIS OTWARTY" },
                 online: { color: "var(--status-online)", text: "TYLKO KONTAKT ONLINE" },
@@ -319,6 +383,16 @@
             statusDot.style.backgroundColor = styles[state].color;
             statusDot.style.color = styles[state].color;
             statusText.innerText = styles[state].text;
+
+            // ZARZĄDZANIE WIDOCZNOŚCIĄ INFO O OTWARCIU I PULSOWANIEM PRZYCISKU
+            if (state === "closed") {
+                reopenInfo.style.display = "block";
+                reopenInfo.innerText = "PONOWNE OTWARCIE: " + reopenText;
+                btnZglos.classList.add("pulse-urgent"); // Włącza pulsowanie "Zgłoś naprawę"
+            } else {
+                reopenInfo.style.display = "none";
+                btnZglos.classList.remove("pulse-urgent"); // Wyłącza pulsowanie
+            }
         }
 
         function goToStatus() {
