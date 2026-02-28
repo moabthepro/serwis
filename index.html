@@ -33,20 +33,21 @@
 
         .logo-area {
             margin-bottom: 30px;
+            display: flex;
+            justify-content: center; /* Wyśrodkowanie loga */
         }
 
-        h1 {
-            font-size: 2rem;
-            letter-spacing: 2px;
-            color: var(--accent-red);
-            margin-bottom: 5px;
-            text-transform: uppercase;
+        .main-logo {
+            max-width: 100%; /* Sprawia, że logo skaluje się na telefonie */
+            height: auto;
+            max-height: 120px; /* Maksymalna wysokość, żeby logo nie było za wielkie */
         }
 
         p.tagline {
             font-size: 0.9rem;
             opacity: 0.7;
-            margin-top: 0;
+            margin-top: 10px;
+            margin-bottom: 0;
         }
 
         .links-container {
@@ -111,9 +112,10 @@
 
     <div class="container">
         <div class="logo-area">
-            <h1>Zero Bytes</h1>
-            <p class="tagline">Naprawy PCB | Tuning | Upgrade</p>
+            <img src="logo.png" alt="Zero Bytes Logo" class="main-logo">
         </div>
+
+        <p class="tagline">Naprawy PCB | Tuning | Upgrade</p>
 
         <div class="links-container">
             <a href="tel:+48123456789" class="link-card">Zadzwoń do serwisu</a>
