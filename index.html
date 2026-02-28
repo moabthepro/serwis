@@ -13,7 +13,6 @@
             --status-open: #00ff00;
             --status-online: #ffcc00;
             --status-closed: #ff0000;
-            /* Jednolita czcionka dla całego serwisu */
             --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -27,7 +26,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 10px 20px;
-            text-transform: uppercase; /* Wymuszenie CAPS dla całego body */
+            text-transform: uppercase;
         }
 
         .container {
@@ -36,21 +35,22 @@
             text-align: center;
         }
 
+        /* AGRESYWNE CIĘCIE PUSTEJ PRZESTRZENI LOGO */
         .logo-area {
             width: 100%;
-            height: auto;
-            max-height: 180px;
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 5px;
+            overflow: hidden; /* Ukrywa to, co wyjdzie poza ramki */
+            margin-top: -25px; /* Ścina górę */
+            margin-bottom: -15px; /* Ścina dół i przysuwa status */
         }
 
         .main-logo {
-            width: 100%;
+            width: 115%; /* Sztuczne rozciągnięcie na pełną szerokość paska */
+            max-width: none;
             height: auto;
-            object-fit: contain;
+            display: block;
         }
 
         #service-status {
@@ -65,6 +65,8 @@
             background: rgba(255,255,255,0.05);
             padding: 12px;
             border-radius: 50px;
+            position: relative;
+            z-index: 2; /* Żeby logo nie nachodziło na status */
         }
 
         .dot {
@@ -98,7 +100,7 @@
         }
 
         .btn {
-            font-family: var(--main-font); /* Spójna czcionka przycisków */
+            font-family: var(--main-font);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -236,8 +238,6 @@
 
     <script>
         window.onload = function() {
-            // Alert opcjonalny - możesz usunąć jeśli przeszkadza
-            // alert("STRONA W PRZEBUDOWIE");
             updateStatus();
         };
 
@@ -262,18 +262,17 @@
             const statusDot = document.querySelector('.dot');
             const statusText = document.getElementById('status-text');
 
-            // Poprawiona data startowa na dzisiaj, żeby uniknąć ujemnego czasu
             const startDate = new Date('2026-02-23'); 
             const diffInTime = now.getTime() - startDate.getTime();
             const weeks = Math.floor(diffInTime / (1000 * 3600 * 24 * 7));
 
             let state = "closed";
             
-            if (day >= 1 && day <= 5) { // Pon-Pt
-                if (weeks % 2 === 0) { // Tydzień 1
+            if (day >= 1 && day <= 5) {
+                if (weeks % 2 === 0) { 
                     if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
-                } else { // Tydzień 2
+                } else { 
                     if (currentTime >= 9.5 && currentTime < 12) state = "open";
                     else if (currentTime >= 12 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18) state = "open";
