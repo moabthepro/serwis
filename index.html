@@ -33,19 +33,20 @@
             text-align: center;
         }
 
-        /* Sekcja Logo */
+        /* Naprawa ucięcia logo i statusu */
         .logo-area {
             width: 100%;
-            height: 160px;
+            height: auto;
+            max-height: 180px;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: -10px;
+            margin-bottom: 5px;
         }
 
         .main-logo {
-            width: 120%;
+            width: 100%;
             height: auto;
             object-fit: contain;
         }
@@ -53,7 +54,7 @@
         #service-status {
             font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -61,12 +62,14 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             background: rgba(255,255,255,0.05);
-            padding: 10px;
+            padding: 12px;
             border-radius: 50px;
         }
 
         .dot {
-            height: 10px; width: 10px; border-radius: 50%;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
             box-shadow: 0 0 10px currentColor;
             animation: pulse 2s infinite ease-in-out;
         }
@@ -77,7 +80,6 @@
             100% { transform: scale(0.95); opacity: 0.7; }
         }
 
-        /* Główne bloki sekcji */
         .section-box {
             margin-bottom: 20px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
@@ -87,7 +89,7 @@
         }
 
         .section-header {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--accent-red);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -114,7 +116,6 @@
             box-sizing: border-box;
             transition: 0.3s;
             cursor: pointer;
-            font-size: 0.95rem;
         }
 
         .btn:hover {
@@ -123,18 +124,19 @@
             transform: translateX(5px);
         }
 
-        .btn-main {
+        .btn-status-trigger {
             background-color: var(--accent-red);
             border: none;
             border-left: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-main:hover {
+        .btn-status-trigger:hover {
             background-color: #cc0000;
             transform: scale(1.02);
         }
 
-        /* Input statusu */
         .status-input {
             width: 100%;
             padding: 15px;
@@ -142,26 +144,30 @@
             border: 1px solid #333;
             color: white;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             box-sizing: border-box;
             text-align: center;
+            font-size: 1rem;
         }
 
-        /* Wysuwane info (Accordion) */
+        .status-input:focus {
+            border-color: var(--accent-red);
+            outline: none;
+        }
+
         .info-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
             background: #050505;
-            border-radius: 0 0 8px 8px;
             text-align: left;
-            font-size: 0.85rem;
         }
 
         .info-content.active {
-            max-height: 300px;
+            max-height: 400px;
             padding: 15px;
             border: 1px solid #222;
+            border-radius: 8px;
             margin-top: -5px;
             margin-bottom: 10px;
         }
@@ -169,14 +175,13 @@
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
+            padding: 6px 0;
             border-bottom: 1px solid #111;
+            font-size: 0.85rem;
         }
 
-        .info-row span:first-child { color: #666; }
-
         .footer-links {
-            margin-top: 30px;
+            margin-top: 40px;
             opacity: 0.3;
             font-size: 0.75rem;
             padding-bottom: 20px;
@@ -197,26 +202,29 @@
         </div>
 
         <div class="section-box">
-            <div class="section-header">Twoja Naprawa</div>
+            <div class="section-header">Status Naprawy</div>
             <input type="text" id="orderId" class="status-input" placeholder="Wpisz numer zlecenia">
-            <button onclick="goToStatus()" class="btn btn-main">🔍 SPRAWDŹ STATUS</button>
-            <a href="https://naprawa.zerobytes.pl" class="btn">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
-            <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
+            <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 Sprawdź Status</button>
+        </div>
+
+        <div class="section-box">
+            <a href="https://naprawa.zerobytes.pl" class="btn">📝 Zgłoś naprawę (Door-to-Door)</a>
+            <a href="#" class="btn">🖥️ Konfigurator PC</a>
         </div>
 
         <div class="section-box">
             <div class="section-header">Kontakt</div>
-            <a href="tel:+48XXXXXXXXX" class="btn">📞 ZADZWOŃ DO NAS</a>
-            <a href="https://wa.me/48XXXXXXXXX" class="btn">💬 NAPISZ NA WHATSAPP</a>
-            <a href="mailto:kontakt@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
-            <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
+            <a href="tel:+48XXXXXXXXX" class="btn">📞 Zadzwoń do nas</a>
+            <a href="https://wa.me/48XXXXXXXXX" class="btn">💬 Napisz na WhatsApp</a>
+            <a href="mailto:kontakt@zerobytes.pl" class="btn">✉️ Wyślij e-mail</a>
+            <button onclick="openMaps()" class="btn">📍 Jak dojechać?</button>
         </div>
 
         <div class="section-box">
             <div class="section-header">Więcej</div>
-            <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG I CENNIK</a>
-            <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
-            <button onclick="toggleInfo()" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
+            <a href="uslugi.html" class="btn">🛠️ Lista usług i cennik</a>
+            <a href="faq.html" class="btn">❓ Najczęstsze pytania (FAQ)</a>
+            <button onclick="toggleInfo()" class="btn">ℹ️ Informacje o serwisie</button>
             
             <div id="infoTable" class="info-content">
                 <div class="info-row"><span>Nazwa:</span><span>Zero Bytes - Serwis Komputerowy</span></div>
@@ -235,17 +243,14 @@
     </div>
 
     <script>
-        // ALERT O PRZEBUDOWIE
         window.onload = function() {
             alert("Strona serwisu Zero Bytes jest obecnie w przebudowie. Niektóre funkcje mogą nie działać poprawnie.");
             updateStatus();
         };
 
-        // INTELIGENTNE MAPY
         function openMaps() {
-            const address = "[Twoja Lokalizacja, Miasto, Ulica]"; // WPISZ DOKŁADNY ADRES
+            const address = "[Twoja Lokalizacja, Miasto, Ulica]";
             const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
-            
             if (isApple) {
                 window.location.href = `maps://maps.apple.com/?q=${encodeURIComponent(address)}`;
             } else {
@@ -253,12 +258,10 @@
             }
         }
 
-        // WYSUWANE INFO
         function toggleInfo() {
             document.getElementById('infoTable').classList.toggle('active');
         }
 
-        // STATUS SERWISU (TWOJA LOGIKA ZMIANOWA)
         function updateStatus() {
             const now = new Date();
             const day = now.getDay(); 
@@ -268,14 +271,14 @@
 
             const startDate = new Date('2026-03-02');
             const weeks = Math.floor((now - startDate) / (1000 * 3600 * 24 * 7));
-            const isWeekOne = (weeks % 2 === 0);
+            const isWeekOne = (diffInWeeks % 2 === 0); // Uwaga: diffInWeeks musimy zdefiniować lub użyć 'weeks'
 
             let state = "closed";
             if (day >= 1 && day <= 5) {
-                if (isWeekOne) {
+                if (weeks % 2 === 0) { // Tydzień 1
                     if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
-                } else {
+                } else { // Tydzień 2
                     if (currentTime >= 9.5 && currentTime < 12) state = "open";
                     else if (currentTime >= 12 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18) state = "open";
