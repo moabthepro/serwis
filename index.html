@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zero Bytes | Precision in every bit</title>
+    <title>Zero Bytes | Serwis Elektroniki</title>
     <style>
         :root {
             --bg-color: #080808;
@@ -11,6 +11,9 @@
             --hover-red: #b30000;
             --text-color: #e0e0e0;
             --card-bg: #141414;
+            --status-open: #00ff00;
+            --status-online: #ffcc00;
+            --status-closed: #ff0000;
         }
 
         body {
@@ -31,33 +34,39 @@
             text-align: center;
         }
 
-        /* Sekcja Logo - Naprawa jakości i usuwanie bieli */
         .logo-area {
             margin-bottom: 5px;
             display: flex;
             justify-content: center;
-            background: transparent;
         }
 
         .main-logo {
             width: 100%;
             height: auto;
             max-height: 220px;
-            /* KLUCZ: Usuwa białe tło z Twojego zdjęcia bez straty jakości */
-            mix-blend-mode: multiply;
-            filter: contrast(1.2) brightness(1.1) invert(1) hue-rotate(180deg) brightness(1.5);
-            /* Invert + Hue-rotate sprawia, że białe staje się przezroczyste, a czarne białe na czarnym tle */
-            image-rendering: -webkit-optimize-contrast;
+            /* Filtr naprawiający logo z białym tłem na czarną stronę */
+            filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
+            mix-blend-mode: screen;
         }
 
-        .tagline {
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent-red);
+        #service-status {
+            font-size: 0.9rem;
             font-weight: bold;
-            margin-bottom: 35px;
-            margin-top: -10px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px currentColor;
         }
 
         .links-container {
@@ -86,7 +95,6 @@
             background-color: #1c1c1c;
             border-left-width: 10px;
             transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
         }
 
         .status-section {
@@ -99,9 +107,8 @@
 
         .status-section h3 {
             font-size: 1rem;
-            margin-top: 0;
+            margin: 0 0 15px 0;
             color: #fff;
-            margin-bottom: 15px;
         }
 
         .status-input {
@@ -154,13 +161,18 @@
         <div class="logo-area">
             <img src="logo.png" alt="Zero Bytes" class="main-logo">
         </div>
-        <p class="tagline">Precision in every bit</p>
+
+        <div id="service-status">
+            <span class="dot"></span>
+            <span id="status-text">Ładowanie statusu...</span>
+        </div>
 
         <div class="links-container">
             <a href="tel:+48XXXXXXXXX" class="link-card">📞 Zadzwoń do serwisu</a>
             <a href="https://wa.me/48XXXXXXXXX" class="link-card">💬 Napisz na WhatsApp</a>
             <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ Wyślij e-mail</a>
-            <a href="#" class="link-card">📸 Realizacje na Instagramie</a>
+            <a href="#" class="link-card">🛠️ Cennik usług</a>
+            <a href="#" class="link-card">📸 Instagram</a>
         </div>
 
         <div class="status-section">
@@ -171,8 +183,8 @@
 
         <div class="company-info">
             <strong style="color:var(--accent-red); font-size: 1rem;">Zero Bytes - Serwis Komputerowy</strong><br>
-            NIP: [WPISZ TWÓJ NIP]<br>
-            Adres: [WPISZ ADRES SERWISU]<br><br>
+            NIP: [Wpisz NIP]<br>
+            Adres: [Wpisz Adres]<br><br>
             <strong>Specjalizacja:</strong> Diagnostyka mikroskopowa, naprawy po zalaniu, tuning systemów, modyfikacje hardware, reballing.
         </div>
 
@@ -183,14 +195,58 @@
     </div>
 
     <script>
+        function updateStatus() {
+            const now = new Date();
+            const day = now.getDay(); 
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const currentTime = hours + (minutes / 60);
+
+            const statusDot = document.querySelector('.dot');
+            const statusText = document.getElementById('status-text');
+
+            // Start Tygodnia 1: Poniedziałek 2 marca 2026
+            const startDate = new Date('2026-03-02');
+            const diffInWeeks = Math.floor((now - startDate) / (1000 * 60 * 60 * 24 * 7));
+            const isWeekOne = (diffInWeeks % 2 === 0);
+
+            let state = "closed";
+
+            if (day >= 1 && day <= 5) { // Pon-Pt
+                if (isWeekOne) {
+                    if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
+                    else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
+                } else {
+                    if (currentTime >= 9.5 && currentTime < 12) state = "open";
+                    else if (currentTime >= 12 && currentTime < 15.5) state = "online";
+                    else if (currentTime >= 15.5 && currentTime < 18) state = "open";
+                }
+            }
+
+            if (state === "open") {
+                statusDot.style.color = "var(--status-open)";
+                statusDot.style.backgroundColor = "var(--status-open)";
+                statusText.innerText = "Serwis otwarty";
+            } else if (state === "online") {
+                statusDot.style.color = "var(--status-online)";
+                statusDot.style.backgroundColor = "var(--status-online)";
+                statusText.innerText = "Tylko kontakt online";
+            } else {
+                statusDot.style.color = "var(--status-closed)";
+                statusDot.style.backgroundColor = "var(--status-closed)";
+                statusText.innerText = "Serwis zamknięty";
+            }
+        }
+
         function goToStatus() {
             const id = document.getElementById('orderId').value;
             if(id) {
-                window.location.href = "https://nazwa.serwisant-online.pl/s/" + id;
-            } else {
-                alert("Wpisz numer zlecenia.");
+                window.location.href = "https://twoja-nazwa.serwisant-online.pl/s/" + id;
             }
         }
+
+        updateStatus();
+        setInterval(updateStatus, 60000);
     </script>
 </body>
 </html>
