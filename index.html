@@ -35,21 +35,23 @@
             text-align: center;
         }
 
-        /* AGRESYWNE CIĘCIE PUSTEJ PRZESTRZENI LOGO */
+        /* Ulepszone ucinanie marginesów Logo */
         .logo-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Ukrywa to, co wyjdzie poza ramki */
-            margin-top: -25px; /* Ścina górę */
-            margin-bottom: -15px; /* Ścina dół i przysuwa status */
+            overflow: hidden;
+            margin-bottom: 5px; /* Bliskość do statusu */
+            padding: 0;
         }
 
         .main-logo {
-            width: 115%; /* Sztuczne rozciągnięcie na pełną szerokość paska */
+            width: 125%; /* Powiększenie do szerokości bloków */
             max-width: none;
             height: auto;
+            margin-top: -30px; /* Agresywne ucięcie pustego pola u góry */
+            margin-bottom: -35px; /* Agresywne ucięcie pustego pola u dołu */
             display: block;
         }
 
@@ -66,7 +68,7 @@
             padding: 12px;
             border-radius: 50px;
             position: relative;
-            z-index: 2; /* Żeby logo nie nachodziło na status */
+            z-index: 2;
         }
 
         .dot {
@@ -89,6 +91,12 @@
             padding: 20px;
             border-radius: 15px;
             border: 1px solid #222;
+        }
+
+        /* Wyróżniona sekcja statusu naprawy */
+        .status-section-box {
+            border: 1px solid var(--accent-red);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.15);
         }
 
         .section-header {
@@ -122,6 +130,10 @@
             font-size: 0.9rem;
         }
 
+        .btn:last-child {
+            margin-bottom: 0;
+        }
+
         .btn:hover {
             background-color: #1a1a1a;
             border-left-width: 12px;
@@ -133,6 +145,12 @@
             border: none;
             border-left: none;
             letter-spacing: 1px;
+        }
+
+        .btn-status-trigger:hover {
+            background-color: #cc0000;
+            transform: scale(1.02);
+            border-left-width: 0; /* reset po najechaniu dla tego przycisku */
         }
 
         .status-input {
@@ -150,6 +168,15 @@
             text-transform: uppercase;
         }
 
+        /* Napis LUB */
+        .or-divider {
+            font-size: 0.75rem;
+            color: #666;
+            margin: 12px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
         .info-content {
             max-height: 0;
             overflow: hidden;
@@ -162,8 +189,7 @@
             padding: 15px;
             border: 1px solid #222;
             border-radius: 8px;
-            margin-top: -5px;
-            margin-bottom: 10px;
+            margin-top: 5px;
         }
 
         .info-row {
@@ -195,10 +221,12 @@
             <span id="status-text">SPRAWDZANIE...</span>
         </div>
 
-        <div class="section-box">
+        <div class="section-box status-section-box">
             <div class="section-header">STATUS NAPRAWY</div>
             <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA">
             <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
+            <div class="or-divider">LUB</div>
+            <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
         </div>
 
         <div class="section-box">
@@ -293,6 +321,11 @@
         function goToStatus() {
             const id = document.getElementById('orderId').value;
             if(id) window.location.href = "https://twojanazwa.serwisant-online.pl/s/" + id;
+        }
+
+        function goToClientLogin() {
+            // TUTAJ PODMIEŃ NA LINK DO PANELU KLIENTA Z SERWISANTA
+            window.location.href = "https://twojanazwa.serwisant-online.pl/k";
         }
 
         setInterval(updateStatus, 60000);
