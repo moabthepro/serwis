@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zero Bytes | Serwis Elektroniki</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>Zero Bytes | Precision in every bit</title>
     <style>
         :root {
-            --bg-color: #050505; /* Jeszcze głębsza czerń dla lepszego kontrastu OLED */
+            --bg-color: #080808;
             --accent-red: #8b0000;
-            --hover-red: #cc0000;
+            --hover-red: #b30000;
             --text-color: #e0e0e0;
-            --card-bg: #121212;
-            --input-bg: #000000;
+            --card-bg: #141414;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -24,37 +22,33 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 40px 20px;
-            -webkit-font-smoothing: antialiased;
+            padding: 30px 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 450px;
+            max-width: 420px;
             text-align: center;
         }
 
+        /* Poprawione logo */
         .logo-area {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
+            margin-bottom: 10px;
         }
 
         .main-logo {
-            max-width: 80%;
+            width: 100%;
             height: auto;
-            max-height: 140px;
-            filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.2));
+            max-height: 180px; /* Zwiększyłem, żeby było czytelne */
+            filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.3));
         }
 
-        p.tagline {
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+        .tagline {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--accent-red);
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 35px;
+            color: #666;
+            margin-bottom: 30px;
         }
 
         .links-container {
@@ -65,136 +59,108 @@
 
         .link-card {
             background-color: var(--card-bg);
-            border: 1px solid var(--accent-red);
+            border: 1px solid #222;
+            border-left: 4px solid var(--accent-red); /* Akcent z boku */
             color: white;
             text-decoration: none;
             padding: 18px;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: block;
-            font-size: 1rem;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         .link-card:hover {
-            background-color: var(--accent-red);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.4);
+            background-color: #1c1c1c;
+            border-left-width: 8px;
+            transform: scale(1.02);
         }
 
-        /* Sekcja statusu naprawy */
-        .status-box {
+        /* Sekcja statusu - profesjonalny wygląd */
+        .status-section {
             margin-top: 30px;
-            padding: 25px;
-            background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 15px;
-            text-align: center;
+            background: linear-gradient(145deg, #141414, #0f0f0f);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #222;
         }
 
-        .status-box h3 {
+        .status-section h3 {
+            font-size: 1rem;
             margin-top: 0;
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            color: var(--accent-red);
         }
 
         .status-input {
             width: 100%;
             padding: 12px;
-            background: var(--input-bg);
-            border: 1px solid var(--accent-red);
+            background: #000;
+            border: 1px solid #333;
             color: white;
-            border-radius: 8px;
+            border-radius: 6px;
             margin-bottom: 10px;
             box-sizing: border-box;
             text-align: center;
-            font-size: 1rem;
         }
 
-        .btn-check {
+        .btn-status {
             width: 100%;
             padding: 12px;
             background: var(--accent-red);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-check:hover {
-            background: var(--hover-red);
         }
 
         .company-info {
-            margin-top: 30px;
+            margin-top: 40px;
             padding: 20px;
-            font-size: 0.85rem;
-            line-height: 1.6;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            font-size: 0.8rem;
             text-align: left;
-            border-left: 3px solid var(--accent-red);
-            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid #222;
         }
 
         .footer-links {
-            margin-top: 40px;
-            padding-bottom: 20px;
-            font-size: 0.8rem;
+            margin-top: 30px;
+            opacity: 0.4;
+            font-size: 0.75rem;
         }
 
-        .footer-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            opacity: 0.5;
-            margin: 0 10px;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--accent-red);
-        }
-
-        /* Animacja wejścia */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .container {
-            animation: fadeIn 0.8s ease-out;
-        }
+        .footer-links a { color: white; margin: 0 10px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="logo-area">
-            <img src="logo.png" alt="Zero Bytes Logo" class="main-logo">
+            <img src="logo.png" alt="Zero Bytes" class="main-logo">
         </div>
-
-        <p class="tagline">Precision in every bit</p>
+        <div class="tagline">Naprawy PCB | Tuning | Upgrade</div>
 
         <div class="links-container">
             <a href="tel:+48XXXXXXXXX" class="link-card">📞 Zadzwoń do serwisu</a>
             <a href="https://wa.me/48XXXXXXXXX" class="link-card">💬 Napisz na WhatsApp</a>
-            <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ Wyślij zapytanie (Email)</a>
-            <a href="#" class="link-card">🛠️ Cennik usług i napraw</a>
-            <a href="https://instagram.com/twoj-profil" class="link-card">📸 Nasze realizacje (Instagram)</a>
+            <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ Wyślij e-mail</a>
+            <a href="https://instagram.com/twoj_profil" class="link-card">📸 Nasze realizacje</a>
         </div>
 
-        <div class="status-box">
-            <h3>🔍 Sprawdź status naprawy</h3>
-            <input type="text" id="repairId" class="status-input" placeholder="Wpisz numer zlecenia">
-            <button onclick="checkRepair()" class="btn-check">SPRAWDŹ STATUS</button>
+        <div class="status-section">
+            <h3>SPRAWDŹ STATUS NAPRAWY</h3>
+            <input type="text" id="orderId" class="status-input" placeholder="Wpisz numer zlecenia">
+            <button onclick="goToStatus()" class="btn-status">SZUKAJ</button>
         </div>
 
         <div class="company-info">
-            <strong style="color: var(--accent-red); font-size: 1rem;">Zero Bytes - Serwis Komputerowy</strong><br>
-            NIP: [Wpisz swój NIP]<br>
-            Adres: [Twoja lokalizacja]<br><br>
-            <small>Specjalizacja: Zaawansowana elektronika PCB, Reballing BGA, Tuning (OC/UV), Systemy operacyjne.</small>
+            <strong style="color:var(--accent-red)">Zero Bytes - Serwis Komputerowy</strong><br>
+            NIP: [Wpisz NIP] | Adres: [Wpisz Adres]<br><br>
+            Specjalizacja: Diagnostyka mikroskopowa, naprawy po zalaniu, tuning systemów, modyfikacje hardware.
         </div>
 
         <div class="footer-links">
@@ -204,13 +170,11 @@
     </div>
 
     <script>
-        function checkRepair() {
-            const id = document.getElementById('repairId').value;
+        function goToStatus() {
+            const id = document.getElementById('orderId').value;
             if(id) {
-                // Podmień 'twoja-nazwa' na Twój subidentyfikator z Serwisant Online
-                window.location.href = "https://twoja-nazwa.serwisant-online.pl/s/" + id;
-            } else {
-                alert("Proszę wpisać numer zlecenia.");
+                // Podmień 'nazwa' na Twój adres z Serwisanta Online
+                window.location.href = "https://nazwa.serwisant-online.pl/s/" + id;
             }
         }
     </script>
