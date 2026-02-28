@@ -61,7 +61,6 @@
             border-radius: 50px;
         }
 
-        /* Styl pulsującej kropki */
         .dot {
             height: 10px;
             width: 10px;
@@ -71,21 +70,9 @@
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(0.95);
-                opacity: 0.7;
-                box-shadow: 0 0 5px currentColor;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 1;
-                box-shadow: 0 0 15px currentColor;
-            }
-            100% {
-                transform: scale(0.95);
-                opacity: 0.7;
-                box-shadow: 0 0 5px currentColor;
-            }
+            0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px currentColor; }
+            100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
         .status-section {
@@ -110,11 +97,6 @@
             font-size: 1rem;
         }
 
-        .status-input:focus {
-            border-color: var(--accent-red);
-            outline: none;
-        }
-
         .btn-status {
             width: 100%;
             padding: 15px;
@@ -125,11 +107,6 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            transition: background 0.3s;
-        }
-
-        .btn-status:hover {
-            background: #cc0000;
         }
 
         .links-container {
@@ -158,7 +135,6 @@
 
         .footer-links {
             margin-top: 50px;
-            padding-bottom: 30px;
             opacity: 0.3;
             font-size: 0.75rem;
         }
@@ -180,7 +156,7 @@
 
         <div class="status-section">
             <h3 style="margin-top:0; font-size: 0.9rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px;">SPRAWDŹ STATUS NAPRAWY</h3>
-            <input type="text" id="orderId" class="status-input" placeholder="Wprowadź numer zlecenia (np. 1x2y3z)">
+            <input type="text" id="orderId" class="status-input" placeholder="Wprowadź numer zlecenia">
             <button onclick="goToStatus()" class="btn-status">SZUKAJ ZLECENIA</button>
         </div>
 
@@ -198,6 +174,12 @@
     </div>
 
     <script>
+        // ALERT O PRZEBUDOWIE
+        window.onload = function() {
+            alert("Strona serwisu Zero Bytes jest obecnie w przebudowie. Niektóre funkcje mogą nie działać poprawnie. Przepraszamy za utrudnienia!");
+            updateStatus();
+        };
+
         function updateStatus() {
             const now = new Date();
             const day = now.getDay(); 
@@ -231,7 +213,7 @@
 
             const currentStyle = styles[state];
             statusDot.style.backgroundColor = currentStyle.color;
-            statusDot.style.color = currentStyle.color; // Potrzebne do box-shadow (currentColor)
+            statusDot.style.color = currentStyle.color;
             statusText.innerText = currentStyle.text;
         }
 
@@ -242,7 +224,6 @@
             }
         }
 
-        updateStatus();
         setInterval(updateStatus, 60000);
     </script>
 </body>
