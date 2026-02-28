@@ -31,27 +31,31 @@
             text-align: center;
         }
 
-        /* Poprawione logo */
+        /* Sekcja Logo - Naprawa jakości poprzez mix-blend-mode */
         .logo-area {
             margin-bottom: 10px;
+            background: #fff; /* Tło pod logo, które zostanie usunięte przez mix-blend-mode */
+            padding: 15px;
+            border-radius: 12px;
+            mix-blend-mode: screen; /* To sprawi, że białe tło zniknie na czarnej stronie */
         }
 
         .main-logo {
-            width: auto; /* Zmiana z 100% na auto */
+            width: 100%;
             height: auto;
-            max-height: 220px; /* Zwiększono z 140px - to kluczowa zmiana */
-            margin: 0 auto;
-            /* Dodajemy biały blask pod logo, żeby czarny napis ZERO był widoczny na czarnym tle */
-            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15)) drop-shadow(0 0 20px rgba(139, 0, 0, 0.3));
-            padding: 10px 0;
+            max-height: 200px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            display: block;
         }
-        
+
         .tagline {
             font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #666;
-            margin-bottom: 30px;
+            color: var(--accent-red);
+            font-weight: bold;
+            margin-bottom: 35px;
         }
 
         .links-container {
@@ -63,7 +67,7 @@
         .link-card {
             background-color: var(--card-bg);
             border: 1px solid #222;
-            border-left: 4px solid var(--accent-red); /* Akcent z boku */
+            border-left: 4px solid var(--accent-red);
             color: white;
             text-decoration: none;
             padding: 18px;
@@ -78,65 +82,81 @@
 
         .link-card:hover {
             background-color: #1c1c1c;
-            border-left-width: 8px;
+            border-left-width: 10px;
             transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
         }
 
-        /* Sekcja statusu - profesjonalny wygląd */
         .status-section {
             margin-top: 30px;
             background: linear-gradient(145deg, #141414, #0f0f0f);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 15px;
             border: 1px solid #222;
         }
 
         .status-section h3 {
             font-size: 1rem;
             margin-top: 0;
-            color: var(--accent-red);
+            color: #fff;
+            margin-bottom: 15px;
         }
 
         .status-input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #000;
-            border: 1px solid #333;
+            border: 1px solid var(--accent-red);
             color: white;
-            border-radius: 6px;
+            border-radius: 8px;
             margin-bottom: 10px;
             box-sizing: border-box;
             text-align: center;
+            font-size: 1rem;
         }
 
         .btn-status {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: var(--accent-red);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-status:hover {
+            background: var(--hover-red);
         }
 
         .company-info {
             margin-top: 40px;
             padding: 20px;
             background: rgba(255,255,255,0.02);
-            border-radius: 8px;
-            font-size: 0.8rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
             text-align: left;
             border-top: 1px solid #222;
+            line-height: 1.6;
         }
 
         .footer-links {
-            margin-top: 30px;
-            opacity: 0.4;
-            font-size: 0.75rem;
+            margin-top: 40px;
+            opacity: 0.5;
+            font-size: 0.8rem;
         }
 
-        .footer-links a { color: white; margin: 0 10px; }
+        .footer-links a { 
+            color: white; 
+            margin: 0 10px; 
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
     </style>
 </head>
 <body>
@@ -145,25 +165,26 @@
         <div class="logo-area">
             <img src="logo.png" alt="Zero Bytes" class="main-logo">
         </div>
-        <div class="tagline">Naprawy PCB | Tuning | Upgrade</div>
+        <div class="tagline">Precision in every bit</div>
 
         <div class="links-container">
             <a href="tel:+48XXXXXXXXX" class="link-card">📞 Zadzwoń do serwisu</a>
             <a href="https://wa.me/48XXXXXXXXX" class="link-card">💬 Napisz na WhatsApp</a>
             <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ Wyślij e-mail</a>
-            <a href="https://instagram.com/twoj_profil" class="link-card">📸 Nasze realizacje</a>
+            <a href="https://instagram.com/zero_bytes_serwis" class="link-card">📸 Realizacje na Instagramie</a>
         </div>
 
         <div class="status-section">
-            <h3>SPRAWDŹ STATUS NAPRAWY</h3>
+            <h3>🔍 STATUS TWOJEJ NAPRAWY</h3>
             <input type="text" id="orderId" class="status-input" placeholder="Wpisz numer zlecenia">
-            <button onclick="goToStatus()" class="btn-status">SZUKAJ</button>
+            <button onclick="goToStatus()" class="btn-status">SPRAWDŹ TERAZ</button>
         </div>
 
         <div class="company-info">
-            <strong style="color:var(--accent-red)">Zero Bytes - Serwis Komputerowy</strong><br>
-            NIP: [Wpisz NIP] | Adres: [Wpisz Adres]<br><br>
-            Specjalizacja: Diagnostyka mikroskopowa, naprawy po zalaniu, tuning systemów, modyfikacje hardware.
+            <strong style="color:var(--accent-red); font-size: 1rem;">Zero Bytes - Serwis Komputerowy</strong><br>
+            NIP: [WPISZ TWÓJ NIP]<br>
+            Adres: [WPISZ ADRES SERWISU]<br><br>
+            <strong>Specjalizacja:</strong> Diagnostyka mikroskopowa, naprawy po zalaniu, tuning systemów, modyfikacje hardware, reballing.
         </div>
 
         <div class="footer-links">
@@ -176,8 +197,10 @@
         function goToStatus() {
             const id = document.getElementById('orderId').value;
             if(id) {
-                // Podmień 'nazwa' na Twój adres z Serwisanta Online
+                // Podmień 'nazwa' na Twój unikalny adres z Serwisanta Online
                 window.location.href = "https://nazwa.serwisant-online.pl/s/" + id;
+            } else {
+                alert("Wpisz numer zlecenia z pokwitowania.");
             }
         }
     </script>
