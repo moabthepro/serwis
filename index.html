@@ -209,18 +209,23 @@
             letter-spacing: 2px;
         }
 
+        /* ZABLOKOWANE SKAKANIE SZEROKOŚCI TABELI */
         .info-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
+            transition: all 0.4s ease-in-out;
             background: #050505;
+            box-sizing: border-box; 
+            width: 100%;
+            padding: 0 15px; 
+            border: 1px solid transparent;
+            border-radius: 8px;
         }
 
         .info-content.active {
             max-height: 400px;
             padding: 15px;
-            border: 1px solid #222;
-            border-radius: 8px;
+            border-color: #222;
             margin-top: 5px;
         }
 
@@ -314,16 +319,18 @@
             }
         }
 
-        // AUTO-SCROLL Zaimplementowany
+        // AUTO-SCROLL ZOPTYMALIZOWANY POD SMARTFONY
         function toggleInfo() {
             const infoBox = document.getElementById('infoTable');
             infoBox.classList.toggle('active');
             
-            // Jeśli lista właśnie się rozwinęła, zjedź gładko na sam dół elementu
             if (infoBox.classList.contains('active')) {
                 setTimeout(() => {
-                    infoBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                }, 150); // Czekamy ułamek sekundy, żeby animacja CSS ruszyła
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 350); 
             }
         }
 
