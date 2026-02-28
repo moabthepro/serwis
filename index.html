@@ -161,16 +161,11 @@
             cursor: pointer;
             text-transform: uppercase;
             font-size: 0.9rem;
+            outline: none;
         }
 
         .btn:last-child {
             margin-bottom: 0;
-        }
-
-        .btn:hover {
-            background-color: #1a1a1a;
-            border-left-width: 12px;
-            transform: translateX(5px);
         }
 
         .btn-status-trigger {
@@ -180,10 +175,17 @@
             letter-spacing: 1px;
         }
 
-        .btn-status-trigger:hover {
-            background-color: #cc0000;
-            transform: scale(1.02);
-            border-left-width: 0;
+        @media (hover: hover) {
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+            .btn-status-trigger:hover {
+                background-color: #cc0000;
+                transform: scale(1.02);
+                border-left-width: 0;
+            }
         }
 
         .status-input {
@@ -209,7 +211,6 @@
             letter-spacing: 2px;
         }
 
-        /* ZABLOKOWANE SKAKANIE SZEROKOŚCI TABELI */
         .info-content {
             max-height: 0;
             overflow: hidden;
@@ -286,7 +287,7 @@
             <div class="section-header">WIĘCEJ</div>
             <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG I CENNIK</a>
             <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
-            <button onclick="toggleInfo()" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
+            <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
             
             <div id="infoTable" class="info-content">
                 <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
@@ -306,6 +307,7 @@
 
     <script>
         window.onload = function() {
+            alert("STRONA SERWISU ZERO BYTES JEST OBECNIE W PRZEBUDOWIE. NIEKTÓRE FUNKCJE MOGĄ NIE DZIAŁAĆ POPRAWNIE.");
             updateStatus();
         };
 
@@ -319,8 +321,11 @@
             }
         }
 
-        // AUTO-SCROLL ZOPTYMALIZOWANY POD SMARTFONY
-        function toggleInfo() {
+        function toggleInfo(btnElement) {
+            if (btnElement) {
+                btnElement.blur();
+            }
+
             const infoBox = document.getElementById('infoTable');
             infoBox.classList.toggle('active');
             
