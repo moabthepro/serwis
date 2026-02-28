@@ -24,7 +24,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 10px 20px; /* Zmniejszony padding góry */
+            padding: 10px 20px;
         }
 
         .container {
@@ -33,23 +33,21 @@
             text-align: center;
         }
 
-        /* Sekcja Logo - Ucinanie pustego pola */
+        /* Sekcja Logo */
         .logo-area {
             width: 100%;
-            height: 160px; /* Sztywna wysokość "okna" na logo */
-            overflow: hidden; /* Ucina wszystko co wystaje */
+            height: 160px;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: -10px; /* Podciąga status wyżej */
+            margin-bottom: -10px;
         }
 
         .main-logo {
-            width: 120%; /* Lekkie powiększenie żeby wypełnić luki */
+            width: 120%;
             height: auto;
             object-fit: contain;
-            /* Przesunięcie w pionie, jeśli logo jest źle wycentrowane w pliku */
-            margin-top: 0px; 
         }
 
         #service-status {
@@ -65,33 +63,78 @@
             background: rgba(255,255,255,0.05);
             padding: 10px;
             border-radius: 50px;
-            position: relative;
-            z-index: 2;
         }
 
         .dot {
-            height: 10px;
-            width: 10px;
-            border-radius: 50%;
+            height: 10px; width: 10px; border-radius: 50%;
             box-shadow: 0 0 10px currentColor;
             animation: pulse 2s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
-            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px currentColor; }
-            100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
         }
 
-        .status-section {
+        /* Główne bloki sekcji */
+        .section-box {
             margin-bottom: 20px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
             padding: 20px;
             border-radius: 15px;
-            border: 1px solid var(--accent-red);
-            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
+            border: 1px solid #222;
         }
 
+        .section-header {
+            font-size: 0.9rem;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* Przyciski */
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            box-sizing: border-box;
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background-color: #1a1a1a;
+            border-left-width: 12px;
+            transform: translateX(5px);
+        }
+
+        .btn-main {
+            background-color: var(--accent-red);
+            border: none;
+            border-left: none;
+        }
+
+        .btn-main:hover {
+            background-color: #cc0000;
+            transform: scale(1.02);
+        }
+
+        /* Input statusu */
         .status-input {
             width: 100%;
             padding: 15px;
@@ -99,54 +142,45 @@
             border: 1px solid #333;
             color: white;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             box-sizing: border-box;
             text-align: center;
-            font-size: 1rem;
         }
 
-        .btn-status {
-            width: 100%;
+        /* Wysuwane info (Accordion) */
+        .info-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: #050505;
+            border-radius: 0 0 8px 8px;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .info-content.active {
+            max-height: 300px;
             padding: 15px;
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .link-card {
-            background-color: var(--card-bg);
             border: 1px solid #222;
-            border-left: 5px solid var(--accent-red);
-            color: white;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: 0.3s;
+            margin-top: -5px;
+            margin-bottom: 10px;
         }
 
-        .link-card:hover {
-            background-color: #1a1a1a;
-            transform: scale(1.02);
-            border-left-width: 15px;
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #111;
         }
+
+        .info-row span:first-child { color: #666; }
 
         .footer-links {
-            margin-top: 40px;
+            margin-top: 30px;
             opacity: 0.3;
             font-size: 0.75rem;
+            padding-bottom: 20px;
         }
-
         .footer-links a { color: white; margin: 0 10px; text-decoration: none; }
     </style>
 </head>
@@ -162,31 +196,69 @@
             <span id="status-text">Sprawdzanie...</span>
         </div>
 
-        <div class="status-section">
-            <h3 style="margin-top:0; font-size: 0.9rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px;">SPRAWDŹ STATUS NAPRAWY</h3>
-            <input type="text" id="orderId" class="status-input" placeholder="Wprowadź numer zlecenia">
-            <button onclick="goToStatus()" class="btn-status">SZUKAJ ZLECENIA</button>
+        <div class="section-box">
+            <div class="section-header">Twoja Naprawa</div>
+            <input type="text" id="orderId" class="status-input" placeholder="Wpisz numer zlecenia">
+            <button onclick="goToStatus()" class="btn btn-main">🔍 SPRAWDŹ STATUS</button>
+            <a href="https://naprawa.zerobytes.pl" class="btn">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+            <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
         </div>
 
-        <div class="links-container">
-            <a href="tel:+48XXXXXXXXX" class="link-card">📞 ZADZWOŃ DO SERWISU</a>
-            <a href="https://wa.me/48XXXXXXXXX" class="link-card">💬 NAPISZ NA WHATSAPP</a>
-            <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ WYŚLIJ ZAPYTANIE</a>
-            <a href="uslugi.html" class="link-card">🛠️ CENNIK I USŁUGI</a>
+        <div class="section-box">
+            <div class="section-header">Kontakt</div>
+            <a href="tel:+48XXXXXXXXX" class="btn">📞 ZADZWOŃ DO NAS</a>
+            <a href="https://wa.me/48XXXXXXXXX" class="btn">💬 NAPISZ NA WHATSAPP</a>
+            <a href="mailto:kontakt@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
+            <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
+        </div>
+
+        <div class="section-box">
+            <div class="section-header">Więcej</div>
+            <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG I CENNIK</a>
+            <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
+            <button onclick="toggleInfo()" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
+            
+            <div id="infoTable" class="info-content">
+                <div class="info-row"><span>Nazwa:</span><span>Zero Bytes - Serwis Komputerowy</span></div>
+                <div class="info-row"><span>Adres:</span><span>[Twój Adres]</span></div>
+                <div class="info-row"><span>NIP:</span><span>[Twój NIP]</span></div>
+                <div class="info-row"><span>REGON:</span><span>[Twój REGON]</span></div>
+                <div class="info-row"><span>BDO:</span><span>[Twój BDO]</span></div>
+                <div class="info-row"><span>Tel:</span><span>+48 XXXXXXXXX</span></div>
+            </div>
         </div>
 
         <div class="footer-links">
-            <a href="#">Regulamin</a>
-            <a href="#">Polityka prywatności</a>
+            <a href="regulamin.html">Regulamin</a>
+            <a href="polityka.html">Polityka prywatności</a>
         </div>
     </div>
 
     <script>
+        // ALERT O PRZEBUDOWIE
         window.onload = function() {
             alert("Strona serwisu Zero Bytes jest obecnie w przebudowie. Niektóre funkcje mogą nie działać poprawnie.");
             updateStatus();
         };
 
+        // INTELIGENTNE MAPY
+        function openMaps() {
+            const address = "[Twoja Lokalizacja, Miasto, Ulica]"; // WPISZ DOKŁADNY ADRES
+            const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+            
+            if (isApple) {
+                window.location.href = `maps://maps.apple.com/?q=${encodeURIComponent(address)}`;
+            } else {
+                window.location.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            }
+        }
+
+        // WYSUWANE INFO
+        function toggleInfo() {
+            document.getElementById('infoTable').classList.toggle('active');
+        }
+
+        // STATUS SERWISU (TWOJA LOGIKA ZMIANOWA)
         function updateStatus() {
             const now = new Date();
             const day = now.getDay(); 
@@ -195,12 +267,10 @@
             const statusText = document.getElementById('status-text');
 
             const startDate = new Date('2026-03-02');
-            const diffInTime = now.getTime() - startDate.getTime();
-            const diffInWeeks = Math.floor(diffInTime / (1000 * 3600 * 24 * 7));
-            const isWeekOne = (diffInWeeks % 2 === 0);
+            const weeks = Math.floor((now - startDate) / (1000 * 3600 * 24 * 7));
+            const isWeekOne = (weeks % 2 === 0);
 
             let state = "closed";
-
             if (day >= 1 && day <= 5) {
                 if (isWeekOne) {
                     if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
@@ -218,17 +288,14 @@
                 closed: { color: "var(--status-closed)", text: "Serwis zamknięty" }
             };
 
-            const currentStyle = styles[state];
-            statusDot.style.backgroundColor = currentStyle.color;
-            statusDot.style.color = currentStyle.color;
-            statusText.innerText = currentStyle.text;
+            statusDot.style.backgroundColor = styles[state].color;
+            statusDot.style.color = styles[state].color;
+            statusText.innerText = styles[state].text;
         }
 
         function goToStatus() {
             const id = document.getElementById('orderId').value;
-            if(id) {
-                window.location.href = "https://twojanazwa.serwisant-online.pl/s/" + id;
-            }
+            if(id) window.location.href = "https://twojanazwa.serwisant-online.pl/s/" + id;
         }
 
         setInterval(updateStatus, 60000);
