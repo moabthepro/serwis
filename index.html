@@ -42,22 +42,23 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-bottom: 5px; /* Bliskość do statusu */
+            margin-bottom: -15px; /* Niweluje odstęp kontenera */
             padding: 0;
         }
 
         .main-logo {
-            width: 125%; /* Powiększenie do szerokości bloków */
+            width: 125%; 
             max-width: none;
             height: auto;
-            margin-top: -30px; /* Agresywne ucięcie pustego pola u góry */
-            margin-bottom: -35px; /* Agresywne ucięcie pustego pola u dołu */
+            margin-top: -30px; 
+            margin-bottom: -75px; /* Ekstremalne cięcie przezroczystego dołu w pliku PNG */
             display: block;
         }
 
         #service-status {
             font-size: 0.85rem;
             font-weight: 700;
+            margin-top: -20px; /* Fizyczne wciągnięcie statusu na pole logo */
             margin-bottom: 25px;
             display: flex;
             align-items: center;
