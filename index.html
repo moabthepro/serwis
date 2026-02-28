@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zero Bytes | Serwis Elektroniki</title>
+    <title>ZERO BYTES | SERWIS ELEKTRONIKI</title>
     <style>
         :root {
             --bg-color: #000000; 
@@ -13,10 +13,12 @@
             --status-open: #00ff00;
             --status-online: #ffcc00;
             --status-closed: #ff0000;
+            /* Jednolita czcionka dla całego serwisu */
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--main-font);
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -25,6 +27,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 10px 20px;
+            text-transform: uppercase; /* Wymuszenie CAPS dla całego body */
         }
 
         .container {
@@ -33,7 +36,6 @@
             text-align: center;
         }
 
-        /* Naprawa ucięcia logo i statusu */
         .logo-area {
             width: 100%;
             height: auto;
@@ -59,7 +61,6 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            text-transform: uppercase;
             letter-spacing: 1.5px;
             background: rgba(255,255,255,0.05);
             padding: 12px;
@@ -91,14 +92,13 @@
         .section-header {
             font-size: 0.85rem;
             color: var(--accent-red);
-            text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 15px;
             font-weight: bold;
         }
 
-        /* Przyciski */
         .btn {
+            font-family: var(--main-font); /* Spójna czcionka przycisków */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -112,10 +112,12 @@
             color: white;
             text-decoration: none;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 700;
             box-sizing: border-box;
             transition: 0.3s;
             cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
         .btn:hover {
@@ -128,16 +130,11 @@
             background-color: var(--accent-red);
             border: none;
             border-left: none;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .btn-status-trigger:hover {
-            background-color: #cc0000;
-            transform: scale(1.02);
-        }
-
         .status-input {
+            font-family: var(--main-font);
             width: 100%;
             padding: 15px;
             background: #000;
@@ -148,11 +145,7 @@
             box-sizing: border-box;
             text-align: center;
             font-size: 1rem;
-        }
-
-        .status-input:focus {
-            border-color: var(--accent-red);
-            outline: none;
+            text-transform: uppercase;
         }
 
         .info-content {
@@ -160,7 +153,6 @@
             overflow: hidden;
             transition: max-height 0.5s ease-out;
             background: #050505;
-            text-align: left;
         }
 
         .info-content.active {
@@ -177,7 +169,7 @@
             justify-content: space-between;
             padding: 6px 0;
             border-bottom: 1px solid #111;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .footer-links {
@@ -193,63 +185,64 @@
 
     <div class="container">
         <div class="logo-area">
-            <img src="logo.png" alt="Zero Bytes" class="main-logo">
+            <img src="logo.png" alt="ZERO BYTES" class="main-logo">
         </div>
 
         <div id="service-status">
             <div class="dot"></div>
-            <span id="status-text">Sprawdzanie...</span>
+            <span id="status-text">SPRAWDZANIE...</span>
         </div>
 
         <div class="section-box">
-            <div class="section-header">Status Naprawy</div>
-            <input type="text" id="orderId" class="status-input" placeholder="Wpisz numer zlecenia">
-            <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 Sprawdź Status</button>
+            <div class="section-header">STATUS NAPRAWY</div>
+            <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA">
+            <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
         </div>
 
         <div class="section-box">
-            <a href="https://naprawa.zerobytes.pl" class="btn">📝 Zgłoś naprawę (Door-to-Door)</a>
-            <a href="#" class="btn">🖥️ Konfigurator PC</a>
+            <a href="https://naprawa.zerobytes.pl" class="btn">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+            <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
         </div>
 
         <div class="section-box">
-            <div class="section-header">Kontakt</div>
-            <a href="tel:+48XXXXXXXXX" class="btn">📞 Zadzwoń do nas</a>
-            <a href="https://wa.me/48XXXXXXXXX" class="btn">💬 Napisz na WhatsApp</a>
-            <a href="mailto:kontakt@zerobytes.pl" class="btn">✉️ Wyślij e-mail</a>
-            <button onclick="openMaps()" class="btn">📍 Jak dojechać?</button>
+            <div class="section-header">KONTAKT</div>
+            <a href="tel:+48XXXXXXXXX" class="btn">📞 ZADZWOŃ DO NAS</a>
+            <a href="https://wa.me/48XXXXXXXXX" class="btn">💬 NAPISZ NA WHATSAPP</a>
+            <a href="mailto:kontakt@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
+            <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
         </div>
 
         <div class="section-box">
-            <div class="section-header">Więcej</div>
-            <a href="uslugi.html" class="btn">🛠️ Lista usług i cennik</a>
-            <a href="faq.html" class="btn">❓ Najczęstsze pytania (FAQ)</a>
-            <button onclick="toggleInfo()" class="btn">ℹ️ Informacje o serwisie</button>
+            <div class="section-header">WIĘCEJ</div>
+            <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG I CENNIK</a>
+            <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
+            <button onclick="toggleInfo()" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
             
             <div id="infoTable" class="info-content">
-                <div class="info-row"><span>Nazwa:</span><span>Zero Bytes - Serwis Komputerowy</span></div>
-                <div class="info-row"><span>Adres:</span><span>[Twój Adres]</span></div>
-                <div class="info-row"><span>NIP:</span><span>[Twój NIP]</span></div>
-                <div class="info-row"><span>REGON:</span><span>[Twój REGON]</span></div>
-                <div class="info-row"><span>BDO:</span><span>[Twój BDO]</span></div>
-                <div class="info-row"><span>Tel:</span><span>+48 XXXXXXXXX</span></div>
+                <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
+                <div class="info-row"><span>ADRES:</span><span>[TWÓJ ADRES]</span></div>
+                <div class="info-row"><span>NIP:</span><span>[TWÓJ NIP]</span></div>
+                <div class="info-row"><span>REGON:</span><span>[TWÓJ REGON]</span></div>
+                <div class="info-row"><span>BDO:</span><span>[TWÓJ BDO]</span></div>
+                <div class="info-row"><span>TEL:</span><span>+48 XXXXXXXXX</span></div>
             </div>
         </div>
 
         <div class="footer-links">
-            <a href="regulamin.html">Regulamin</a>
-            <a href="polityka.html">Polityka prywatności</a>
+            <a href="regulamin.html">REGULAMIN</a>
+            <a href="polityka.html">POLITYKA PRYWATNOŚCI</a>
         </div>
     </div>
 
     <script>
         window.onload = function() {
-            alert("Strona serwisu Zero Bytes jest obecnie w przebudowie. Niektóre funkcje mogą nie działać poprawnie.");
+            // Alert opcjonalny - możesz usunąć jeśli przeszkadza
+            // alert("STRONA W PRZEBUDOWIE");
             updateStatus();
         };
 
         function openMaps() {
-            const address = "[Twoja Lokalizacja, Miasto, Ulica]";
+            const address = "[TWOJA LOKALIZACJA]";
             const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
             if (isApple) {
                 window.location.href = `maps://maps.apple.com/?q=${encodeURIComponent(address)}`;
@@ -269,12 +262,14 @@
             const statusDot = document.querySelector('.dot');
             const statusText = document.getElementById('status-text');
 
-            const startDate = new Date('2026-03-02');
-            const weeks = Math.floor((now - startDate) / (1000 * 3600 * 24 * 7));
-            const isWeekOne = (diffInWeeks % 2 === 0); // Uwaga: diffInWeeks musimy zdefiniować lub użyć 'weeks'
+            // Poprawiona data startowa na dzisiaj, żeby uniknąć ujemnego czasu
+            const startDate = new Date('2026-02-23'); 
+            const diffInTime = now.getTime() - startDate.getTime();
+            const weeks = Math.floor(diffInTime / (1000 * 3600 * 24 * 7));
 
             let state = "closed";
-            if (day >= 1 && day <= 5) {
+            
+            if (day >= 1 && day <= 5) { // Pon-Pt
                 if (weeks % 2 === 0) { // Tydzień 1
                     if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
@@ -286,9 +281,9 @@
             }
 
             const styles = {
-                open: { color: "var(--status-open)", text: "Serwis otwarty" },
-                online: { color: "var(--status-online)", text: "Tylko kontakt online" },
-                closed: { color: "var(--status-closed)", text: "Serwis zamknięty" }
+                open: { color: "var(--status-open)", text: "SERWIS OTWARTY" },
+                online: { color: "var(--status-online)", text: "TYLKO KONTAKT ONLINE" },
+                closed: { color: "var(--status-closed)", text: "SERWIS ZAMKNIĘTY" }
             };
 
             statusDot.style.backgroundColor = styles[state].color;
