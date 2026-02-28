@@ -37,12 +37,15 @@
         }
 
         .main-logo {
-            width: 100%;
+            width: auto; /* Zmiana z 100% na auto */
             height: auto;
-            max-height: 180px; /* Zwiększyłem, żeby było czytelne */
-            filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.3));
+            max-height: 220px; /* Zwiększono z 140px - to kluczowa zmiana */
+            margin: 0 auto;
+            /* Dodajemy biały blask pod logo, żeby czarny napis ZERO był widoczny na czarnym tle */
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15)) drop-shadow(0 0 20px rgba(139, 0, 0, 0.3));
+            padding: 10px 0;
         }
-
+        
         .tagline {
             font-size: 0.85rem;
             letter-spacing: 2px;
