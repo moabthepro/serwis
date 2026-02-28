@@ -36,13 +36,14 @@
         }
 
         /* Ulepszone ucinanie marginesów Logo */
+        /* Ulepszone ucinanie marginesów Logo - Złoty środek */
         .logo-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-bottom: -15px; /* Niweluje odstęp kontenera */
+            margin-bottom: 0; /* Zdejmujemy docisk kontenera */
             padding: 0;
         }
 
@@ -51,14 +52,14 @@
             max-width: none;
             height: auto;
             margin-top: -30px; 
-            margin-bottom: -75px; /* Ekstremalne cięcie przezroczystego dołu w pliku PNG */
+            margin-bottom: -45px; /* Cofamy z -75px na rozsądne -45px */
             display: block;
         }
 
         #service-status {
             font-size: 0.85rem;
             font-weight: 700;
-            margin-top: -20px; /* Fizyczne wciągnięcie statusu na pole logo */
+            margin-top: 5px; /* Lekki oddech dla lampki */
             margin-bottom: 25px;
             display: flex;
             align-items: center;
@@ -70,14 +71,6 @@
             border-radius: 50px;
             position: relative;
             z-index: 2;
-        }
-
-        .dot {
-            height: 10px;
-            width: 10px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px currentColor;
-            animation: pulse 2s infinite ease-in-out;
         }
 
         @keyframes pulse {
@@ -101,11 +94,13 @@
         }
 
         .section-header {
-            font-size: 0.85rem;
+            font-size: 1.25rem; /* Wyraźnie powiększony rozmiar */
             color: var(--accent-red);
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            font-weight: bold;
+            letter-spacing: 2.5px;
+            margin-bottom: 18px;
+            font-weight: 900; /* Maksymalna grubość, żeby utrzymać obrys */
+            -webkit-text-stroke: 1px #ffffff; /* Biała obramówka wokół liter */
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Cień podbijający głębię na ciemnym tle */
         }
 
         .btn {
