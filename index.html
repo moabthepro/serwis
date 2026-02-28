@@ -25,7 +25,8 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 10px 20px;
+            /* Zmniejszony padding na samej górze z 10px na 2px */
+            padding: 2px 20px 20px 20px;
             text-transform: uppercase;
         }
 
@@ -35,15 +36,13 @@
             text-align: center;
         }
 
-        /* Ulepszone ucinanie marginesów Logo */
-        /* Ulepszone ucinanie marginesów Logo - Złoty środek */
         .logo-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-bottom: 0; /* Zdejmujemy docisk kontenera */
+            margin-bottom: 5px;
             padding: 0;
         }
 
@@ -51,15 +50,15 @@
             width: 125%; 
             max-width: none;
             height: auto;
-            margin-top: -30px; 
-            margin-bottom: -45px; /* Cofamy z -75px na rozsądne -45px */
+            /* Agresywniejsze ucięcie góry o połowę */
+            margin-top: -50px; 
+            margin-bottom: -35px; 
             display: block;
         }
 
         #service-status {
             font-size: 0.85rem;
             font-weight: 700;
-            margin-top: 5px; /* Lekki oddech dla lampki */
             margin-bottom: 25px;
             display: flex;
             align-items: center;
@@ -73,10 +72,21 @@
             z-index: 2;
         }
 
+        /* Naprawiona, odporna na zgniatanie dioda */
+        .dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            display: block;
+            flex-shrink: 0; 
+            box-shadow: 0 0 10px currentColor;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
         @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.7; }
+            0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px currentColor; }
+            100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
         .section-box {
@@ -87,19 +97,19 @@
             border: 1px solid #222;
         }
 
-        /* Wyróżniona sekcja statusu naprawy */
         .status-section-box {
             border: 1px solid var(--accent-red);
             box-shadow: 0 4px 15px rgba(139, 0, 0, 0.15);
         }
 
+        /* Powiększone nagłówki bez obramówki, sam cień */
         .section-header {
             font-size: 1.25rem;
             color: var(--accent-red);
             letter-spacing: 2.5px;
             margin-bottom: 18px;
             font-weight: 900;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Zostawiłem sam cień dla głębi */
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .btn {
@@ -145,7 +155,7 @@
         .btn-status-trigger:hover {
             background-color: #cc0000;
             transform: scale(1.02);
-            border-left-width: 0; /* reset po najechaniu dla tego przycisku */
+            border-left-width: 0;
         }
 
         .status-input {
@@ -163,7 +173,6 @@
             text-transform: uppercase;
         }
 
-        /* Napis LUB */
         .or-divider {
             font-size: 0.75rem;
             color: #666;
@@ -319,7 +328,6 @@
         }
 
         function goToClientLogin() {
-            // TUTAJ PODMIEŃ NA LINK DO PANELU KLIENTA Z SERWISANTA
             window.location.href = "https://twojanazwa.serwisant-online.pl/k";
         }
 
