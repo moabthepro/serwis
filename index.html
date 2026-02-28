@@ -61,14 +61,33 @@
             border-radius: 50px;
         }
 
+        /* Styl pulsującej kropki */
         .dot {
-            height: 12px;
-            width: 12px;
+            height: 10px;
+            width: 10px;
             border-radius: 50%;
-            box-shadow: 0 0 12px currentColor;
+            box-shadow: 0 0 10px currentColor;
+            animation: pulse 2s infinite ease-in-out;
         }
 
-        /* Sekcja Statusu Naprawy - Teraz na górze */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+                box-shadow: 0 0 5px currentColor;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+                box-shadow: 0 0 15px currentColor;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.7;
+                box-shadow: 0 0 5px currentColor;
+            }
+        }
+
         .status-section {
             margin-bottom: 25px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
@@ -212,17 +231,14 @@
 
             const currentStyle = styles[state];
             statusDot.style.backgroundColor = currentStyle.color;
-            statusDot.style.color = currentStyle.color;
+            statusDot.style.color = currentStyle.color; // Potrzebne do box-shadow (currentColor)
             statusText.innerText = currentStyle.text;
         }
 
         function goToStatus() {
             const id = document.getElementById('orderId').value;
             if(id) {
-                // Podmień 'twojanazwa' na swój unikalny adres z Serwisant Online
                 window.location.href = "https://twojanazwa.serwisant-online.pl/s/" + id;
-            } else {
-                alert("Proszę wpisać numer zlecenia.");
             }
         }
 
