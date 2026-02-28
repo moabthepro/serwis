@@ -6,18 +6,17 @@
     <title>Zero Bytes | Serwis Elektroniki</title>
     <style>
         :root {
-            --bg-color: #000000; /* GŁĘBOKA CZERŃ - tło loga się wtopi */
+            --bg-color: #000000; 
             --accent-red: #8b0000;
-            --hover-red: #cc0000;
             --text-color: #e0e0e0;
-            --card-bg: #141414;
+            --card-bg: #111111;
             --status-open: #00ff00;
             --status-online: #ffcc00;
             --status-closed: #ff0000;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -25,49 +24,93 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 30px 20px;
+            padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             text-align: center;
         }
 
-        /* Sekcja Logo - Powiększenie i dopasowanie */
         .logo-area {
             margin-bottom: 5px;
             display: flex;
             justify-content: center;
-            background: transparent;
         }
 
         .main-logo {
             width: 100%;
             height: auto;
-            max-height: 250px; /* Zwiększono z 140px, żeby logo było duże */
+            max-height: 280px; 
             display: block;
-            image-rendering: -webkit-optimize-contrast; /* Wyostrzanie dla Chrome/Safari */
         }
 
         #service-status {
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 50px;
         }
 
         .dot {
             height: 12px;
             width: 12px;
             border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px currentColor;
+            box-shadow: 0 0 12px currentColor;
+        }
+
+        /* Sekcja Statusu Naprawy - Teraz na górze */
+        .status-section {
+            margin-bottom: 25px;
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--accent-red);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
+        }
+
+        .status-input {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .status-input:focus {
+            border-color: var(--accent-red);
+            outline: none;
+        }
+
+        .btn-status {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-status:hover {
+            background: #cc0000;
         }
 
         .links-container {
@@ -79,78 +122,26 @@
         .link-card {
             background-color: var(--card-bg);
             border: 1px solid #222;
-            border-left: 4px solid var(--accent-red);
+            border-left: 5px solid var(--accent-red);
             color: white;
             text-decoration: none;
             padding: 18px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
-            transition: all 0.2s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            transition: 0.3s;
         }
 
         .link-card:hover {
-            background-color: #1c1c1c;
-            border-left-width: 10px;
+            background-color: #1a1a1a;
             transform: scale(1.02);
-        }
-
-        .status-section {
-            margin-top: 30px;
-            background: linear-gradient(145deg, #141414, #0f0f0f);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #222;
-        }
-
-        .status-section h3 {
-            font-size: 1rem;
-            margin: 0 0 15px 0;
-            color: #fff;
-        }
-
-        .status-input {
-            width: 100%;
-            padding: 14px;
-            background: #000;
-            border: 1px solid var(--accent-red);
-            color: white;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        .btn-status {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .company-info {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 10px;
-            font-size: 0.85rem;
-            text-align: left;
-            border-top: 1px solid #222;
-            line-height: 1.6;
+            border-left-width: 15px;
         }
 
         .footer-links {
-            margin-top: 40px;
-            opacity: 0.5;
-            font-size: 0.8rem;
+            margin-top: 50px;
+            padding-bottom: 30px;
+            opacity: 0.3;
+            font-size: 0.75rem;
         }
 
         .footer-links a { color: white; margin: 0 10px; text-decoration: none; }
@@ -164,34 +155,26 @@
         </div>
 
         <div id="service-status">
-            <span class="dot"></span>
-            <span id="status-text">Ładowanie statusu...</span>
-        </div>
-
-        <div class="links-container">
-            <a href="tel:+48XXXXXXXXX" class="link-card">📞 Zadzwoń do serwisu</a>
-            <a href="https://wa.me/48XXXXXXXXX" class="link-card">💬 Napisz na WhatsApp</a>
-            <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ Wyślij e-mail</a>
-            <a href="#" class="link-card">🛠️ Cennik usług</a>
-            <a href="#" class="link-card">📸 Instagram</a>
+            <div class="dot"></div>
+            <span id="status-text">Sprawdzanie...</span>
         </div>
 
         <div class="status-section">
-            <h3>🔍 STATUS TWOJEJ NAPRAWY</h3>
-            <input type="text" id="orderId" class="status-input" placeholder="Wpisz numer zlecenia">
-            <button onclick="goToStatus()" class="btn-status">SPRAWDŹ TERAZ</button>
+            <h3 style="margin-top:0; font-size: 0.9rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px;">SPRAWDŹ STATUS NAPRAWY</h3>
+            <input type="text" id="orderId" class="status-input" placeholder="Wprowadź numer zlecenia">
+            <button onclick="goToStatus()" class="btn-status">SZUKAJ ZLECENIA</button>
         </div>
 
-        <div class="company-info">
-            <strong style="color:var(--accent-red); font-size: 1rem;">Zero Bytes - Serwis Komputerowy</strong><br>
-            NIP: [Wpisz NIP]<br>
-            Adres: [Wpisz Adres]<br><br>
-            <strong>Specjalizacja:</strong> Diagnostyka mikroskopowa, naprawy po zalaniu, tuning systemów, modyfikacje hardware, reballing.
+        <div class="links-container">
+            <a href="tel:+48XXXXXXXXX" class="link-card">📞 ZADZWOŃ DO SERWISU</a>
+            <a href="https://wa.me/48XXXXXXXXX" class="link-card">💬 NAPISZ NA WHATSAPP</a>
+            <a href="mailto:kontakt@zerobytes.pl" class="link-card">✉️ WYŚLIJ ZAPYTANIE</a>
+            <a href="#" class="link-card">🛠️ CENNIK I USŁUGI</a>
         </div>
 
         <div class="footer-links">
-            <a href="regulamin.html">Regulamin</a>
-            <a href="polityka.html">Polityka prywatności</a>
+            <a href="#">Regulamin</a>
+            <a href="#">Polityka prywatności</a>
         </div>
     </div>
 
@@ -199,21 +182,18 @@
         function updateStatus() {
             const now = new Date();
             const day = now.getDay(); 
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const currentTime = hours + (minutes / 60);
-
+            const currentTime = now.getHours() + (now.getMinutes() / 60);
             const statusDot = document.querySelector('.dot');
             const statusText = document.getElementById('status-text');
 
-            // Start Tygodnia 1: Poniedziałek 2 marca 2026
             const startDate = new Date('2026-03-02');
-            const diffInWeeks = Math.floor((now - startDate) / (1000 * 60 * 60 * 24 * 7));
+            const diffInTime = now.getTime() - startDate.getTime();
+            const diffInWeeks = Math.floor(diffInTime / (1000 * 3600 * 24 * 7));
             const isWeekOne = (diffInWeeks % 2 === 0);
 
             let state = "closed";
 
-            if (day >= 1 && day <= 5) { // Pon-Pt
+            if (day >= 1 && day <= 5) {
                 if (isWeekOne) {
                     if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
                     else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
@@ -224,28 +204,25 @@
                 }
             }
 
-            if (state === "open") {
-                statusDot.style.color = "var(--status-open)";
-                statusDot.style.backgroundColor = "var(--status-open)";
-                statusText.innerText = "Serwis otwarty";
-            } else if (state === "online") {
-                statusDot.style.color = "var(--status-online)";
-                statusDot.style.backgroundColor = "var(--status-online)";
-                statusText.innerText = "Tylko kontakt online";
-            } else {
-                statusDot.style.color = "var(--status-closed)";
-                statusDot.style.backgroundColor = "var(--status-closed)";
-                statusText.innerText = "Serwis zamknięty";
-            }
+            const styles = {
+                open: { color: "var(--status-open)", text: "Serwis otwarty" },
+                online: { color: "var(--status-online)", text: "Tylko kontakt online" },
+                closed: { color: "var(--status-closed)", text: "Serwis zamknięty" }
+            };
+
+            const currentStyle = styles[state];
+            statusDot.style.backgroundColor = currentStyle.color;
+            statusDot.style.color = currentStyle.color;
+            statusText.innerText = currentStyle.text;
         }
 
         function goToStatus() {
             const id = document.getElementById('orderId').value;
             if(id) {
-                // Podmień 'twoja-nazwa' na swój login z Serwisanta Online
-                window.location.href = "https://twoja-nazwa.serwisant-online.pl/s/" + id;
+                // Podmień 'twojanazwa' na swój unikalny adres z Serwisant Online
+                window.location.href = "https://twojanazwa.serwisant-online.pl/s/" + id;
             } else {
-                alert("Wpisz numer zlecenia.");
+                alert("Proszę wpisać numer zlecenia.");
             }
         }
 
