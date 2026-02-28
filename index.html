@@ -6,9 +6,9 @@
     <title>Zero Bytes | Serwis Elektroniki</title>
     <style>
         :root {
-            --bg-color: #080808;
+            --bg-color: #000000; /* GŁĘBOKA CZERŃ - tło loga się wtopi */
             --accent-red: #8b0000;
-            --hover-red: #b30000;
+            --hover-red: #cc0000;
             --text-color: #e0e0e0;
             --card-bg: #141414;
             --status-open: #00ff00;
@@ -34,19 +34,20 @@
             text-align: center;
         }
 
+        /* Sekcja Logo - Powiększenie i dopasowanie */
         .logo-area {
             margin-bottom: 5px;
             display: flex;
             justify-content: center;
+            background: transparent;
         }
 
         .main-logo {
             width: 100%;
             height: auto;
-            max-height: 220px;
-            /* Filtr naprawiający logo z białym tłem na czarną stronę */
-            filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
-            mix-blend-mode: screen;
+            max-height: 250px; /* Zwiększono z 140px, żeby logo było duże */
+            display: block;
+            image-rendering: -webkit-optimize-contrast; /* Wyostrzanie dla Chrome/Safari */
         }
 
         #service-status {
@@ -241,7 +242,10 @@
         function goToStatus() {
             const id = document.getElementById('orderId').value;
             if(id) {
+                // Podmień 'twoja-nazwa' na swój login z Serwisanta Online
                 window.location.href = "https://twoja-nazwa.serwisant-online.pl/s/" + id;
+            } else {
+                alert("Wpisz numer zlecenia.");
             }
         }
 
