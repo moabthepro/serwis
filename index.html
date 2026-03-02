@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZERO BYTES | SERWIS ELEKTRONIKI</title>
+    <title>ZERO BYTES | SERWIS KOMPUTEROWY</title>
     <style>
         :root {
             --bg-color: #000000; 
@@ -264,7 +264,7 @@
 
         <div class="section-box status-section-box">
             <div class="section-header">STATUS NAPRAWY</div>
-            <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA">
+            <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2-Y3Z)">
             <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
             <div class="or-divider">LUB</div>
             <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
@@ -291,7 +291,7 @@
             
             <div id="infoTable" class="info-content">
                 <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
-                <div class="info-row"><span>ADRES:</span><span>[TWÓJ ADRES]</span></div>
+                <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
                 <div class="info-row"><span>NIP:</span><span>[TWÓJ NIP]</span></div>
                 <div class="info-row"><span>REGON:</span><span>[TWÓJ REGON]</span></div>
                 <div class="info-row"><span>BDO:</span><span>[TWÓJ BDO]</span></div>
@@ -392,7 +392,7 @@
 
             const styles = {
                 open: { color: "var(--status-open)", text: "SERWIS OTWARTY" },
-                online: { color: "var(--status-online)", text: "TYLKO KONTAKT ONLINE" },
+                online: { color: "var(--status-online)", text: "TYLKO ZGŁOSZENIA ONLINE" },
                 closed: { color: "var(--status-closed)", text: "SERWIS ZAMKNIĘTY" }
             };
 
@@ -412,11 +412,11 @@
 
         function goToStatus() {
             const id = document.getElementById('orderId').value;
-            if(id) window.location.href = "https://twojanazwa.serwisant-online.pl/s/" + id;
+            if(id) window.location.href = "https://naprawiam.online/" + id;
         }
 
         function goToClientLogin() {
-            window.location.href = "https://twojanazwa.serwisant-online.pl/k";
+            window.location.href = "https://naprawiam.online/panel/0bytes/login";
         }
 
         setInterval(updateStatus, 60000);
