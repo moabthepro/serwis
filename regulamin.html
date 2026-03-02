@@ -41,7 +41,6 @@
             margin-right: auto;
         }
 
-        /* Wymuszone, perfekcyjne centrowanie logo */
         .logo-area {
             width: 100%;
             display: block;
@@ -65,16 +64,15 @@
             display: block;
             position: relative;
             left: 50%;
-            transform: translateX(-50%); /* Zawsze idealnie na środku */
+            transform: translateX(-50%); 
         }
 
-        /* Oczyszczone centrowanie przycisków */
         .btn {
             font-family: var(--main-font);
             display: flex;
             justify-content: center;
             align-items: center; 
-            gap: 10px;
+            gap: 8px; /* Zmniejszony gap dla czystych strzałek tekstowych */
             width: 100%;
             padding: 16px;
             margin-bottom: 10px;
@@ -105,8 +103,12 @@
             }
         }
 
+        /* Zabezpieczenie przed ucinaniem przycisku przez logo */
         .btn-header {
             max-width: 100%;
+            margin-top: 15px; /* Odepchnięcie od logo */
+            position: relative;
+            z-index: 10; /* Wymuszenie renderowania na samym wierzchu */
         }
 
         .bottom-actions {
@@ -196,7 +198,7 @@
                     <img src="logo.png" alt="ZERO BYTES" class="main-logo">
                 </a>
             </div>
-            <a href="index.html" class="btn btn-header">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
+            <a href="index.html" class="btn btn-header">← POWRÓT DO STRONY GŁÓWNEJ</a>
         </div>
 
         <div class="page-title">REGULAMIN SERWISU</div>
@@ -291,8 +293,8 @@
         </div>
 
         <div class="bottom-actions">
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">⬆ POWRÓT NA GÓRĘ</button>
-            <a href="index.html" class="btn">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">↑ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">← POWRÓT DO STRONY GŁÓWNEJ</a>
         </div>
 
         <div class="footer-links">
