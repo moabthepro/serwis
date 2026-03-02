@@ -271,7 +271,7 @@
         </div>
 
         <div class="section-box">
-            <a href="https://naprawiam.online/token/0bytes/repair/create" id="btn-zglos" class="btn">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+            <a href="https://naprawiam.online/token/0bytes/repair/create" id="btn-zglos" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
             <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
         </div>
 
@@ -347,7 +347,6 @@
             const statusDot = document.querySelector('.dot');
             const statusText = document.getElementById('status-text');
             const reopenInfo = document.getElementById('reopen-info');
-            const btnZglos = document.getElementById('btn-zglos');
 
             const startDate = new Date('2026-02-23'); 
             const diffInTime = now.getTime() - startDate.getTime();
@@ -403,10 +402,8 @@
             if (state === "closed") {
                 reopenInfo.style.display = "block";
                 reopenInfo.innerHTML = "PONOWNE OTWARCIE: <span class='reopen-time'>" + reopenText + "</span>";
-                btnZglos.classList.add("pulse-urgent"); 
             } else {
                 reopenInfo.style.display = "none";
-                btnZglos.classList.remove("pulse-urgent"); 
             }
         }
 
