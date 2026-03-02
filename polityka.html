@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BYTES | POLITYKA PRYWATNOŚCI</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --accent-red: #8b0000;
+            --text-color: #e0e0e0;
+            --card-bg: #111111;
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2px 20px 20px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px; 
+        }
+
+        .header-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 440px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-area {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            margin-bottom: -10px;
+            padding: 0;
+        }
+
+        .logo-area a {
+            display: block;
+            width: 100%;
+            position: relative;
+        }
+
+        .main-logo {
+            width: 125%; 
+            max-width: none;
+            height: auto;
+            margin-top: -50px; 
+            margin-bottom: -45px; 
+            display: block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%); 
+        }
+
+        .btn {
+            font-family: var(--main-font);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .btn:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (hover: hover) {
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+        }
+
+        .btn-header {
+            max-width: 100%;
+            margin-top: 15px; 
+            position: relative;
+            z-index: 10; 
+        }
+
+        .bottom-actions {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 440px;
+            margin: 30px auto 0 auto;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            letter-spacing: 2.5px;
+            margin-bottom: 25px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .legal-section {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid #222;
+            border-left: 4px solid var(--accent-red);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .legal-section h3 {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .legal-section p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #cccccc;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .legal-section ul {
+            margin-top: 8px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            list-style-type: square;
+            color: #cccccc;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .legal-section li {
+            margin-bottom: 12px;
+        }
+
+        .legal-section li:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .footer-links {
+            margin-top: 40px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+                </a>
+            </div>
+            <a href="index.html" class="btn btn-header">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="page-title">POLITYKA PRYWATNOŚCI</div>
+
+        <div class="legal-section">
+            <h3>§1. ADMINISTRATOR DANYCH</h3>
+            <p>Administratorem Twoich danych osobowych jest firma <span class="highlight">Zero Bytes – Konrad Benderowicz</span> z siedzibą w Słubicach. Odpowiadamy za bezpieczeństwo Twoich danych i przetwarzamy je zgodnie z obowiązującymi przepisami prawa, w tym z RODO (Ogólne Rozporządzenie o Ochronie Danych).</p>
+        </div>
+
+        <div class="legal-section">
+            <h3>§2. CEL I ZAKRES ZBIERANIA DANYCH</h3>
+            <p>Strona internetowa <strong>zerobytes.pl</strong> ma charakter informacyjny. Nie zbieramy danych osobowych bezpośrednio przez formularze na naszej domenie głównej. Dane podawane przez Ciebie są niezbędne wyłącznie do:</p>
+            <ul>
+                <li>Zawarcia i realizacji umowy serwisowej (przyjęcie i naprawa sprzętu).</li>
+                <li>Kontaktu w sprawach technicznych, wyceny i powiadomień o statusie naprawy.</li>
+                <li>Wystawienia dokumentów księgowych (paragon, faktura).</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h3>§3. ZEWNĘTRZNE SYSTEMY PRZETWARZANIA</h3>
+            <p>W celu zapewnienia najwyższej jakości obsługi, system zgłaszania awarii, sprawdzania statusu napraw oraz panel logowania klienta obsługiwany jest przez zewnętrzną platformę <strong>Serwisant Online</strong>. </p>
+            <p>Podając tam swoje dane, powierzasz je do przetwarzania na certyfikowanych serwerach dostawcy tego oprogramowania, z którym mamy zawartą stosowną umowę powierzenia przetwarzania danych osobowych. Jeśli zlecasz wysyłkę sprzętu kurierem lub do paczkomatu, Twoje dane teleadresowe zostaną przekazane wybranej firmie logistycznej wyłącznie w celu realizacji dostawy (Door-to-Door).</p>
+        </div>
+
+        <div class="legal-section">
+            <h3>§4. PLIKI COOKIES I ANALITYKA</h3>
+            <p>Nasza główna witryna szanuje Twoją prywatność. <strong>Nie stosujemy agresywnych skryptów śledzących</strong>, takich jak Meta Pixel czy Google Analytics do celów marketingowych. Strona wykorzystuje wyłącznie techniczne, niezbędne pliki cookies, które pozwalają na jej prawidłowe funkcjonowanie (np. poprawne działanie linków, buforowanie statusu otwarcia serwisu).</p>
+        </div>
+
+        <div class="legal-section">
+            <h3>§5. TWOJE PRAWA (RODO)</h3>
+            <p>W każdym momencie masz pełną kontrolę nad swoimi danymi. Przysługuje Ci prawo do:</p>
+            <ul>
+                <li>Dostępu do treści swoich danych oraz żądania ich kopii.</li>
+                <li>Sprostowania (poprawiania) danych, jeśli są błędne.</li>
+                <li>Usunięcia danych ("prawo do bycia zapomnianym"), o ile przepisy prawa podatkowego nie nakazują nam ich dalszego przechowywania.</li>
+                <li>Ograniczenia przetwarzania danych.</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h3>§6. KONTAKT W SPRAWACH DANYCH</h3>
+            <p>Wszelkie żądania, pytania lub wątpliwości dotyczące przetwarzania Twoich danych osobowych możesz zgłaszać bezpośrednio na nasz adres e-mail: <strong>kontakt@zerobytes.pl</strong> lub telefonicznie, korzystając z danych dostępnych na stronie głównej serwisu.</p>
+        </div>
+
+        <div class="bottom-actions">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">↑ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="footer-links">
+            © 2026 ZERO BYTES. Wszelkie prawa zastrzeżone.
+        </div>
+    </div>
+
+</body>
+</html>
