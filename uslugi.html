@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BYTES | LISTA USŁUG</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --accent-red: #8b0000;
+            --text-color: #e0e0e0;
+            --card-bg: #111111;
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2px 20px 20px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px; 
+        }
+
+        .header-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 440px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-area {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            margin-bottom: -10px;
+            padding: 0;
+        }
+
+        .logo-area a {
+            display: block;
+            width: 100%;
+            position: relative;
+        }
+
+        .main-logo {
+            width: 125%; 
+            max-width: none;
+            height: auto;
+            margin-top: -50px; 
+            margin-bottom: -45px; 
+            display: block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%); 
+        }
+
+        .btn {
+            font-family: var(--main-font);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .btn:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (hover: hover) {
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+        }
+
+        .btn-header {
+            max-width: 100%;
+            margin-top: 15px; 
+            position: relative;
+            z-index: 10; 
+        }
+
+        .bottom-actions {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 440px;
+            margin: 40px auto 0 auto;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            letter-spacing: 2.5px;
+            margin-bottom: 35px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 20px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid #222;
+            border-top: 4px solid var(--accent-red);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        @media (hover: hover) {
+            .service-card:hover {
+                transform: translateY(-5px);
+                border-color: #444;
+            }
+        }
+
+        .service-card h3 {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px; 
+            flex-grow: 1;
+        }
+
+        /* Zmodyfikowany wygląd elementu listy po usunięciu cen */
+        .service-item {
+            font-size: 0.9rem;
+            color: #aaaaaa;
+            line-height: 1.5;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #222;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Wyróżnienie tytułu danej usługi */
+        .service-title-text {
+            color: #ffffff;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .footer-links {
+            margin-top: 40px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+                </a>
+            </div>
+            <a href="index.html" class="btn btn-header">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="page-title">LISTA USŁUG</div>
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <h3>💻 Serwis Laptopów</h3>
+                <ul class="service-list">
+                    <li class="service-item">
+                        <span class="service-title-text">Programowanie Układów:</span> 
+                        Programowanie kości BIOS/UEFI (również programatorem zewnętrznym) oraz programowanie kontrolerów KBC (ITE, ENE, SMSC).
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Diagnostyka Płyty Głównej:</span> 
+                        Wykrywanie zwarć, wymiana drobnicy SMD, naprawa ścieżek i sekcji zasilania (bez BGA).
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Laptop SPA (Full Reset):</span> 
+                        Całkowite rozkręcenie urządzenia, mycie obudowy, czyszczenie matrycy i klawiatury, udrożnienie układu chłodzenia + wymiana past/thermopadów.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Serwis Systemowy:</span> 
+                        Instalacja czystego OS, dobór stabilnych sterowników, aktualizacja Firmware, usuwanie wirusów/bloatware.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Naprawa Po Zalaniu:</span> 
+                        Mycie w myjce ultradźwiękowej, usuwanie korozji pod mikroskopem, odbudowa połączeń.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Modernizacja & Tuning:</span> 
+                        Wymiana matryc, klawiatur, rozbudowa RAM/SSD oraz Undervolting (UV).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>🎮 Serwis Konsol</h3>
+                <ul class="service-list">
+                    <li class="service-item">
+                        <span class="service-title-text">Konsola SPA:</span> 
+                        Pełny demontaż, czyszczenie radiatorów, wymiana past i profesjonalna regeneracja Liquid Metal (PS5).
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Naprawa Portów i Zasilania:</span> 
+                        Wymiana gniazd HDMI, USB-C oraz serwis wewnętrznych zasilaczy.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Serwis Napędów:</span> 
+                        Wymiana laserów, naprawa mechaniki i logiki napędu Blu-Ray.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Software:</span> 
+                        Reinstalacja oprogramowania, odbudowa bazy danych, wymiana i klonowanie dysków.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>🖥️ Serwis Komputerów (PC)</h3>
+                <ul class="service-list">
+                    <li class="service-item">
+                        <span class="service-title-text">PC Deep SPA:</span> 
+                        Rozbiórka komputera co do ostatniej śrubki. Pełne mycie obudowy, czyszczenie każdego komponentu osobno (płyta główna, wentylatory, chłodzenie), wymiana past na CPU.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Budowa Custom PC:</span> 
+                        Składanie jednostek od zera, profesjonalny cable management, dobór podzespołów.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Zaawansowany Tuning:</span> 
+                        Skalpowanie procesorów (Delidding), Overclocking (OC) oraz optymalizacja krzywych wentylatorów.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Optymalizacja Software:</span> 
+                        Instalacja systemów, konfiguracja sterowników, usuwanie wirusów, optymalizacja pod gaming/render.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>🔌 Regeneracja Kart GPU</h3>
+                <ul class="service-list">
+                    <li class="service-item">
+                        <span class="service-title-text">GPU SPA:</span> 
+                        Demontaż chłodzenia, czyszczenie radiatora i PCB z wycieków spod starych padów (tzw. "oleju"), mycie obudowy karty i wentylatorów.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Wymiana Termiki:</span> 
+                        Zastosowanie wysokiej klasy past termoprzewodzących i dobór precyzyjnej grubości thermopadów na pamięci VRAM i sekcję VRM.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Naprawa Elektroniki:</span> 
+                        Diagnostyka i naprawa sekcji zasilania VRM, programowanie VBIOS, wymiana uszkodzonych bezpieczników/kondensatorów.
+                    </li>
+                    <li class="service-item">
+                        <span class="service-title-text">Tuning GPU:</span> 
+                        Undervolting (UV) dla zbicia temperatur i hałasu przy zachowaniu pełnej wydajności.
+                    </li>
+                </ul>
+            </div>
+
+        </div> <div class="bottom-actions">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">↑ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="footer-links">
+            © 2026 ZERO BYTES. Wszelkie prawa zastrzeżone.
+        </div>
+    </div>
+
+</body>
+</html>
