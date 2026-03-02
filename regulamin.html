@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BYTES | REGULAMIN SERWISU</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --accent-red: #8b0000;
+            --text-color: #e0e0e0;
+            --card-bg: #111111;
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px; 
+        }
+
+        .header-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .main-logo {
+            width: 100%;
+            max-width: 280px; 
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .btn-back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .btn-back:hover {
+            background-color: #1a1a1a;
+            transform: translateX(-5px);
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            letter-spacing: 2.5px;
+            margin-bottom: 25px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Styl poszczególnych sekcji regulaminu */
+        .legal-section {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid #222;
+            border-left: 4px solid var(--accent-red);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .legal-section h3 {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .legal-section ol {
+            margin: 0;
+            padding-left: 20px;
+            color: #cccccc;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .legal-section ul {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            list-style-type: square;
+        }
+
+        .legal-section li {
+            margin-bottom: 12px;
+        }
+
+        .legal-section li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Podświetlenie kluczowych słów */
+        .highlight {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .footer-links {
+            margin-top: 40px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <a href="index.html">
+                <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+            </a>
+            <a href="index.html" class="btn-back">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="page-title">REGULAMIN SERWISU</div>
+
+        <div class="legal-section">
+            <h3>§1. POSTANOWIENIA OGÓLNE</h3>
+            <ol>
+                <li>Administratorem serwisu jest firma <span class="highlight">Zero Bytes – Konrad Benderowicz</span> z siedzibą w Słubicach.</li>
+                <li>Przyjęcie sprzętu potwierdzane jest „Protokołem Przyjęcia”. Klient podpisując Protokół, akceptuje niniejszy Regulamin.</li>
+                <li>Podstawą wydania sprzętu jest oryginał Protokołu Przyjęcia.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§2. DIAGNOSTYKA I LOGISTYKA</h3>
+            <ol>
+                <li>Diagnostyka sprzętu jest <span class="highlight">BEZPŁATNA</span> pod warunkiem zlecenia naprawy. W przypadku rezygnacji lub braku możliwości naprawy z przyczyn niezależnych, obowiązuje opłata za ekspertyzę: 150–250 zł.</li>
+                <li>Usługa Door-to-Door: Odbiór i zwrot sprzętu na terenie Słubic jest darmowy. Poza terenem Słubic naliczana jest opłata logistyczna w wysokości 2 zł/km (liczone w obie strony).</li>
+                <li>Podany koszt naprawy jest szacunkowy. Wzrost kosztów o ponad 20% wymaga ponownej zgody Klienta.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§3. BUDOWA KOMPUTERÓW NA ZAMÓWIENIE</h3>
+            <ol>
+                <li>Realizacja usługi budowy jednostki centralnej wymaga wpłaty zadatku w wysokości 100% wartości części.</li>
+                <li>Serwis przedstawia specyfikację komponentów do akceptacji. Po wpłacie zaliczki zmiana konfiguracji może wiązać się z dodatkowymi kosztami.</li>
+                <li>Termin realizacji jest uzależniony od dostępności podzespołów u dystrybutorów.</li>
+                <li>Serwis zastrzega sobie prawo do odmowy montażu części powierzonych przez Klienta, jeśli są one niesprawne, niekompatybilne lub pochodzą z niepewnych źródeł.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§4. RYZYKO SERWISOWE I DANE</h3>
+            <ol>
+                <li>Serwis nie odpowiada za dane na nośnikach. Klient powinien wykonać kopię zapasową.</li>
+                <li><span class="highlight">Zasada Sprzętu Martwego:</span> Sprzęt dostarczony jako nieuruchamiający się przyjmowany jest bez weryfikacji stanu podzespołów (matryca, klawiatura). Serwis nie odpowiada za usterki tych elementów ujawnione po przywróceniu zasilania.</li>
+                <li>Naprawy płyt głównych (BGA/SMD) wiążą się z ryzykiem ujawnienia wad ukrytych laminatu. Klient akceptuje ryzyko trwałej usterki w toku prac termicznych.</li>
+                <li>Sprzęt zalany przyjmowany jest bez gwarancji uruchomienia.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§5. TUNING I MODYFIKACJE (OC/UV)</h3>
+            <ol>
+                <li>Usługi OC/UV wykonywane są na wyraźne życzenie i odpowiedzialność Klienta.</li>
+                <li>Serwis nie odpowiada za utratę gwarancji producenta ani za niestabilność oprogramowania/systemu wynikającą z modyfikacji.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§6. GWARANCJA I REKLAMACJE</h3>
+            <ol>
+                <li>Na wykonane usługi Serwis udziela Gwarancji Serwisowej na okres 6 miesięcy.</li>
+                <li>Reklamacje należy składać z dowodem naprawy i nienaruszonymi plombami. Serwis rozpatrzy je w ciągu 14 dni roboczych.</li>
+                <li>Gwarancja nie obejmuje uszkodzeń mechanicznych, zalania, użycia niefirmowych zasilaczy oraz błędów systemu operacyjnego (np. po aktualizacjach).</li>
+                <li>Wymienione, uszkodzone części podlegają utylizacji, chyba że Klient zgłosi chęć ich zwrotu przy zleceniu.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§7. ODBIÓR I PORZUCENIE SPRZĘTU</h3>
+            <ol>
+                <li>Sprzęt należy odebrać w ciągu 14 dni od powiadomienia. Po 90 dniach naliczana jest opłata magazynowa 10 zł/doba.</li>
+                <li>W przypadku nieodebrania sprzętu w terminie 6 miesięcy, zostaje on uznany za porzucony (art. 180 KC) i przekazany do utylizacji lub zlicytowany na poczet kosztów magazynowania.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§8. OCHRONA DANYCH OSOBOWYCH (RODO)</h3>
+            <ol>
+                <li>Administratorem danych osobowych jest Zero Bytes – Konrad Benderowicz z siedzibą w Słubicach.</li>
+                <li>Dane osobowe (imię, nazwisko, numer telefonu, adres e-mail) przetwarzane są wyłącznie w celu:
+                    <ul>
+                        <li>Realizacji zlecenia serwisowego (art. 6 ust. 1 lit. b RODO).</li>
+                        <li>Wystawienia faktury lub paragonu oraz wypełnienia obowiązków podatkowych.</li>
+                        <li>Kontaktu w sprawach związanych z postępem prac i odbiorem sprzętu.</li>
+                    </ul>
+                </li>
+                <li>Klient ma prawo dostępu do swoich danych, ich sprostowania, usunięcia ("prawo do bycia zapomnianym") oraz ograniczenia ich przetwarzania.</li>
+                <li>Dane będą przechowywane przez okres niezbędny do realizacji zlecenia oraz przez czas wymagany przepisami prawa podatkowego lub do czasu przedawnienia ewentualnych roszczeń gwarancyjnych.</li>
+                <li>Podanie danych jest dobrowolne, ale niezbędne do przyjęcia sprzętu do serwisu.</li>
+            </ol>
+        </div>
+
+        <div class="legal-section">
+            <h3>§9. POSTANOWIENIA KOŃCOWE</h3>
+            <ol>
+                <li>W sprawach nieuregulowanych niniejszym Regulaminem mają zastosowanie przepisy Kodeksu Cywilnego.</li>
+                <li>Serwis zastrzega sobie prawo do zmiany treści niniejszego Regulaminu w dowolnym czasie. Aktualna treść Regulaminu jest zawsze dostępna w siedzibie Serwisu oraz na stronie internetowej www.zerobytes.pl/regulamin</li>
+            </ol>
+        </div>
+
+        <div class="footer-links">
+            © 2026 ZERO BYTES. Wszelkie prawa zastrzeżone.
+        </div>
+    </div>
+
+</body>
+</html>
