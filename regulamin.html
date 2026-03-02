@@ -22,7 +22,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 2px 20px 20px 20px;
         }
 
         .container {
@@ -30,27 +30,47 @@
             max-width: 800px; 
         }
 
+        /* Ograniczenie szerokości nagłówka do 440px, by logo miało identyczny rozmiar jak w index.html */
         .header-area {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 30px;
+            width: 100%;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 1:1 identyczne parametry logo jak na stronie głównej */
+        .logo-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: -10px;
+            padding: 0;
         }
 
         .main-logo {
-            width: 100%;
-            max-width: 280px; 
+            width: 125%; 
+            max-width: none;
             height: auto;
-            margin-bottom: 20px;
+            margin-top: -50px; 
+            margin-bottom: -45px; 
             display: block;
         }
 
-        .btn-back {
+        /* Ujednolicony styl przycisków */
+        .btn-action {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            padding: 12px 25px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
             background-color: var(--card-bg);
             border: 1px solid #333;
             border-left: 4px solid var(--accent-red);
@@ -58,14 +78,33 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 700;
+            box-sizing: border-box;
             transition: 0.3s;
+            cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            outline: none;
         }
 
-        .btn-back:hover {
-            background-color: #1a1a1a;
-            transform: translateX(-5px);
+        .btn-action:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (hover: hover) {
+            .btn-action:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+        }
+
+        /* Sekcja przycisków na dole */
+        .bottom-actions {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 440px;
+            margin: 30px auto 0 auto;
         }
 
         .page-title {
@@ -79,7 +118,6 @@
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Styl poszczególnych sekcji regulaminu */
         .legal-section {
             background: linear-gradient(145deg, #121212, #080808);
             border: 1px solid #222;
@@ -124,7 +162,6 @@
             margin-bottom: 0;
         }
 
-        /* Podświetlenie kluczowych słów */
         .highlight {
             color: var(--text-color);
             font-weight: 700;
@@ -144,10 +181,12 @@
 
     <div class="container">
         <div class="header-area">
-            <a href="index.html">
-                <img src="logo.png" alt="ZERO BYTES" class="main-logo">
-            </a>
-            <a href="index.html" class="btn-back">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
+            <div class="logo-area">
+                <a href="index.html" style="display: block; width: 100%;">
+                    <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+                </a>
+            </div>
+            <a href="index.html" class="btn-action">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
         </div>
 
         <div class="page-title">REGULAMIN SERWISU</div>
@@ -239,6 +278,11 @@
                 <li>W sprawach nieuregulowanych niniejszym Regulaminem mają zastosowanie przepisy Kodeksu Cywilnego.</li>
                 <li>Serwis zastrzega sobie prawo do zmiany treści niniejszego Regulaminu w dowolnym czasie. Aktualna treść Regulaminu jest zawsze dostępna w siedzibie Serwisu oraz na stronie internetowej www.zerobytes.pl/regulamin</li>
             </ol>
+        </div>
+
+        <div class="bottom-actions">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-action">⬆ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn-action">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
         </div>
 
         <div class="footer-links">
