@@ -264,7 +264,7 @@
 
         <div class="section-box status-section-box">
             <div class="section-header">STATUS NAPRAWY</div>
-            <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2-Y3Z)">
+            <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2Y3Z)">
             <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
             <div class="or-divider">LUB</div>
             <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
@@ -277,9 +277,9 @@
 
         <div class="section-box">
             <div class="section-header">KONTAKT</div>
-            <a href="tel:+48XXXXXXXXX" class="btn">📞 ZADZWOŃ DO NAS</a>
-            <a href="https://wa.me/48XXXXXXXXX" class="btn">💬 NAPISZ NA WHATSAPP</a>
-            <a href="mailto:kontakt@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
+            <a href="tel:+48790709814" class="btn">📞 ZADZWOŃ DO NAS</a>
+            <a href="https://wa.me/48790709814" class="btn">💬 NAPISZ NA WHATSAPP</a>
+            <a href="mailto:serwis@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
             <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
         </div>
 
@@ -312,7 +312,7 @@
         };
 
         function openMaps() {
-            const address = "[TWOJA LOKALIZACJA]";
+            const address = "1 Maja 5/1 69-100 Słubice Polska";
             const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
             if (isApple) {
                 window.location.href = `maps://maps.apple.com/?q=${encodeURIComponent(address)}`;
@@ -412,7 +412,7 @@
 
         function goToStatus() {
             const id = document.getElementById('orderId').value;
-            if(id) window.location.href = "https://naprawiam.online/" + id;
+            if(id) window.location.href = "https://naprawiam.online/token/" + id;
         }
 
         function goToClientLogin() {
