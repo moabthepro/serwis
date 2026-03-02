@@ -30,47 +30,47 @@
             max-width: 800px; 
         }
 
-        /* Sekcja nagłówka - wyśrodkowana */
         .header-area {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 30px;
             width: 100%;
-            /* Dodano max-width identyczne jak na stronie głównej, by logo miało ten sam rozmiar */
             max-width: 440px; 
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* 1. POPRAWKA WYŚRODKOWANIA LOGO */
+        /* Wymuszone, perfekcyjne centrowanie logo */
         .logo-area {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;
             overflow: hidden;
             margin-bottom: -10px;
             padding: 0;
-            text-align: center; /* Zapewnia wyśrodkowanie grafiki wewnątrz linku */
+        }
+
+        .logo-area a {
+            display: block;
+            width: 100%;
+            position: relative;
         }
 
         .main-logo {
-            width: 125%; /* Powiększenie jak na stronie głównej */
+            width: 125%; 
             max-width: none;
-            /* height: auto zapewnia zachowanie proporcji grafiki przy skalowaniu */
-            height: auto; 
+            height: auto;
             margin-top: -50px; 
             margin-bottom: -45px; 
             display: block;
-            margin-left: auto;
-            margin-right: auto;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%); /* Zawsze idealnie na środku */
         }
 
-        /* 2. POPRAWKA WYŚRODKOWANIA STRZAŁEK/IKON W PIONIE (MOBILE) */
+        /* Oczyszczone centrowanie przycisków */
         .btn {
             font-family: var(--main-font);
-            /* display: flex z align-items: center zapewnia idealne wyśrodkowanie w pionie */
             display: flex;
             justify-content: center;
             align-items: center; 
@@ -93,19 +93,10 @@
             outline: none;
         }
 
-        /* Specjalne traktowanie ikon/emoji w przycisku */
-        .btn span, .btn img, .btn i {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1; /* Zapobiega przesunięciom linii tekstu */
-        }
-
         .btn:last-child {
             margin-bottom: 0;
         }
 
-        /* Blokada hoverów na telefonach */
         @media (hover: hover) {
             .btn:hover {
                 background-color: #1a1a1a;
@@ -114,12 +105,10 @@
             }
         }
 
-        /* Przycisk na górze (POWRÓT...) */
         .btn-header {
             max-width: 100%;
         }
 
-        /* Sekcja przycisków na dole (Ujednolicono style) */
         .bottom-actions {
             display: flex;
             flex-direction: column;
@@ -203,11 +192,11 @@
     <div class="container">
         <div class="header-area">
             <div class="logo-area">
-                <a href="index.html" style="display: block; width: 100%;">
+                <a href="index.html">
                     <img src="logo.png" alt="ZERO BYTES" class="main-logo">
                 </a>
             </div>
-            <a href="index.html" class="btn btn-header"><span>⬅ POWRÓT DO STRONY GŁÓWNEJ</span></a>
+            <a href="index.html" class="btn btn-header">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
         </div>
 
         <div class="page-title">REGULAMIN SERWISU</div>
@@ -302,8 +291,8 @@
         </div>
 
         <div class="bottom-actions">
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn"><span>⬆ POWRÓT NA GÓRĘ</span></button>
-            <a href="index.html" class="btn"><span>⬅ POWRÓT DO STRONY GŁÓWNEJ</span></a>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">⬆ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">⬅ POWRÓT DO STRONY GŁÓWNEJ</a>
         </div>
 
         <div class="footer-links">
