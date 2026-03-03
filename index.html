@@ -29,14 +29,12 @@
             text-transform: uppercase;
         }
 
-        /* Rozszerzony kontener pod 3 kolumny */
         .container {
             width: 100%;
             max-width: 1200px;
             text-align: center;
         }
 
-        /* Blokada szerokości dla logo i górnego statusu */
         .top-section {
             width: 100%;
             max-width: 440px;
@@ -60,7 +58,6 @@
             margin-top: -50px; 
             margin-bottom: -45px; 
             display: block;
-            /* Wymuszone centrowanie logo */
             position: relative;
             left: 50%;
             transform: translateX(-50%);
@@ -130,7 +127,6 @@
             border-left: 4px solid var(--accent-red) !important;
         }
 
-        /* --- SIATKA 3 KOLUMNOWA --- */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -146,16 +142,14 @@
             gap: 20px;
         }
 
-        /* W siatce używamy gap, więc zerujemy dolne marginesy kontenerów */
         .main-grid .section-box {
             margin-bottom: 0; 
         }
 
-        /* Komputery: 3 kolumny */
         @media (min-width: 1024px) {
             .main-grid {
                 max-width: 100%;
-                grid-template-columns: 1fr 1.2fr 1fr; /* Środkowa kolumna lekko szersza dla statusu */
+                grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
             .grid-col-left { order: 1; }
@@ -163,7 +157,6 @@
             .grid-col-right { order: 3; }
         }
 
-        /* Telefony i Tablety: 1 kolumna (najpierw status, potem kontakt) */
         @media (max-width: 1023px) {
             .grid-col-center { order: 1; }
             .grid-col-left { order: 2; }
@@ -289,6 +282,51 @@
             font-size: 0.8rem;
         }
 
+        .brands-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 10px auto;
+            text-align: center;
+            border-top: 1px solid #222;
+            padding-top: 30px;
+        }
+
+        .brands-header {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .brands-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .brands-grid:hover {
+            opacity: 1; 
+        }
+
+        .brand-logo {
+            height: 30px; 
+            width: auto;
+            filter: grayscale(100%) brightness(150%);
+            transition: 0.3s ease;
+        }
+
+        @media (hover: hover) {
+            .brand-logo:hover {
+                filter: grayscale(0%) brightness(100%);
+                transform: scale(1.1);
+            }
+        }
+
         .footer-links {
             margin-top: 40px;
             opacity: 0.3;
@@ -361,7 +399,16 @@
                 </div>
             </div>
 
-        </div> <div class="footer-links">
+        </div> <div class="brands-section">
+            <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
+            <div class="brands-grid">
+                <img src="amd.svg" alt="AMD" class="brand-logo">
+                <img src="intel.svg" alt="Intel" class="brand-logo">
+                <img src="nvidia.svg" alt="NVIDIA" class="brand-logo">
+            </div>
+        </div>
+
+        <div class="footer-links">
             <a href="regulamin.html">REGULAMIN</a>
             <a href="polityka.html">POLITYKA PRYWATNOŚCI</a>
         </div>
@@ -369,7 +416,6 @@
 
     <script>
         window.onload = function() {
-            // Usunięto alert z informacją o przebudowie
             updateStatus();
         };
 
