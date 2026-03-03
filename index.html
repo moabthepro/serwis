@@ -41,12 +41,13 @@
             margin: 0 auto;
         }
 
+        /* Ulepszone centrowanie logo za pomocą Flexboxa */
         .logo-area {
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Gwarantuje idealny środek */
             align-items: center;
-            overflow: hidden;
+            overflow: visible; /* Zapobiega ucinaniu krawędzi przy powiększeniu */
             margin-bottom: -10px;
             padding: 0;
         }
@@ -58,9 +59,7 @@
             margin-top: -50px; 
             margin-bottom: -45px; 
             display: block;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+            flex-shrink: 0; /* Zapobiega zgniataniu obrazka przez kontener */
         }
 
         #status-wrapper {
@@ -402,9 +401,9 @@
         </div> <div class="brands-section">
             <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
             <div class="brands-grid">
-                <img src="amd.png" alt="AMD" class="brand-logo">
-                <img src="intel.png" alt="Intel" class="brand-logo">
-                <img src="nvidia.png" alt="NVIDIA" class="brand-logo">
+                <img src="AMD.png" alt="AMD" class="brand-logo">
+                <img src="Intel.png" alt="Intel" class="brand-logo">
+                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo">
             </div>
         </div>
 
