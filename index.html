@@ -280,7 +280,7 @@
             font-size: 0.8rem;
         }
 
-        /* --- KULOODPORNA SEKCJA LOGOTYPÓW --- */
+        /* --- STONOWANA SEKCJA LOGOTYPÓW --- */
         .brands-section {
             width: 100%;
             max-width: 800px;
@@ -301,22 +301,22 @@
         .brands-grid {
             display: flex;
             justify-content: center;
-            align-items: center; /* Gwarantuje idealną oś Y dla zawartości */
+            align-items: center; 
             flex-wrap: wrap;
-            gap: 35px; 
+            gap: 25px; /* Mniejsze odstępy dla mniejszych logotypów */
         }
 
         .brand-logo {
             filter: grayscale(100%) brightness(180%) opacity(0.5);
             transition: all 0.3s ease;
-            object-fit: contain; /* Gwarantuje, że obrazek nie zostanie rozciągnięty */
-            height: auto;
+            object-fit: contain; 
+            width: auto; /* Szerokość dostosuje się sama do zadanej wysokości */
         }
 
-        /* Ustalenie sztywnych szerokości, żeby wyrównać proporcje wizualne */
-        .logo-amd { width: 75px; }
-        .logo-intel { width: 95px; }
-        .logo-nvidia { width: 120px; }
+        /* Zablokowane bardzo małe i dyskretne wysokości (zamiast wielkich szerokości) */
+        .logo-amd { height: 22px; }
+        .logo-intel { height: 28px; }
+        .logo-nvidia { height: 20px; }
 
         @media (hover: hover) {
             .brand-logo:hover {
