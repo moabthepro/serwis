@@ -29,10 +29,18 @@
             text-transform: uppercase;
         }
 
+        /* Rozszerzony kontener pod 3 kolumny */
         .container {
             width: 100%;
-            max-width: 440px;
+            max-width: 1200px;
             text-align: center;
+        }
+
+        /* Blokada szerokości dla logo i górnego statusu */
+        .top-section {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
         }
 
         .logo-area {
@@ -52,6 +60,10 @@
             margin-top: -50px; 
             margin-bottom: -45px; 
             display: block;
+            /* Wymuszone centrowanie logo */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         #status-wrapper {
@@ -118,8 +130,47 @@
             border-left: 4px solid var(--accent-red) !important;
         }
 
+        /* --- SIATKA 3 KOLUMNOWA --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .grid-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* W siatce używamy gap, więc zerujemy dolne marginesy kontenerów */
+        .main-grid .section-box {
+            margin-bottom: 0; 
+        }
+
+        /* Komputery: 3 kolumny */
+        @media (min-width: 1024px) {
+            .main-grid {
+                max-width: 100%;
+                grid-template-columns: 1fr 1.2fr 1fr; /* Środkowa kolumna lekko szersza dla statusu */
+                align-items: start;
+            }
+            .grid-col-left { order: 1; }
+            .grid-col-center { order: 2; }
+            .grid-col-right { order: 3; }
+        }
+
+        /* Telefony i Tablety: 1 kolumna (najpierw status, potem kontakt) */
+        @media (max-width: 1023px) {
+            .grid-col-center { order: 1; }
+            .grid-col-left { order: 2; }
+            .grid-col-right { order: 3; }
+        }
+
         .section-box {
-            margin-bottom: 20px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
             padding: 20px;
             border-radius: 15px;
@@ -250,56 +301,67 @@
 <body>
 
     <div class="container">
-        <div class="logo-area">
-            <img src="logo.png" alt="ZERO BYTES" class="main-logo">
-        </div>
-
-        <div id="status-wrapper">
-            <div id="service-status">
-                <div class="dot"></div>
-                <span id="status-text">SPRAWDZANIE...</span>
+        
+        <div class="top-section">
+            <div class="logo-area">
+                <img src="logo.png" alt="ZERO BYTES" class="main-logo">
             </div>
-            <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">JUTRO 09:30</span></div>
+
+            <div id="status-wrapper">
+                <div id="service-status">
+                    <div class="dot"></div>
+                    <span id="status-text">SPRAWDZANIE...</span>
+                </div>
+                <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">JUTRO 09:30</span></div>
+            </div>
         </div>
 
-        <div class="section-box status-section-box">
-            <div class="section-header">STATUS NAPRAWY</div>
-            <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2Y3Z)">
-            <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
-            <div class="or-divider">LUB</div>
-            <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
-        </div>
-
-        <div class="section-box">
-            <a href="https://naprawiam.online/token/0bytes/repair/create" id="btn-zglos" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
-            <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
-        </div>
-
-        <div class="section-box">
-            <div class="section-header">KONTAKT</div>
-            <a href="tel:+48790709814" class="btn">📞 ZADZWOŃ DO NAS</a>
-            <a href="https://wa.me/48790709814" class="btn">💬 NAPISZ NA WHATSAPP</a>
-            <a href="mailto:serwis@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
-            <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
-        </div>
-
-        <div class="section-box">
-            <div class="section-header">WIĘCEJ</div>
-            <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG</a>
-            <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
-            <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
+        <div class="main-grid">
             
-            <div id="infoTable" class="info-content">
-                <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
-                <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
-                <div class="info-row"><span>NIP:</span><span>5981662682</span></div>
-                <div class="info-row"><span>REGON:</span><span>543979466</span></div>
-                <div class="info-row"><span>BDO:</span><span>000705795</span></div>
-                <div class="info-row"><span>TEL:</span><span>+48 790709814</span></div>
+            <div class="grid-col grid-col-left">
+                <div class="section-box">
+                    <div class="section-header">KONTAKT</div>
+                    <a href="tel:+48790709814" class="btn">📞 ZADZWOŃ DO NAS</a>
+                    <a href="https://wa.me/48790709814" class="btn">💬 NAPISZ NA WHATSAPP</a>
+                    <a href="mailto:serwis@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
+                    <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-links">
+            <div class="grid-col grid-col-center">
+                <div class="section-box status-section-box">
+                    <div class="section-header">STATUS NAPRAWY</div>
+                    <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2Y3Z)">
+                    <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
+                    <div class="or-divider">LUB</div>
+                    <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
+                </div>
+
+                <div class="section-box">
+                    <a href="https://naprawiam.online/token/0bytes/repair/create" id="btn-zglos" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+                    <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
+                </div>
+            </div>
+
+            <div class="grid-col grid-col-right">
+                <div class="section-box">
+                    <div class="section-header">WIĘCEJ</div>
+                    <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG</a>
+                    <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
+                    <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
+                    
+                    <div id="infoTable" class="info-content">
+                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
+                        <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
+                        <div class="info-row"><span>NIP:</span><span>5981662682</span></div>
+                        <div class="info-row"><span>REGON:</span><span>543979466</span></div>
+                        <div class="info-row"><span>BDO:</span><span>000705795</span></div>
+                        <div class="info-row"><span>TEL:</span><span>+48 790709814</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <div class="footer-links">
             <a href="regulamin.html">REGULAMIN</a>
             <a href="polityka.html">POLITYKA PRYWATNOŚCI</a>
         </div>
@@ -307,7 +369,7 @@
 
     <script>
         window.onload = function() {
-            alert("STRONA SERWISU ZERO BYTES JEST OBECNIE W PRZEBUDOWIE. NIEKTÓRE FUNKCJE MOGĄ NIE DZIAŁAĆ POPRAWNIE.");
+            // Usunięto alert z informacją o przebudowie
             updateStatus();
         };
 
