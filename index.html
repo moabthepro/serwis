@@ -46,7 +46,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: visible;
+            overflow: visible; 
             margin-bottom: -10px;
             padding: 0;
         }
@@ -58,7 +58,7 @@
             margin-top: -50px; 
             margin-bottom: -45px; 
             display: block;
-            flex-shrink: 0;
+            flex-shrink: 0; 
         }
 
         #status-wrapper {
@@ -280,7 +280,6 @@
             font-size: 0.8rem;
         }
 
-        /* --- ZAKTUALIZOWANA SEKCJA LOGOTYPÓW --- */
         .brands-section {
             width: 100%;
             max-width: 800px;
@@ -295,21 +294,19 @@
             color: #666;
             font-weight: 700;
             letter-spacing: 2px;
-            margin-bottom: 25px; /* Trochę więcej miejsca */
+            margin-bottom: 25px; 
         }
 
         .brands-grid {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Gwarantuje symetrię osi poziomej */
             flex-wrap: wrap;
-            gap: 40px; /* Większy odstęp, żeby zbalansować duże loga */
+            gap: 40px; 
         }
 
         .brand-logo {
-            height: 45px; /* POWIĘKSZONE Z 30px na 45px */
             width: auto;
-            /* Zoptymalizowany filtr, wyciąga jasność na ciemniejszych logach */
             filter: grayscale(100%) brightness(180%) opacity(0.5);
             transition: all 0.3s ease;
         }
@@ -317,7 +314,7 @@
         @media (hover: hover) {
             .brand-logo:hover {
                 filter: grayscale(0%) brightness(100%) opacity(1);
-                transform: scale(1.1);
+                transform: scale(1.1) !important; /* !important chroni przez nadpisaniem translateY podczas hovera */
             }
         }
 
@@ -396,9 +393,9 @@
         </div> <div class="brands-section">
             <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
             <div class="brands-grid">
-                <img src="AMD.png" alt="AMD" class="brand-logo">
-                <img src="Intel.png" alt="Intel" class="brand-logo">
-                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo">
+                <img src="AMD.png" alt="AMD" class="brand-logo" style="height: 35px; transform: translateY(-2px);">
+                <img src="Intel.png" alt="Intel" class="brand-logo" style="height: 50px;">
+                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo" style="height: 42px; transform: translateY(1px);">
             </div>
         </div>
 
