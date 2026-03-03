@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BYTES | NAJCZĘSTSZE PYTANIA</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --accent-red: #8b0000;
+            --text-color: #e0e0e0;
+            --card-bg: #111111;
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2px 20px 20px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px; 
+        }
+
+        .header-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 440px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-area {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            margin-bottom: -10px;
+            padding: 0;
+        }
+
+        .logo-area a {
+            display: block;
+            width: 100%;
+            position: relative;
+        }
+
+        .main-logo {
+            width: 125%; 
+            max-width: none;
+            height: auto;
+            margin-top: -50px; 
+            margin-bottom: -45px; 
+            display: block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%); 
+        }
+
+        .btn {
+            font-family: var(--main-font);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .btn:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (hover: hover) {
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+        }
+
+        .btn-header {
+            max-width: 100%;
+            margin-top: 15px; 
+            position: relative;
+            z-index: 10; 
+        }
+
+        .bottom-actions {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 440px;
+            margin: 40px auto 0 auto;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            letter-spacing: 2.5px;
+            margin-bottom: 35px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- STYLIZACJA AKORDEONU (FAQ) --- */
+        .faq-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid #222;
+            border-left: 4px solid var(--accent-red);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: left;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+            font-family: var(--main-font);
+            outline: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+            color: var(--accent-red);
+            line-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .faq-question {
+            background: rgba(139, 0, 0, 0.1);
+            border-bottom: 1px solid #222;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #0a0a0a;
+        }
+
+        .answer-content {
+            padding: 20px;
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .footer-links {
+            margin-top: 40px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+                </a>
+            </div>
+            <a href="index.html" class="btn btn-header">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="page-title">NAJCZĘSTSZE PYTANIA</div>
+
+        <div class="faq-section">
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Ile kosztuje diagnoza sprzętu?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Diagnostyka jest <span class="highlight">całkowicie bezpłatna</span>, jeśli po wycenie zdecydujesz się na realizację naprawy w naszym serwisie. W przypadku rezygnacji z naprawy po zdiagnozowaniu usterki, pobieramy standardową opłatę za ekspertyzę (150-250 zł w zależności od skomplikowania pacjenta).
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Ile będę czekać na naprawę?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Zakładamy standardowy czas <span class="highlight">10 dni roboczych na wykonanie naprawy</span> od momentu postawienia diagnozy i akceptacji kosztów. Czas ten może jednak ulec zmianie w zależności od skali uszkodzeń oraz dostępności specyficznych układów (BGA/SMD) u dystrybutorów. Zawsze informujemy o przewidywanym terminie prac.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Jak działa usługa Door-to-Door?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Na terenie Słubic odbieramy i odwozimy sprzęt za darmo. Dla klientów spoza miasta doliczamy zryczałtowaną stawkę 2 zł/km w obie strony, lub organizujemy bezpieczną wysyłkę kurierską poprzez nasz zewnętrzny system zgłoszeń.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Czy podany koszt naprawy może wzrosnąć?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Początkowa wycena ma charakter szacunkowy. Jeżeli w toku prac serwisowych (szczególnie na laminacie lub po zalaniu) ujawnią się usterki ukryte i koszt wzrośnie o więcej niż 20%, wstrzymujemy prace i czekamy na Twoją akceptację nowego budżetu. Nie wdrażamy zmian z automatu.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Co oznacza "Zasada Sprzętu Martwego"?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Jeżeli dostarczasz urządzenie, które kompletnie nie reaguje na zasilanie, nie mamy możliwości weryfikacji stanu matrycy, portów czy klawiatury. Po przywróceniu napięć na płycie głównej mogą ujawnić się usterki tych podzespołów, za które serwis nie ponosi odpowiedzialności, ponieważ wystąpiły one wcześniej.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Zalałem sprzęt. Co robić?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Natychmiast odłącz zasilacz, a jeśli to możliwe – wypnij baterię. <span class="highlight">Nie susz sprzętu suszarką, nie wkładaj do ryżu i pod żadnym pozorem nie próbuj go włączać.</span> Sprzęt musi jak najszybciej trafić do nas na myjkę ultradźwiękową (usuwanie korozji). Czas odgrywa tu kluczową rolę.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Czy naprawiacie płyty główne po innych serwisach?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Tak, ale wymaga to indywidualnej oceny. Wiele sprzętów po nieudolnych diagnozach wymaga najpierw usunięcia szkód (zwarcia po lutowaniu hot-airem, zmostkowane linie zasilania), co podnosi finalny koszt i czas naprawy.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Czy Undervolting (UV) procesora/karty jest bezpieczny?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Tak. Prawidłowo przeprowadzony UV obniża napięcie zasilające przy zachowaniu tej samej wydajności. Prowadzi to do niższych temperatur, cichszej pracy wentylatorów i dłuższej żywotności komponentów. Każdy profil jest przez nas rygorystycznie testowany pod obciążeniem.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Czy stracę dane z dysku podczas naprawy?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Nie ingerujemy w nośniki danych klientów (chyba że zlecasz nam instalację OS lub klonowanie). Zawsze jednak rekomendujemy wykonanie kopii zapasowej przed oddaniem sprzętu. Serwis nie ponosi odpowiedzialności za utratę plików.
+                    </div>
+                </div>
+            </div>
+
+        </div> <div class="bottom-actions">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">↑ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="footer-links">
+            © 2026 ZERO BYTES. Wszelkie prawa zastrzeżone.
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(button) {
+            const currentItem = button.parentElement;
+            const allItems = document.querySelectorAll('.faq-item');
+
+            // Zamykanie innych otwartych elementów
+            allItems.forEach(item => {
+                if (item !== currentItem && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+
+            // Przełączanie klikniętego elementu
+            currentItem.classList.toggle('active');
+            const answer = currentItem.querySelector('.faq-answer');
+            
+            if (currentItem.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        }
+    </script>
+</body>
+</html>
