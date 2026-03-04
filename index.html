@@ -79,7 +79,7 @@
             flex-direction: column;
             align-items: center;
             margin-bottom: 25px;
-            margin-top: 5px;
+            margin-top: -15px; /* Odstęp zmniejszony o połowę */
             z-index: 2;
             position: relative;
         }
@@ -154,7 +154,7 @@
 
         @media (min-width: 1024px) {
             .main-grid {
-                max-width: 1000px; 
+                max-width: 100%; /* Siatka na pełną szerokość */
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
@@ -280,11 +280,11 @@
             width: 100%;
             max-width: 1000px; 
             margin: 40px auto 10px auto;
-            border-top: 1px solid #222; /* Linia oddzielająca od kolumn */
-            padding-top: 40px; /* Odstęp od linii do opinii */
+            border-top: 1px solid #222; /* Linia oddzielająca */
+            padding-top: 40px; 
         }
 
-        /* Opcja atomowa na wymuszony CapsLock z body */
+        /* Wyłączenie CapsLocka dla elementów widgetu */
         .reviews-wrapper,
         .reviews-wrapper *,
         .ti-widget,
