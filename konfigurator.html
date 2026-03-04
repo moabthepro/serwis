@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZERO BYTES | KONFIGURATOR PC</title>
     <style>
+        /* Twardy reset zabezpieczający przed rozjeżdżaniem kontenerów */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Siłowa blokada scrollowania w poziomie na urządzeniach mobilnych */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         :root {
             --bg-color: #000000;
             --accent-red: #8b0000;
@@ -46,19 +57,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: visible;
             margin-bottom: -10px;
             padding: 0;
         }
 
+        .logo-area a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
         .main-logo {
-            width: 125%; 
-            max-width: none;
+            width: 100%; 
+            max-width: 400px;
             height: auto;
-            margin-top: -50px; 
-            margin-bottom: -45px; 
+            margin-top: -30px; 
+            margin-bottom: -20px; 
             display: block;
             flex-shrink: 0;
+            transform: scale(1.2); /* Powiększa optycznie logo bez rozpychania kontenera fizycznie */
         }
 
         .btn {
@@ -301,7 +319,7 @@
             font-size: 0.75rem;
             color: #888;
             line-height: 1.5;
-            text-transform: none; /* Wyłączony uppercase dla czytelności długiego tekstu */
+            text-transform: none; 
             letter-spacing: normal;
             font-weight: 400;
             cursor: pointer;
