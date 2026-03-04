@@ -249,14 +249,16 @@
             font-size: 0.8rem;
         }
 
-        /* --- KOREKTA LINII LOGOTYPÓW --- */
+        /* --- POPRAWIONA SEKCJA LOGOTYPÓW --- */
         .brands-section {
             width: 100%;
-            max-width: 800px;
-            margin: 40px auto 10px auto;
+            margin: 50px auto 20px auto;
             text-align: center;
             border-top: 1px solid #222;
             padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .brands-header {
@@ -270,9 +272,16 @@
         .brands-grid {
             display: flex;
             justify-content: center;
-            align-items: flex-end; /* Wyrównanie do dołu dla stabilności osi */
-            flex-wrap: wrap;
+            align-items: center;
             gap: 40px; 
+        }
+
+        /* Na telefonie loga pod sobą */
+        @media (max-width: 767px) {
+            .brands-grid {
+                flex-direction: column;
+                gap: 25px;
+            }
         }
 
         .brand-logo {
@@ -280,12 +289,13 @@
             transition: all 0.3s ease;
             object-fit: contain;
             width: auto;
+            display: block;
         }
 
-        /* Indywidualne poprawki optyczne Twoich plików */
-        .logo-amd { height: 24px; margin-bottom: 4px; }
-        .logo-intel { height: 32px; margin-bottom: 0px; }
-        .logo-nvidia { height: 22px; margin-bottom: 5px; }
+        /* Ręczne wyrównanie bazując na Twoich plikach */
+        .logo-amd { height: 22px; }
+        .logo-intel { height: 28px; }
+        .logo-nvidia { height: 20px; }
 
         @media (hover: hover) {
             .brand-logo:hover {
@@ -295,7 +305,7 @@
         }
 
         .footer-links {
-            margin-top: 40px;
+            margin-top: 30px;
             opacity: 0.3;
             font-size: 0.75rem;
             padding-bottom: 20px;
@@ -317,7 +327,7 @@
                     <div class="dot"></div>
                     <span id="status-text">SPRAWDZANIE...</span>
                 </div>
-                <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">JUTRO 09:30</span></div>
+                <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">DZISIAJ 09:30</span></div>
             </div>
         </div>
 
@@ -383,7 +393,7 @@
 
     <script>
         window.onload = function() { updateStatus(); };
-        function openMaps() { window.location.href = `https://www.google.com/maps/search/?api=1&query=1+Maja+5/1+Słubice`; }
+        function openMaps() { window.location.href = "https://www.google.com/maps/search/?api=1&query=1+Maja+5/1+Słubice"; }
         function toggleInfo(btn) { document.getElementById('infoTable').classList.toggle('active'); }
         function goToStatus() { const id = document.getElementById('orderId').value; if(id) window.location.href = "https://naprawiam.online/token/" + id; }
         function goToClientLogin() { window.location.href = "https://naprawiam.online/panel/0bytes/login"; }
@@ -397,7 +407,7 @@
             const reopenInfo = document.getElementById('reopen-info');
 
             let state = "closed";
-            let reopen = "JUTRO 09:30";
+            let reopen = "DZISIAJ 09:30";
 
             if (day >= 1 && day <= 5) {
                 if (hour >= 9.5 && hour < 18) state = "open";
