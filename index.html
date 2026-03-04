@@ -42,7 +42,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px; /* Całkowita szerokość kontenera */
+            max-width: 1200px; 
             text-align: center;
         }
 
@@ -99,13 +99,12 @@
             100% { transform: scale(0.95); opacity: 0.7; }
         }
 
-        /* --- SIATKA GŁÓWNA --- */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
             width: 100%;
-            max-width: 440px; /* Domyślnie dla mobile, żeby nie było za szeroko */
+            max-width: 440px; 
             margin: 0 auto 40px auto;
         }
 
@@ -117,7 +116,7 @@
 
         @media (min-width: 1024px) {
             .main-grid {
-                max-width: 1200px; /* Na desktopie rozciągamy siatkę */
+                max-width: 1200px; 
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
@@ -217,13 +216,14 @@
             font-size: 0.8rem;
         }
 
-        /* --- POPRAWIONY WIDGET OPINII --- */
+        /* --- WIDGET OPINII (BEZ WYMUSZONEGO CAPSLOCKA) --- */
         .reviews-wrapper {
             width: 100%;
-            max-width: 1200px; /* Szerokość na 3 opinie obok siebie */
+            max-width: 1200px; 
             margin: 20px auto 40px auto;
             padding: 0 10px;
             box-sizing: border-box;
+            text-transform: none; /* Wyłączenie CapsLocka dla opinii */
         }
 
         .brands-section {
