@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZERO BYTES | SERWIS KOMPUTEROWY</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zerobytes.pl/">
+    <meta property="og:title" content="ZERO BYTES | Serwis Elektroniki Precyzyjnej">
+    <meta property="og:description" content="Specjalistyczny serwis elektroniki i PCB w Słubicach. Tuning PC (OC/UV), budowa jednostek Custom oraz profesjonalny serwis laptopów. Precision in every bit.">
+    <meta property="og:image" content="https://zerobytes.pl/og-image.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="ZERO BYTES | Serwis Elektroniki Precyzyjnej">
+    <meta property="twitter:description" content="Specjalistyczny serwis elektroniki i PCB. Tuning PC (OC/UV) oraz budowa jednostek Custom. Słubice, ul. 1 Maja 5/1.">
+    <meta property="twitter:image" content="https://zerobytes.pl/og-image.png">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <style>
         :root {
             --bg-color: #000000; 
@@ -111,18 +125,6 @@
             0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
             50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px currentColor; }
             100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
-        }
-
-        @keyframes pulseRedGlow {
-            0% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7); transform: scale(1); }
-            50% { box-shadow: 0 0 0 12px rgba(139, 0, 0, 0); transform: scale(1.04); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 0, 0, 0); transform: scale(1); }
-        }
-
-        .pulse-urgent {
-            animation: pulseRedGlow 2s infinite ease-in-out !important;
-            border: 1px solid var(--accent-red) !important;
-            border-left: 4px solid var(--accent-red) !important;
         }
 
         .main-grid {
@@ -235,7 +237,7 @@
         }
 
         .info-content.active {
-            max-height: 400px;
+            max-height: 500px;
             padding: 15px;
             border: 1px solid #222;
             margin-top: 5px;
@@ -247,9 +249,10 @@
             padding: 6px 0;
             border-bottom: 1px solid #111;
             font-size: 0.8rem;
+            text-align: left;
         }
 
-        /* --- POPRAWIONA SEKCJA LOGOTYPÓW --- */
+        /* --- LOGOTYPY --- */
         .brands-section {
             width: 100%;
             margin: 50px auto 20px auto;
@@ -267,20 +270,21 @@
             font-weight: 700;
             letter-spacing: 2px;
             margin-bottom: 25px; 
+            width: 100%;
         }
 
         .brands-grid {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 40px; 
+            gap: 45px;
+            width: 100%;
         }
 
-        /* Na telefonie loga pod sobą */
         @media (max-width: 767px) {
             .brands-grid {
                 flex-direction: column;
-                gap: 25px;
+                gap: 30px;
             }
         }
 
@@ -288,14 +292,12 @@
             filter: grayscale(100%) brightness(180%) opacity(0.5);
             transition: all 0.3s ease;
             object-fit: contain;
-            width: auto;
             display: block;
         }
 
-        /* Ręczne wyrównanie bazując na Twoich plikach */
-        .logo-amd { height: 22px; }
-        .logo-intel { height: 28px; }
-        .logo-nvidia { height: 20px; }
+        .logo-nvidia { height: 18px; }
+        .logo-intel { height: 26px; }
+        .logo-amd { height: 20px; }
 
         @media (hover: hover) {
             .brand-logo:hover {
@@ -309,8 +311,11 @@
             opacity: 0.3;
             font-size: 0.75rem;
             padding-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
         }
-        .footer-links a { color: white; margin: 0 10px; text-decoration: none; }
+        .footer-links a { color: white; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -327,7 +332,7 @@
                     <div class="dot"></div>
                     <span id="status-text">SPRAWDZANIE...</span>
                 </div>
-                <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">DZISIAJ 09:30</span></div>
+                <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">JUTRO 09:30</span></div>
             </div>
         </div>
 
@@ -353,7 +358,7 @@
                 </div>
 
                 <div class="section-box" style="margin-top:20px;">
-                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
                     <a href="konfigurator.html" class="btn">🖥️ KONFIGURATOR PC</a>
                 </div>
             </div>
@@ -366,9 +371,11 @@
                     <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
                     
                     <div id="infoTable" class="info-content">
-                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES</span></div>
-                        <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, SŁUBICE</span></div>
+                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
+                        <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
                         <div class="info-row"><span>NIP:</span><span>5981662682</span></div>
+                        <div class="info-row"><span>REGON:</span><span>543979466</span></div>
+                        <div class="info-row"><span>BDO:</span><span>000705795</span></div>
                         <div class="info-row"><span>TEL:</span><span>+48 790709814</span></div>
                     </div>
                 </div>
@@ -379,9 +386,9 @@
         <div class="brands-section">
             <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
             <div class="brands-grid">
-                <img src="AMD.png" alt="AMD" class="brand-logo logo-amd">
-                <img src="Intel.png" alt="Intel" class="brand-logo logo-intel">
                 <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo logo-nvidia">
+                <img src="Intel.png" alt="Intel" class="brand-logo logo-intel">
+                <img src="AMD.png" alt="AMD" class="brand-logo logo-amd">
             </div>
         </div>
 
@@ -393,7 +400,7 @@
 
     <script>
         window.onload = function() { updateStatus(); };
-        function openMaps() { window.location.href = "https://www.google.com/maps/search/?api=1&query=1+Maja+5/1+Słubice"; }
+        function openMaps() { window.location.href = "https://www.google.com/maps/search/?api=1&query=Zero+Bytes+Słubice"; }
         function toggleInfo(btn) { document.getElementById('infoTable').classList.toggle('active'); }
         function goToStatus() { const id = document.getElementById('orderId').value; if(id) window.location.href = "https://naprawiam.online/token/" + id; }
         function goToClientLogin() { window.location.href = "https://naprawiam.online/panel/0bytes/login"; }
@@ -407,7 +414,7 @@
             const reopenInfo = document.getElementById('reopen-info');
 
             let state = "closed";
-            let reopen = "DZISIAJ 09:30";
+            let reopen = "JUTRO 09:30";
 
             if (day >= 1 && day <= 5) {
                 if (hour >= 9.5 && hour < 18) state = "open";
