@@ -23,8 +23,10 @@
             --text-color: #e0e0e0;
             --card-bg: #111111;
             --status-open: #00ff00;
+            --status-online: #ffcc00;
             --status-closed: #ff0000;
             --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --nvidia-green: #76b900;
         }
 
         body {
@@ -57,15 +59,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: visible;
             margin-bottom: -10px;
+            padding: 0;
         }
 
         .main-logo {
             width: 125%; 
+            max-width: none;
             height: auto;
             margin-top: -50px; 
-            margin-bottom: -45px;
+            margin-bottom: -45px; 
             display: block;
+            flex-shrink: 0;
         }
 
         #status-wrapper {
@@ -74,6 +80,8 @@
             align-items: center;
             margin-bottom: 25px;
             margin-top: 5px;
+            z-index: 2;
+            position: relative;
         }
 
         #service-status {
@@ -81,7 +89,9 @@
             font-weight: 700;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+            letter-spacing: 1.5px;
             background: rgba(255,255,255,0.05);
             padding: 12px 20px;
             border-radius: 50px;
@@ -91,26 +101,31 @@
         #reopen-info {
             font-size: 0.7rem;
             color: #888;
+            letter-spacing: 2px;
             font-weight: 700;
             display: none; 
         }
 
-        .reopen-time { color: var(--accent-red); }
+        .reopen-time {
+            color: var(--accent-red);
+        }
 
         .dot {
-            height: 12px; width: 12px;
+            height: 12px;
+            width: 12px;
             border-radius: 50%;
+            display: block;
+            flex-shrink: 0; 
             box-shadow: 0 0 10px currentColor;
             animation: pulse 2s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.7; }
+            0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px currentColor; }
+            100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
-        /* SIATKA GŁÓWNA */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -120,12 +135,15 @@
             margin: 0 auto;
         }
 
-        .grid-col { display: flex; flex-direction: column; gap: 20px; }
+        .grid-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-        /* KOLEJNOŚĆ KOMPUTER */
         @media (min-width: 1024px) {
             .main-grid {
-                max-width: 100%;
+                max-width: 1000px; /* Twardy limit szerokości żeby się nie rozjechało na boki */
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
@@ -134,7 +152,6 @@
             .col-wiecej { order: 3; }
         }
 
-        /* KOLEJNOŚĆ TELEFON */
         @media (max-width: 1023px) {
             .col-status { order: 1; }
             .col-wiecej { order: 2; }
@@ -159,6 +176,7 @@
             letter-spacing: 2.5px;
             margin-bottom: 18px;
             font-weight: 900;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .btn {
@@ -177,19 +195,34 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 700;
+            box-sizing: border-box;
             transition: 0.3s;
             cursor: pointer;
             text-transform: uppercase;
             font-size: 0.9rem;
+            outline: none;
         }
 
-        .btn-status-trigger { background-color: var(--accent-red); border: none; }
+        .btn-status-trigger {
+            background-color: var(--accent-red);
+            border: none;
+            border-left: none;
+        }
 
         @media (hover: hover) {
-            .btn:hover { background-color: #1a1a1a; border-left-width: 12px; transform: translateX(5px); }
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+            .btn-status-trigger:hover {
+                background-color: #cc0000;
+                transform: scale(1.02);
+            }
         }
 
         .status-input {
+            font-family: var(--main-font);
             width: 100%;
             padding: 15px;
             background: #000;
@@ -197,7 +230,9 @@
             color: white;
             border-radius: 8px;
             margin-bottom: 12px;
+            box-sizing: border-box;
             text-align: center;
+            font-size: 1rem;
             text-transform: uppercase;
         }
 
@@ -225,19 +260,36 @@
             text-align: left;
         }
 
-        /* OPINIE - RESET CAPSLOCKA */
+        /* OPINIE Z GOOGLE - Reset dziedziczenia z body */
         .reviews-wrapper {
             width: 100%;
-            max-width: 1200px;
-            margin: 40px auto;
-            text-transform: none !important;
+            max-width: 1000px; /* Zrównane szerokością z gridem kolumn na desktopie */
+            margin: 40px auto 10px auto;
         }
 
+        .reviews-wrapper .trustindex-widget * {
+            text-transform: none !important; /* Wymuszamy brak dużych liter na poziomie wnętrza widgetu */
+        }
+
+        /* --- LOGOTYPY --- */
         .brands-section {
             width: 100%;
-            margin: 30px auto;
+            margin: 30px auto 20px auto;
+            text-align: center;
             border-top: 1px solid #222;
             padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brands-header {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 25px; 
+            width: 100%;
         }
 
         .brands-grid {
@@ -245,14 +297,42 @@
             justify-content: center;
             align-items: center;
             gap: 45px;
+            width: 100%;
         }
 
-        @media (max-width: 767px) { .brands-grid { flex-direction: column; gap: 30px; } }
+        @media (max-width: 767px) {
+            .brands-grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
 
-        .brand-logo-img { filter: grayscale(100%) brightness(180%) opacity(0.5); height: 38px; transition: 0.3s; }
-        .brand-logo-img:hover { filter: grayscale(0%) opacity(1); }
+        .brand-logo-img {
+            filter: grayscale(100%) brightness(180%) opacity(0.5);
+            transition: all 0.3s ease;
+            object-fit: contain;
+            display: block;
+        }
 
-        .footer-links { opacity: 0.3; font-size: 0.75rem; padding: 20px 0; display: flex; gap: 20px; justify-content: center; }
+        .logo-intel { height: 38px; }
+        .logo-amd { height: 38px; }
+
+        @media (hover: hover) {
+            .brand-logo-img:hover {
+                filter: grayscale(0%) brightness(100%) opacity(1);
+                transform: scale(1.1);
+            }
+        }
+
+        .footer-links {
+            margin-top: 30px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
         .footer-links a { color: white; text-decoration: none; }
     </style>
 </head>
@@ -264,6 +344,7 @@
             <div class="logo-area">
                 <img src="logo.png" alt="ZERO BYTES" class="main-logo">
             </div>
+
             <div id="status-wrapper">
                 <div id="service-status">
                     <div class="dot"></div>
@@ -295,7 +376,7 @@
                 </div>
 
                 <div class="section-box" style="margin-top:20px;">
-                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ</a>
+                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
                     <a href="konfigurator.html" class="btn">🖥️ KONFIGURATOR PC</a>
                 </div>
             </div>
@@ -306,6 +387,7 @@
                     <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG</a>
                     <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
                     <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
+                    
                     <div id="infoTable" class="info-content">
                         <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - KONRAD BENDEROWICZ</span></div>
                         <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
