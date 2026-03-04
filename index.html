@@ -277,14 +277,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 45px;
+            gap: 50px; /* Zwiększony odstęp */
             width: 100%;
         }
 
         @media (max-width: 767px) {
             .brands-grid {
                 flex-direction: column;
-                gap: 30px;
+                gap: 35px;
             }
         }
 
@@ -295,14 +295,21 @@
             display: block;
         }
 
-        .logo-nvidia { height: 18px; }
-        .logo-intel { height: 26px; }
-        .logo-amd { height: 20px; }
+        /* POWIĘKSZONE I WYRÓWNANE WYSOKOŚCI */
+        .logo-nvidia { 
+            height: 28px; /* Powiększone */
+            filter: invert(1) grayscale(100%) opacity(0.5); /* Odwrócenie kolorów dla białego tła */
+        }
+        .logo-intel { height: 38px; } /* Powiększone */
+        .logo-amd { height: 32px; }   /* Powiększone */
 
         @media (hover: hover) {
             .brand-logo:hover {
                 filter: grayscale(0%) brightness(100%) opacity(1);
                 transform: scale(1.1);
+            }
+            .logo-nvidia:hover {
+                filter: invert(0) grayscale(0%) brightness(100%) opacity(1); /* Powrót do oryginału na hover */
             }
         }
 
@@ -371,12 +378,12 @@
                     <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
                     
                     <div id="infoTable" class="info-content">
-                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
+                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - KONRAD BENDEROWICZ</span></div>
                         <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
                         <div class="info-row"><span>NIP:</span><span>5981662682</span></div>
                         <div class="info-row"><span>REGON:</span><span>543979466</span></div>
                         <div class="info-row"><span>BDO:</span><span>000705795</span></div>
-                        <div class="info-row"><span>TEL:</span><span>+48 790709814</span></div>
+                        <div class="info-row"><span>TEL:</span><span>+48 790-709-814</span></div>
                     </div>
                 </div>
             </div>
