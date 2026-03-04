@@ -26,7 +26,6 @@
             --status-online: #ffcc00;
             --status-closed: #ff0000;
             --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --nvidia-green: #76b900;
         }
 
         body {
@@ -44,7 +43,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1200px; /* Szeroki kontener główny */
             text-align: center;
         }
 
@@ -131,7 +130,7 @@
             grid-template-columns: 1fr;
             gap: 20px;
             width: 100%;
-            max-width: 440px;
+            max-width: 440px; /* Limit tylko dla mobile, żeby ładnie wyglądało */
             margin: 0 auto;
         }
 
@@ -141,9 +140,10 @@
             gap: 20px;
         }
 
+        /* --- DESKTOP WIDE GRID --- */
         @media (min-width: 1024px) {
             .main-grid {
-                max-width: 1000px; /* Twardy limit szerokości żeby się nie rozjechało na boki */
+                max-width: 100%; /* ROZCIĄGNIĘCIE NA PEŁNĄ SZEROKOŚĆ KONTENERA */
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
@@ -152,6 +152,7 @@
             .col-wiecej { order: 3; }
         }
 
+        /* --- MOBILE ORDERING --- */
         @media (max-width: 1023px) {
             .col-status { order: 1; }
             .col-wiecej { order: 2; }
@@ -260,15 +261,15 @@
             text-align: left;
         }
 
-        /* OPINIE Z GOOGLE - Reset dziedziczenia z body */
+        /* OPINIE Z GOOGLE - Szeroki kontener na 3 opinie + Reset CapsLocka */
         .reviews-wrapper {
             width: 100%;
-            max-width: 1000px; /* Zrównane szerokością z gridem kolumn na desktopie */
+            max-width: 100%; /* Powrót do pełnej szerokości żeby pomieścić 3 karty */
             margin: 40px auto 10px auto;
         }
 
         .reviews-wrapper .trustindex-widget * {
-            text-transform: none !important; /* Wymuszamy brak dużych liter na poziomie wnętrza widgetu */
+            text-transform: none !important; 
         }
 
         /* --- LOGOTYPY --- */
