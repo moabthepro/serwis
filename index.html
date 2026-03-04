@@ -28,6 +28,7 @@
             --status-online: #ffcc00;
             --status-closed: #ff0000;
             --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --nvidia-green: #76b900;
         }
 
         body {
@@ -297,11 +298,11 @@
 
         /* USTAWIENIA DLA POSZCZEGÓLNYCH LOGO */
         .logo-nvidia { 
-            height: 38px; /* Powiększone */
-            filter: invert(1) grayscale(100%) opacity(0.5); /* Inwersja aby białe logo było na czarnym tle */
+            height: 48px; /* Jeszcze większa NVIDIA */
+            filter: invert(1) grayscale(100%) opacity(0.5); 
         }
         .logo-intel { height: 38px; }
-        .logo-amd { height: 38px; } /* Powiększone */
+        .logo-amd { height: 42px; } /* Lekko powiększone AMD do balansu */
 
         @media (hover: hover) {
             .brand-logo:hover {
@@ -309,8 +310,8 @@
                 transform: scale(1.1);
             }
             .logo-nvidia:hover {
-                /* Podświetlenie bez białego tła - zachowanie inwersji i zwiększenie jasności */
-                filter: invert(1) grayscale(0%) brightness(150%) opacity(1);
+                /* Podświetlenie na ZIELONO zgodnie z prośbą */
+                filter: invert(0) sepia(1) saturate(5) hue-rotate(70deg) brightness(1);
             }
         }
 
