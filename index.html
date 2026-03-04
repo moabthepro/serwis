@@ -26,6 +26,7 @@
             --status-online: #ffcc00;
             --status-closed: #ff0000;
             --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --nvidia-green: #76b900;
         }
 
         body {
@@ -43,7 +44,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px; /* Szeroki kontener główny */
+            max-width: 1200px;
             text-align: center;
         }
 
@@ -125,12 +126,23 @@
             100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
+        /* ANIMACJA DLA PRZYCISKU ZGŁOŚ NAPRAWĘ */
+        .pulse-urgent {
+            animation: pulse-btn 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-btn {
+            0% { transform: scale(1); box-shadow: 0 0 5px rgba(139, 0, 0, 0.5); }
+            50% { transform: scale(1.04); box-shadow: 0 0 20px rgba(139, 0, 0, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 5px rgba(139, 0, 0, 0.5); }
+        }
+
         .main-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
             width: 100%;
-            max-width: 440px; /* Limit tylko dla mobile, żeby ładnie wyglądało */
+            max-width: 440px;
             margin: 0 auto;
         }
 
@@ -140,10 +152,9 @@
             gap: 20px;
         }
 
-        /* --- DESKTOP WIDE GRID --- */
         @media (min-width: 1024px) {
             .main-grid {
-                max-width: 100%; /* ROZCIĄGNIĘCIE NA PEŁNĄ SZEROKOŚĆ KONTENERA */
+                max-width: 1000px; 
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
@@ -152,7 +163,6 @@
             .col-wiecej { order: 3; }
         }
 
-        /* --- MOBILE ORDERING --- */
         @media (max-width: 1023px) {
             .col-status { order: 1; }
             .col-wiecej { order: 2; }
@@ -220,6 +230,10 @@
                 background-color: #cc0000;
                 transform: scale(1.02);
             }
+            .pulse-urgent:hover {
+                animation: none; 
+                transform: scale(1.04) translateX(5px);
+            }
         }
 
         .status-input {
@@ -261,14 +275,20 @@
             text-align: left;
         }
 
-        /* OPINIE Z GOOGLE - Szeroki kontener na 3 opinie + Reset CapsLocka */
+        /* OPINIE Z GOOGLE */
         .reviews-wrapper {
             width: 100%;
-            max-width: 100%; /* Powrót do pełnej szerokości żeby pomieścić 3 karty */
+            max-width: 1000px; 
             margin: 40px auto 10px auto;
+            border-top: 1px solid #222; /* Linia oddzielająca od kolumn */
+            padding-top: 40px; /* Odstęp od linii do opinii */
         }
 
-        .reviews-wrapper .trustindex-widget * {
+        /* Opcja atomowa na wymuszony CapsLock z body */
+        .reviews-wrapper,
+        .reviews-wrapper *,
+        .ti-widget,
+        .ti-widget * {
             text-transform: none !important; 
         }
 
@@ -376,8 +396,8 @@
                     <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
                 </div>
 
-                <div class="section-box" style="margin-top:20px;">
-                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+                <div class="section-box" style="margin-top:-5px;">
+                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ</a>
                     <a href="konfigurator.html" class="btn">🖥️ KONFIGURATOR PC</a>
                 </div>
             </div>
