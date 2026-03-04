@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BYTES | KONFIGURATOR PC</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --accent-red: #8b0000;
+            --text-color: #e0e0e0;
+            --card-bg: #111111;
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2px 20px 20px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px; 
+        }
+
+        .header-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 440px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            margin-bottom: -10px;
+            padding: 0;
+        }
+
+        .main-logo {
+            width: 125%; 
+            max-width: none;
+            height: auto;
+            margin-top: -50px; 
+            margin-bottom: -45px; 
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            font-family: var(--main-font);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .btn-header {
+            max-width: 100%;
+            margin-top: 15px; 
+            position: relative;
+            z-index: 10; 
+        }
+
+        @media (hover: hover) {
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            letter-spacing: 2.5px;
+            margin-bottom: 35px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- PAKIETY --- */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 1024px) {
+            .packages-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .package-card {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid #222;
+            border-top: 4px solid var(--accent-red);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        @media (hover: hover) {
+            .package-card:hover {
+                transform: translateY(-5px);
+                border-color: #444;
+            }
+        }
+
+        .package-name {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .package-price {
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+            flex-grow: 1;
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .package-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .btn-select-package {
+            background-color: var(--accent-red);
+            border: none;
+            border-left: none;
+            margin-bottom: 0;
+        }
+
+        @media (hover: hover) {
+            .btn-select-package:hover {
+                background-color: #cc0000;
+                transform: scale(1.02);
+                border-left-width: 0;
+            }
+        }
+
+        /* --- FORMULARZ --- */
+        .form-section {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-header {
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            font-family: var(--main-font);
+            width: 100%;
+            padding: 15px;
+            background: #000000;
+            border: 1px solid #333;
+            color: #ffffff;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-red);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none; /* Usuwa domyślną strzałkę przeglądarki, żeby wyglądało czyściej */
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238b0000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 12px auto;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            background-color: var(--accent-red);
+            border: none;
+            border-left: none;
+            margin-top: 10px;
+            font-size: 1rem;
+            padding: 18px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+                </a>
+            </div>
+            <a href="index.html" class="btn btn-header">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="page-title">BUDOWA CUSTOM PC</div>
+
+        <div class="packages-grid">
+            
+            <div class="package-card">
+                <div class="package-name">BASE BUILD</div>
+                <div class="package-price">od 300 zł</div>
+                <ul class="package-features">
+                    <li>Złożenie komponentów</li>
+                    <li>Podstawowy Cable Management</li>
+                    <li>Aktualizacja BIOS</li>
+                    <li>Instalacja wybranego systemu OS</li>
+                </ul>
+                <button type="button" class="btn btn-select-package" onclick="selectPackage('BASE BUILD')">WYBIERAM</button>
+            </div>
+
+            <div class="package-card">
+                <div class="package-name">ADVANCED</div>
+                <div class="package-price">od 500 zł</div>
+                <ul class="package-features">
+                    <li>Wszystko z BASE BUILD</li>
+                    <li>Perfekcyjny Cable Management</li>
+                    <li>Undervolting (UV) procesora/GPU</li>
+                    <li>Testy stabilności i temperatur</li>
+                </ul>
+                <button type="button" class="btn btn-select-package" onclick="selectPackage('ADVANCED')">WYBIERAM</button>
+            </div>
+
+            <div class="package-card">
+                <div class="package-name">ENTHUSIAST</div>
+                <div class="package-price">Wycena Ind.</div>
+                <ul class="package-features">
+                    <li>Wszystko z ADVANCED</li>
+                    <li>Overclocking (OC) z custom timingami</li>
+                    <li>Delidding (Skalpowanie CPU)</li>
+                    <li>Zaawansowany modding obudowy</li>
+                </ul>
+                <button type="button" class="btn btn-select-package" onclick="selectPackage('ENTHUSIAST')">WYBIERAM</button>
+            </div>
+
+        </div>
+
+        <div class="form-section" id="konfigurator-form">
+            <div class="form-header">WYPEŁNIJ ANKIETĘ KONFIGURACYJNĄ</div>
+            
+            <form action="https://formspree.io/f/mwvnglvd" method="POST">
+                
+                <div class="form-group">
+                    <label>Wybrany pakiet usługi (składania):</label>
+                    <select name="Pakiet" id="package-select" required>
+                        <option value="" disabled selected>-- Wybierz pakiet z góry --</option>
+                        <option value="BASE BUILD">BASE BUILD</option>
+                        <option value="ADVANCED">ADVANCED</option>
+                        <option value="ENTHUSIAST">ENTHUSIAST</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Twój E-mail (do wyceny):</label>
+                    <input type="email" name="email" required placeholder="np. jan.kowalski@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Budżet na same części:</label>
+                    <select name="Budzet" required>
+                        <option value="" disabled selected>-- Wybierz widełki --</option>
+                        <option value="Do 4000 PLN">Do 4000 PLN</option>
+                        <option value="4000 - 6000 PLN">4000 - 6000 PLN</option>
+                        <option value="6000 - 8000 PLN">6000 - 8000 PLN</option>
+                        <option value="8000 - 12000 PLN">8000 - 12000 PLN</option>
+                        <option value="Bez limitu (Enthusiast)">Bez limitu (High-End)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Główne zastosowanie:</label>
+                    <select name="Zastosowanie" required>
+                        <option value="" disabled selected>-- Wybierz zastosowanie --</option>
+                        <option value="Gry Esportowe (CS2, Valorant, LoL)">Gry Esportowe (CS2, Valorant, LoL)</option>
+                        <option value="Gry AAA (Cyberpunk, RDR2 itp.)">Najnowsze Gry AAA</option>
+                        <option value="Montaż Video / Grafika 3D / CAD">Praca (Video, 3D, Grafika)</option>
+                        <option value="Streaming + Granie">Streaming + Granie</option>
+                        <option value="Biurowe / Domowe">Uniwersalne (Dom / Biuro)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>W jakie konkretnie gry/programy celujesz najbardziej?</label>
+                    <textarea name="Gry_Programy" required placeholder="Wymień 2-3 najważniejsze tytuły lub programy, żebyśmy mogli precyzyjnie dobrać procesor i GPU..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Rozdzielczość monitora, na którym będziesz pracować/grać:</label>
+                    <select name="Rozdzielczosc" required>
+                        <option value="" disabled selected>-- Wybierz --</option>
+                        <option value="1080p (FHD)">1080p (Full HD)</option>
+                        <option value="1440p (QHD / 2K)">1440p (QHD / 2K)</option>
+                        <option value="2160p (4K UHD)">2160p (4K UHD)</option>
+                        <option value="Nie wiem / Dopiero kupię monitor">Nie wiem / Dopiero kupię monitor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pojemność dysku SSD:</label>
+                    <select name="Dysk_SSD" required>
+                        <option value="1 TB (Minimum)">1 TB</option>
+                        <option value="2 TB">2 TB</option>
+                        <option value="4 TB +">4 TB i więcej</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferowana estetyka i obudowa:</label>
+                    <select name="Wyglad" required>
+                        <option value="" disabled selected>-- Wybierz styl --</option>
+                        <option value="Full RGB (Dużo podświetlenia)">Full RGB (Dużo podświetlenia)</option>
+                        <option value="Blackout (Czarne części, zero świateł)">Blackout (Czarne części, zero świateł)</option>
+                        <option value="Akwarium (Szkło na boku i froncie)">Obudowa typu "Akwarium" (Szkło boki/przód)</option>
+                        <option value="Wyciszona / Minimalistyczna">Wyciszona / Minimalistyczna bryła</option>
+                        <option value="Biały Build (Białe podzespoły)">White Build (Białe podzespoły)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Czy posiadasz własny klucz do systemu Windows?</label>
+                    <select name="System_Windows" required>
+                        <option value="Tak, posiadam klucz">Tak, posiadam klucz, zainstalujcie tylko OS</option>
+                        <option value="Nie, proszę doliczyć Windows 11">Nie, proszę doliczyć koszt oryginalnego Windowsa 11</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Dodatkowe informacje (np. części do przełożenia ze starego PC):</label>
+                    <textarea name="Dodatkowe_Informacje" placeholder="Czy potrzebujesz wbudowanego WiFi? Czy masz stary dysk do przeniesienia? Pisz tutaj..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-submit">📨 WYŚLIJ DO WYCENY</button>
+            </form>
+        </div>
+
+        <div class="bottom-actions" style="width: 100%; max-width: 440px; margin: 0 auto;">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">↑ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="footer-links">
+            © 2026 ZERO BYTES. Wszelkie prawa zastrzeżone.
+        </div>
+    </div>
+
+    <script>
+        // Funkcja wybierająca pakiet, przewijająca do ankiety i ustawiająca odpowiednią wartość
+        function selectPackage(packageName) {
+            const selectElement = document.getElementById('package-select');
+            selectElement.value = packageName;
+            
+            // Lekki błysk ramki formularza, żeby zwrócić uwagę klienta
+            const formSection = document.getElementById('konfigurator-form');
+            formSection.style.borderColor = "#8b0000";
+            setTimeout(() => {
+                formSection.style.borderColor = "#222";
+            }, 800);
+
+            // Płynny scroll do formularza
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
