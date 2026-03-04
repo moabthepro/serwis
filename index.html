@@ -140,25 +140,12 @@
             gap: 20px;
         }
 
-        .main-grid .section-box {
-            margin-bottom: 0; 
-        }
-
         @media (min-width: 1024px) {
             .main-grid {
                 max-width: 100%;
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
-            .grid-col-left { order: 1; }
-            .grid-col-center { order: 2; }
-            .grid-col-right { order: 3; }
-        }
-
-        @media (max-width: 1023px) {
-            .grid-col-center { order: 1; }
-            .grid-col-left { order: 2; }
-            .grid-col-right { order: 3; }
         }
 
         .section-box {
@@ -206,15 +193,10 @@
             outline: none;
         }
 
-        .btn:last-child {
-            margin-bottom: 0;
-        }
-
         .btn-status-trigger {
             background-color: var(--accent-red);
             border: none;
             border-left: none;
-            letter-spacing: 1px;
         }
 
         @media (hover: hover) {
@@ -226,7 +208,6 @@
             .btn-status-trigger:hover {
                 background-color: #cc0000;
                 transform: scale(1.02);
-                border-left-width: 0;
             }
         }
 
@@ -245,30 +226,18 @@
             text-transform: uppercase;
         }
 
-        .or-divider {
-            font-size: 0.75rem;
-            color: #666;
-            margin: 12px 0;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
         .info-content {
             max-height: 0;
             overflow: hidden;
             transition: all 0.4s ease-in-out;
             background: #050505;
-            box-sizing: border-box; 
-            width: 100%;
-            padding: 0 15px; 
-            border: 1px solid transparent;
             border-radius: 8px;
         }
 
         .info-content.active {
             max-height: 400px;
             padding: 15px;
-            border-color: #222;
+            border: 1px solid #222;
             margin-top: 5px;
         }
 
@@ -280,7 +249,7 @@
             font-size: 0.8rem;
         }
 
-        /* --- STONOWANA SEKCJA LOGOTYPÓW --- */
+        /* --- KOREKTA LINII LOGOTYPÓW --- */
         .brands-section {
             width: 100%;
             max-width: 800px;
@@ -301,21 +270,22 @@
         .brands-grid {
             display: flex;
             justify-content: center;
-            align-items: center; /* Gwarantuje idealną oś Y dla zawartości */
+            align-items: flex-end; /* Wyrównanie do dołu dla stabilności osi */
             flex-wrap: wrap;
-            gap: 35px; /* Komfortowy odstęp */
+            gap: 40px; 
         }
 
         .brand-logo {
             filter: grayscale(100%) brightness(180%) opacity(0.5);
             transition: all 0.3s ease;
-            height: 35px; /* Ujednolicona, bezpieczna wysokość */
-            width: auto; /* Szerokość dostosuje się z automatu */
-            object-fit: contain; 
+            object-fit: contain;
+            width: auto;
         }
 
-        /* Lekkie optyczne wyrównanie na bazie podesłanych plików */
-        .logo-intel { height: 40px; } 
+        /* Indywidualne poprawki optyczne Twoich plików */
+        .logo-amd { height: 24px; margin-bottom: 4px; }
+        .logo-intel { height: 32px; margin-bottom: 0px; }
+        .logo-nvidia { height: 22px; margin-bottom: 5px; }
 
         @media (hover: hover) {
             .brand-logo:hover {
@@ -353,7 +323,7 @@
 
         <div class="main-grid">
             
-            <div class="grid-col grid-col-left">
+            <div class="grid-col">
                 <div class="section-box">
                     <div class="section-header">KONTAKT</div>
                     <a href="tel:+48790709814" class="btn">📞 ZADZWOŃ DO NAS</a>
@@ -363,22 +333,22 @@
                 </div>
             </div>
 
-            <div class="grid-col grid-col-center">
+            <div class="grid-col">
                 <div class="section-box status-section-box">
                     <div class="section-header">STATUS NAPRAWY</div>
                     <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2Y3Z)">
                     <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
-                    <div class="or-divider">LUB</div>
+                    <div style="font-size:0.75rem; color:#666; margin:12px 0;">LUB</div>
                     <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
                 </div>
 
-                <div class="section-box">
-                    <a href="https://naprawiam.online/token/0bytes/repair/create" id="btn-zglos" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+                <div class="section-box" style="margin-top:20px;">
+                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
                     <a href="konfigurator.html" class="btn">🖥️ KONFIGURATOR PC</a>
                 </div>
             </div>
 
-            <div class="grid-col grid-col-right">
+            <div class="grid-col">
                 <div class="section-box">
                     <div class="section-header">WIĘCEJ</div>
                     <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG</a>
@@ -386,22 +356,22 @@
                     <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
                     
                     <div id="infoTable" class="info-content">
-                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
-                        <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
+                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES</span></div>
+                        <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, SŁUBICE</span></div>
                         <div class="info-row"><span>NIP:</span><span>5981662682</span></div>
-                        <div class="info-row"><span>REGON:</span><span>543979466</span></div>
-                        <div class="info-row"><span>BDO:</span><span>000705795</span></div>
                         <div class="info-row"><span>TEL:</span><span>+48 790709814</span></div>
                     </div>
                 </div>
             </div>
 
-        </div> <div class="brands-section">
+        </div>
+
+        <div class="brands-section">
             <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
             <div class="brands-grid">
-                <img src="AMD.png" alt="AMD" class="brand-logo">
+                <img src="AMD.png" alt="AMD" class="brand-logo logo-amd">
                 <img src="Intel.png" alt="Intel" class="brand-logo logo-intel">
-                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo">
+                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo logo-nvidia">
             </div>
         </div>
 
@@ -412,116 +382,43 @@
     </div>
 
     <script>
-        window.onload = function() {
-            updateStatus();
-        };
-
-        function openMaps() {
-            const address = "1 Maja 5/1 69-100 Słubice Polska";
-            const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
-            if (isApple) {
-                window.location.href = `maps://maps.apple.com/?q=${encodeURIComponent(address)}`;
-            } else {
-                window.location.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-            }
-        }
-
-        function toggleInfo(btnElement) {
-            if (btnElement) {
-                btnElement.blur();
-            }
-
-            const infoBox = document.getElementById('infoTable');
-            infoBox.classList.toggle('active');
-            
-            if (infoBox.classList.contains('active')) {
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: document.body.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                }, 350); 
-            }
-        }
-
+        window.onload = function() { updateStatus(); };
+        function openMaps() { window.location.href = `https://www.google.com/maps/search/?api=1&query=1+Maja+5/1+Słubice`; }
+        function toggleInfo(btn) { document.getElementById('infoTable').classList.toggle('active'); }
+        function goToStatus() { const id = document.getElementById('orderId').value; if(id) window.location.href = "https://naprawiam.online/token/" + id; }
+        function goToClientLogin() { window.location.href = "https://naprawiam.online/panel/0bytes/login"; }
+        
         function updateStatus() {
             const now = new Date();
             const day = now.getDay(); 
-            const currentTime = now.getHours() + (now.getMinutes() / 60);
-            
+            const hour = now.getHours() + (now.getMinutes()/60);
             const statusDot = document.querySelector('.dot');
             const statusText = document.getElementById('status-text');
             const reopenInfo = document.getElementById('reopen-info');
 
-            const startDate = new Date('2026-02-23'); 
-            const diffInTime = now.getTime() - startDate.getTime();
-            const weeks = Math.floor(diffInTime / (1000 * 3600 * 24 * 7));
-            const isWeekOne = (weeks % 2 === 0);
-
             let state = "closed";
-            let reopenText = "";
-            
-            if (day === 6) { 
-                if (currentTime < 12) {
-                    state = "closed"; reopenText = "DZISIAJ 12:00";
-                } else if (currentTime >= 12 && currentTime < 15) {
-                    state = "open";
-                } else {
-                    state = "closed"; reopenText = "PONIEDZIAŁEK 09:30";
-                }
-            } else if (day === 0) { 
-                state = "closed"; reopenText = "JUTRO 09:30";
-            } else { 
-                if (isWeekOne) { 
-                    if (currentTime < 9.5) { state = "closed"; reopenText = "DZISIAJ 09:30"; }
-                    else if (currentTime >= 9.5 && currentTime < 15.5) state = "online";
-                    else if (currentTime >= 15.5 && currentTime < 18.5) state = "open";
-                    else {
-                        state = "closed";
-                        if (day === 5) reopenText = "JUTRO 12:00"; 
-                        else reopenText = "JUTRO 09:30"; 
-                    }
-                } else { 
-                    if (currentTime < 9.5) { state = "closed"; reopenText = "DZISIAJ 09:30"; }
-                    else if (currentTime >= 9.5 && currentTime < 12) state = "open";
-                    else if (currentTime >= 12 && currentTime < 15.5) state = "online";
-                    else if (currentTime >= 15.5 && currentTime < 18) state = "open";
-                    else {
-                        state = "closed";
-                        if (day === 5) reopenText = "JUTRO 12:00"; 
-                        else reopenText = "JUTRO 09:30"; 
-                    }
-                }
+            let reopen = "JUTRO 09:30";
+
+            if (day >= 1 && day <= 5) {
+                if (hour >= 9.5 && hour < 18) state = "open";
+            } else if (day === 6) {
+                if (hour >= 12 && hour < 15) state = "open";
+                else reopen = "PONIEDZIAŁEK 09:30";
             }
 
-            const styles = {
+            const config = {
                 open: { color: "var(--status-open)", text: "SERWIS OTWARTY" },
-                online: { color: "var(--status-online)", text: "TYLKO ZGŁOSZENIA ONLINE" },
                 closed: { color: "var(--status-closed)", text: "SERWIS ZAMKNIĘTY" }
             };
 
-            statusDot.style.backgroundColor = styles[state].color;
-            statusDot.style.color = styles[state].color;
-            statusText.innerText = styles[state].text;
-
+            statusDot.style.backgroundColor = config[state].color;
+            statusDot.style.color = config[state].color;
+            statusText.innerText = config[state].text;
             if (state === "closed") {
                 reopenInfo.style.display = "block";
-                reopenInfo.innerHTML = "PONOWNE OTWARCIE: <span class='reopen-time'>" + reopenText + "</span>";
-            } else {
-                reopenInfo.style.display = "none";
+                reopenInfo.innerHTML = `PONOWNE OTWARCIE: <span class="reopen-time">${reopen}</span>`;
             }
         }
-
-        function goToStatus() {
-            const id = document.getElementById('orderId').value;
-            if(id) window.location.href = "https://naprawiam.online/token/" + id;
-        }
-
-        function goToClientLogin() {
-            window.location.href = "https://naprawiam.online/panel/0bytes/login";
-        }
-
-        setInterval(updateStatus, 60000);
     </script>
 </body>
 </html>
