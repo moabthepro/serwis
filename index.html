@@ -301,22 +301,21 @@
         .brands-grid {
             display: flex;
             justify-content: center;
-            align-items: center; 
+            align-items: center; /* Gwarantuje idealną oś Y dla zawartości */
             flex-wrap: wrap;
-            gap: 25px; /* Mniejsze odstępy dla mniejszych logotypów */
+            gap: 35px; /* Komfortowy odstęp */
         }
 
         .brand-logo {
             filter: grayscale(100%) brightness(180%) opacity(0.5);
             transition: all 0.3s ease;
+            height: 35px; /* Ujednolicona, bezpieczna wysokość */
+            width: auto; /* Szerokość dostosuje się z automatu */
             object-fit: contain; 
-            width: auto; /* Szerokość dostosuje się sama do zadanej wysokości */
         }
 
-        /* Zablokowane bardzo małe i dyskretne wysokości (zamiast wielkich szerokości) */
-        .logo-amd { height: 22px; }
-        .logo-intel { height: 28px; }
-        .logo-nvidia { height: 20px; }
+        /* Lekkie optyczne wyrównanie na bazie podesłanych plików */
+        .logo-intel { height: 40px; } 
 
         @media (hover: hover) {
             .brand-logo:hover {
@@ -375,7 +374,7 @@
 
                 <div class="section-box">
                     <a href="https://naprawiam.online/token/0bytes/repair/create" id="btn-zglos" class="btn pulse-urgent">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
-                    <a href="#" class="btn">🖥️ KONFIGURATOR PC</a>
+                    <a href="konfigurator.html" class="btn">🖥️ KONFIGURATOR PC</a>
                 </div>
             </div>
 
@@ -400,9 +399,9 @@
         </div> <div class="brands-section">
             <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
             <div class="brands-grid">
-                <img src="AMD.png" alt="AMD" class="brand-logo logo-amd">
+                <img src="AMD.png" alt="AMD" class="brand-logo">
                 <img src="Intel.png" alt="Intel" class="brand-logo logo-intel">
-                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo logo-nvidia">
+                <img src="NVIDIA.png" alt="NVIDIA" class="brand-logo">
             </div>
         </div>
 
