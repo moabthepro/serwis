@@ -242,6 +242,7 @@
 
         input[type="text"],
         input[type="email"],
+        input[type="tel"],
         select,
         textarea {
             font-family: var(--main-font);
@@ -263,7 +264,7 @@
 
         select {
             cursor: pointer;
-            appearance: none; /* Usuwa domyślną strzałkę przeglądarki, żeby wyglądało czyściej */
+            appearance: none;
             background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238b0000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
             background-repeat: no-repeat;
             background-position: right 15px top 50%;
@@ -273,6 +274,37 @@
         textarea {
             resize: vertical;
             min-height: 100px;
+        }
+
+        /* Sekcja Checkboxa RODO */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-red);
+        }
+
+        .checkbox-group label {
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.5;
+            text-transform: none; /* Wyłączony uppercase dla czytelności długiego tekstu */
+            letter-spacing: normal;
+            font-weight: 400;
+            cursor: pointer;
         }
 
         .btn-submit {
@@ -363,10 +395,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Twój E-mail (do wyceny):</label>
-                    <input type="email" name="email" required placeholder="np. jan.kowalski@gmail.com">
+                    <label>Imię i Nazwisko / Nazwa Firmy:</label>
+                    <input type="text" name="Dane_Kontaktowe" required placeholder="np. Jan Kowalski">
                 </div>
 
+                <div class="form-group">
+                    <label>Twój E-mail (do wyceny):</label>
+                    <input type="email" name="Email" required placeholder="np. jan.kowalski@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Numer telefonu:</label>
+                    <input type="tel" name="Telefon" required placeholder="np. +48 123 456 789">
+                </div>
                 <div class="form-group">
                     <label>Budżet na same części:</label>
                     <select name="Budzet" required>
@@ -441,6 +482,11 @@
                     <textarea name="Dodatkowe_Informacje" placeholder="Czy potrzebujesz wbudowanego WiFi? Czy masz stary dysk do przeniesienia? Pisz tutaj..."></textarea>
                 </div>
 
+                <div class="checkbox-group">
+                    <input type="checkbox" id="zgoda_rodo" name="Akceptacja_Regulaminu" required>
+                    <label for="zgoda_rodo">Rozumiem, że administratorem danych osobowych zebranych w celu realizacji zamówionych usług będzie firma Zero Bytes NIP: 5981662682 z siedzibą: 1 Maja 5/1, 69-100 Słubice, Polska. Akceptuję warunki regulaminu serwisu, w tym zasady dotyczące diagnostyki, gwarancji oraz ryzyka związanego z naprawami elektroniki precyzyjnej.</label>
+                </div>
+
                 <button type="submit" class="btn btn-submit">📨 WYŚLIJ DO WYCENY</button>
             </form>
         </div>
@@ -456,19 +502,16 @@
     </div>
 
     <script>
-        // Funkcja wybierająca pakiet, przewijająca do ankiety i ustawiająca odpowiednią wartość
         function selectPackage(packageName) {
             const selectElement = document.getElementById('package-select');
             selectElement.value = packageName;
             
-            // Lekki błysk ramki formularza, żeby zwrócić uwagę klienta
             const formSection = document.getElementById('konfigurator-form');
             formSection.style.borderColor = "#8b0000";
             setTimeout(() => {
                 formSection.style.borderColor = "#222";
             }, 800);
 
-            // Płynny scroll do formularza
             formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
