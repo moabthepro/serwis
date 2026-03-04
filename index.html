@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZERO BYTES | SERWIS KOMPUTEROWY</title>
 
+    <meta name="description" content="ZERO BYTES - Specjalistyczny serwis elektroniki i PCB w Słubicach. Profesjonalny tuning PC (OC/UV), budowa jednostek Custom oraz serwis laptopów. Precision in every bit.">
+    <meta name="keywords" content="serwis komputerowy Słubice, naprawa laptopów, tuning PC, overclocking, undervolting, serwis PCB, Zero Bytes, budowa komputerów Custom">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zerobytes.pl/">
     <meta property="og:title" content="ZERO BYTES | Serwis Elektroniki Precyzyjnej">
-    <meta property="og:description" content="Specjalistyczny serwis elektroniki i PCB w Słubicach. Tuning PC (OC/UV), budowa jednostek Custom oraz profesjonalny serwis laptopów. Precision in every bit.">
+    <meta property="og:description" content="Specjalistyczny serwis elektroniki i PCB w Słubicach. Tuning PC (OC/UV), budowa jednostek Custom oraz profesjonalny serwis laptopów.">
     <meta property="og:image" content="https://zerobytes.pl/og-image.png">
-    <meta name="description" content="ZERO BYTES - Specjalistyczny serwis elektroniki i PCB w Słubicach. Profesjonalny tuning PC (OC/UV), budowa jednostek Custom oraz serwis laptopów. Precision in every bit.">
-    <meta name="keywords" content="serwis komputerowy Słubice, naprawa laptopów, tuning PC, overclocking, undervolting, serwis PCB, Zero Bytes, budowa komputerów Custom">
-    <meta name="author" content="Zero Bytes">
-    <meta name="robots" content="index, follow">
-    
+
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+
     <style>
         :root {
             --bg-color: #000000; 
@@ -24,7 +22,6 @@
             --text-color: #e0e0e0;
             --card-bg: #111111;
             --status-open: #00ff00;
-            --status-online: #ffcc00;
             --status-closed: #ff0000;
             --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --nvidia-green: #76b900;
@@ -60,19 +57,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: visible;
             margin-bottom: -10px;
-            padding: 0;
         }
 
         .main-logo {
             width: 125%; 
-            max-width: none;
             height: auto;
             margin-top: -50px; 
-            margin-bottom: -45px; 
-            display: block;
-            flex-shrink: 0;
+            margin-bottom: -45px;
         }
 
         #status-wrapper {
@@ -81,50 +73,30 @@
             align-items: center;
             margin-bottom: 25px;
             margin-top: 5px;
-            z-index: 2;
-            position: relative;
         }
 
         #service-status {
             font-size: 0.85rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            letter-spacing: 1.5px;
             background: rgba(255,255,255,0.05);
             padding: 12px 20px;
             border-radius: 50px;
-            margin-bottom: 10px; 
-        }
-
-        #reopen-info {
-            font-size: 0.7rem;
-            color: #888;
-            letter-spacing: 2px;
-            font-weight: 700;
-            display: none; 
-        }
-
-        .reopen-time {
-            color: var(--accent-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .dot {
             height: 12px;
             width: 12px;
             border-radius: 50%;
-            display: block;
-            flex-shrink: 0; 
             box-shadow: 0 0 10px currentColor;
             animation: pulse 2s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
-            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px currentColor; }
-            100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
         }
 
         .main-grid {
@@ -148,6 +120,15 @@
                 grid-template-columns: 1fr 1.2fr 1fr; 
                 align-items: start;
             }
+            .col-kontakt { order: 1; }
+            .col-status { order: 2; }
+            .col-wiecej { order: 3; }
+        }
+
+        @media (max-width: 1023px) {
+            .col-status { order: 1; }
+            .col-kontakt { order: 2; }
+            .col-wiecej { order: 3; }
         }
 
         .section-box {
@@ -168,7 +149,6 @@
             letter-spacing: 2.5px;
             margin-bottom: 18px;
             font-weight: 900;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .btn {
@@ -187,34 +167,19 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 700;
-            box-sizing: border-box;
             transition: 0.3s;
             cursor: pointer;
             text-transform: uppercase;
             font-size: 0.9rem;
-            outline: none;
         }
 
-        .btn-status-trigger {
-            background-color: var(--accent-red);
-            border: none;
-            border-left: none;
-        }
+        .btn-status-trigger { background-color: var(--accent-red); border: none; }
 
         @media (hover: hover) {
-            .btn:hover {
-                background-color: #1a1a1a;
-                border-left-width: 12px;
-                transform: translateX(5px);
-            }
-            .btn-status-trigger:hover {
-                background-color: #cc0000;
-                transform: scale(1.02);
-            }
+            .btn:hover { background-color: #1a1a1a; border-left-width: 12px; transform: translateX(5px); }
         }
 
         .status-input {
-            font-family: var(--main-font);
             width: 100%;
             padding: 15px;
             background: #000;
@@ -224,7 +189,6 @@
             margin-bottom: 12px;
             box-sizing: border-box;
             text-align: center;
-            font-size: 1rem;
             text-transform: uppercase;
         }
 
@@ -234,6 +198,7 @@
             transition: all 0.4s ease-in-out;
             background: #050505;
             border-radius: 8px;
+            text-align: left;
         }
 
         .info-content.active {
@@ -249,28 +214,19 @@
             padding: 6px 0;
             border-bottom: 1px solid #111;
             font-size: 0.8rem;
-            text-align: left;
         }
 
-        /* --- LOGOTYPY --- */
+        .reviews-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto 20px auto;
+        }
+
         .brands-section {
             width: 100%;
-            margin: 50px auto 20px auto;
-            text-align: center;
+            margin: 30px auto;
             border-top: 1px solid #222;
             padding-top: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .brands-header {
-            font-size: 0.7rem;
-            color: #666;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 25px; 
-            width: 100%;
         }
 
         .brands-grid {
@@ -278,121 +234,65 @@
             justify-content: center;
             align-items: center;
             gap: 45px;
-            width: 100%;
         }
 
-        @media (max-width: 767px) {
-            .brands-grid {
-                flex-direction: column;
-                gap: 30px;
-            }
-        }
+        @media (max-width: 767px) { .brands-grid { flex-direction: column; gap: 30px; } }
 
-        /* Styl dla SVG NVIDIA */
-        .logo-nvidia-svg {
-            height: 38px;
-            width: auto;
-            transition: all 0.3s ease;
-            display: block;
-        }
+        .logo-nvidia-svg { height: 38px; width: auto; }
+        .logo-nvidia-svg path { fill: #ffffff; opacity: 0.5; transition: 0.3s; }
+        .brand-logo-img { filter: grayscale(100%) brightness(180%) opacity(0.5); height: 38px; transition: 0.3s; }
 
-        .logo-nvidia-svg path {
-            fill: #ffffff;
-            opacity: 0.5;
-            transition: fill 0.3s ease, opacity 0.3s ease;
-        }
+        .logo-nvidia-svg:hover path { fill: var(--nvidia-green); opacity: 1; }
+        .brand-logo-img:hover { filter: grayscale(0%) opacity(1); }
 
-        /* Styl dla PNG Intel i AMD */
-        .brand-logo-img {
-            filter: grayscale(100%) brightness(180%) opacity(0.5);
-            transition: all 0.3s ease;
-            object-fit: contain;
-            display: block;
-        }
-
-        .logo-intel { height: 38px; }
-        .logo-amd { height: 38px; }
-
-        @media (hover: hover) {
-            .brand-logo-img:hover {
-                filter: grayscale(0%) brightness(100%) opacity(1);
-                transform: scale(1.1);
-            }
-            .logo-nvidia-svg:hover {
-                transform: scale(1.1);
-            }
-            .logo-nvidia-svg:hover path {
-                fill: var(--nvidia-green);
-                opacity: 1;
-            }
-        }
-
-        .footer-links {
-            margin-top: 30px;
-            opacity: 0.3;
-            font-size: 0.75rem;
-            padding-bottom: 20px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
+        .footer-links { opacity: 0.3; font-size: 0.75rem; padding: 20px 0; display: flex; gap: 20px; justify-content: center; }
         .footer-links a { color: white; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
         <div class="top-section">
-            <div class="logo-area">
-                <img src="logo.png" alt="ZERO BYTES" class="main-logo">
-            </div>
-
+            <div class="logo-area"><img src="logo.png" alt="ZERO BYTES" class="main-logo"></div>
             <div id="status-wrapper">
-                <div id="service-status">
-                    <div class="dot"></div>
-                    <span id="status-text">SPRAWDZANIE...</span>
-                </div>
-                <div id="reopen-info">PONOWNE OTWARCIE: <span class="reopen-time">JUTRO 09:30</span></div>
+                <div id="service-status"><div class="dot"></div><span id="status-text">SPRAWDZANIE...</span></div>
+                <div id="reopen-info" style="font-size: 0.7rem; color: #888; margin-top: 5px;"></div>
             </div>
         </div>
 
         <div class="main-grid">
-            
-            <div class="grid-col">
+            <div class="grid-col col-kontakt">
                 <div class="section-box">
                     <div class="section-header">KONTAKT</div>
-                    <a href="tel:+48790709814" class="btn">📞 ZADZWOŃ DO NAS</a>
-                    <a href="https://wa.me/48790709814" class="btn">💬 NAPISZ NA WHATSAPP</a>
-                    <a href="mailto:serwis@zerobytes.pl" class="btn">✉️ WYŚLIJ E-MAIL</a>
-                    <button onclick="openMaps()" class="btn">📍 JAK DOJECHAĆ?</button>
+                    <a href="tel:+48790709814" class="btn">📞 ZADZWOŃ</a>
+                    <a href="https://wa.me/48790709814" class="btn">💬 WHATSAPP</a>
+                    <a href="mailto:serwis@zerobytes.pl" class="btn">✉️ E-MAIL</a>
+                    <button onclick="window.location.href='https://www.google.com/maps/search/?api=1&query=Zero+Bytes+Słubice'" class="btn">📍 DOJAZD</button>
                 </div>
             </div>
 
-            <div class="grid-col">
+            <div class="grid-col col-status">
                 <div class="section-box status-section-box">
                     <div class="section-header">STATUS NAPRAWY</div>
-                    <input type="text" id="orderId" class="status-input" placeholder="WPISZ NUMER ZLECENIA (NP. 1X2Y3Z)">
-                    <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ STATUS</button>
-                    <div style="font-size:0.75rem; color:#666; margin:12px 0;">LUB</div>
-                    <button onclick="goToClientLogin()" class="btn">👤 LOGOWANIE KLIENTA</button>
+                    <input type="text" id="orderId" class="status-input" placeholder="NR ZLECENIA (NP. 1X2Y3Z)">
+                    <button onclick="goToStatus()" class="btn btn-status-trigger">🔍 SPRAWDŹ</button>
+                    <div style="font-size:0.7rem; color:#666; margin:10px 0;">LUB</div>
+                    <button onclick="window.location.href='https://naprawiam.online/panel/0bytes/login'" class="btn">👤 LOGOWANIE</button>
                 </div>
-
-                <div class="section-box" style="margin-top:20px;">
-                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn pulse-urgent" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ (DOOR-TO-DOOR)</a>
+                <div class="section-box">
+                    <a href="https://naprawiam.online/token/0bytes/repair/create" class="btn" style="border: 1px solid var(--accent-red); border-left: 4px solid var(--accent-red);">📝 ZGŁOŚ NAPRAWĘ</a>
                     <a href="konfigurator.html" class="btn">🖥️ KONFIGURATOR PC</a>
                 </div>
             </div>
 
-            <div class="grid-col">
+            <div class="grid-col col-wiecej">
                 <div class="section-box">
                     <div class="section-header">WIĘCEJ</div>
-                    <a href="uslugi.html" class="btn">🛠️ LISTA USŁUG</a>
-                    <a href="faq.html" class="btn">❓ NAJCZĘSTSZE PYTANIA (FAQ)</a>
-                    <button onclick="toggleInfo(this)" class="btn">ℹ️ INFORMACJE O SERWISIE</button>
-                    
+                    <a href="uslugi.html" class="btn">🛠️ USŁUGI</a>
+                    <a href="faq.html" class="btn">❓ FAQ</a>
+                    <button onclick="document.getElementById('infoTable').classList.toggle('active')" class="btn">ℹ️ O SERWISIE</button>
                     <div id="infoTable" class="info-content">
-                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - SERWIS KOMPUTEROWY</span></div>
+                        <div class="info-row"><span>NAZWA:</span><span>ZERO BYTES - KONRAD BENDEROWICZ</span></div>
                         <div class="info-row"><span>ADRES:</span><span>1 MAJA 5/1, 69-100 SŁUBICE</span></div>
                         <div class="info-row"><span>NIP:</span><span>5981662682</span></div>
                         <div class="info-row"><span>REGON:</span><span>543979466</span></div>
@@ -401,17 +301,17 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="reviews-wrapper">
+            <script defer async src='https://cdn.trustindex.io/loader.js?7ff6b9066da5328a8556c85bcb6'></script>
         </div>
 
         <div class="brands-section">
-            <div class="brands-header">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
+            <div class="brands-header" style="font-size: 0.7rem; color: #666; margin-bottom: 25px;">PRACUJEMY NA ORYGINALNYCH PODZESPOŁACH MAREK</div>
             <div class="brands-grid">
-                
-                <img src="AMD.png" alt="AMD" class="brand-logo-img logo-amd">
-                <img src="Intel.png" alt="Intel" class="brand-logo-img logo-intel">
-
-            </div>
+                <img src="AMD.png" alt="AMD" class="brand-logo-img">
+                <img src="Intel.png" alt="Intel" class="brand-logo-img">
         </div>
 
         <div class="footer-links">
@@ -421,42 +321,30 @@
     </div>
 
     <script>
-        window.onload = function() { updateStatus(); };
-        function openMaps() { window.location.href = "https://www.google.com/maps/search/?api=1&query=Zero+Bytes+Słubice"; }
-        function toggleInfo(btn) { document.getElementById('infoTable').classList.toggle('active'); }
-        function goToStatus() { const id = document.getElementById('orderId').value; if(id) window.location.href = "https://naprawiam.online/token/" + id; }
-        function goToClientLogin() { window.location.href = "https://naprawiam.online/panel/0bytes/login"; }
-        
         function updateStatus() {
             const now = new Date();
-            const day = now.getDay(); 
-            const hour = now.getHours() + (now.getMinutes()/60);
-            const statusDot = document.querySelector('.dot');
-            const statusText = document.getElementById('status-text');
-            const reopenInfo = document.getElementById('reopen-info');
+            const hour = now.getHours() + now.getMinutes()/60;
+            const day = now.getDay();
+            const dot = document.querySelector('.dot');
+            const txt = document.getElementById('status-text');
+            const reopen = document.getElementById('reopen-info');
+            
+            let open = (day >= 1 && day <= 5 && hour >= 9.5 && hour < 18) || (day === 6 && hour >= 12 && hour < 15);
+            dot.style.backgroundColor = open ? "var(--status-open)" : "var(--status-closed)";
+            txt.innerText = open ? "SERWIS OTWARTY" : "SERWIS ZAMKNIĘTY";
+            
+            if (!open) {
+                let msg = day === 6 && hour >= 15 ? "PONOWNE OTWARCIE: PONIEDZIAŁEK 09:30" : "PONOWNE OTWARCIE: JUTRO 09:30";
+                if (day === 0) msg = "PONOWNE OTWARCIE: JUTRO 09:30";
+                reopen.innerText = msg;
+            } else { reopen.innerText = ""; }
+        }
+        setInterval(updateStatus, 60000);
+        updateStatus();
 
-            let state = "closed";
-            let reopen = "JUTRO 09:30";
-
-            if (day >= 1 && day <= 5) {
-                if (hour >= 9.5 && hour < 18) state = "open";
-            } else if (day === 6) {
-                if (hour >= 12 && hour < 15) state = "open";
-                else reopen = "PONIEDZIAŁEK 09:30";
-            }
-
-            const config = {
-                open: { color: "var(--status-open)", text: "SERWIS OTWARTY" },
-                closed: { color: "var(--status-closed)", text: "SERWIS ZAMKNIĘTY" }
-            };
-
-            statusDot.style.backgroundColor = config[state].color;
-            statusDot.style.color = config[state].color;
-            statusText.innerText = config[state].text;
-            if (state === "closed") {
-                reopenInfo.style.display = "block";
-                reopenInfo.innerHTML = `PONOWNE OTWARCIE: <span class="reopen-time">${reopen}</span>`;
-            }
+        function goToStatus() {
+            const id = document.getElementById('orderId').value;
+            if(id) window.location.href = "https://naprawiam.online/token/" + id;
         }
     </script>
 </body>
