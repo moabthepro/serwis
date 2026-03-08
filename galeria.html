@@ -161,6 +161,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
+            height: 100%; /* Karta wypełnia wysokość grida */
         }
 
         .ba-title {
@@ -182,15 +183,24 @@
             overflow: hidden;
             background-color: #000;
             border: 1px solid #333;
-            /* Zabezpieczenie przed zachowaniem domyślnym przy przeciąganiu */
             touch-action: pan-y; 
+            flex-grow: 1; /* Suwak wypełnia resztę wysokości karty */
+        }
+
+        /* Ustawienie stałej wysokości dla suwaków na desktopie (żebyAM5 i Silver Monkey były równe) */
+        @media (min-width: 1024px) {
+            .ba-slider-container {
+                height: 600px; /* Twarda wysokość na komputerach. Możesz zmienić na np. 650px lub 700px. */
+            }
         }
 
         .ba-slider-container img {
             display: block;
             width: 100%;
-            height: auto;
-            pointer-events: none; /* Blokada przeciągania samego obrazka */
+            height: 100%; /* Zdjęcie wypełnia wysokość kontenera */
+            object-fit: cover; /* Dopasowuje zdjęcie, przycinając nadmiar (najlepsza opcja) */
+            object-position: center; /* Centruje przycinanie */
+            pointer-events: none; 
             user-select: none;
         }
 
@@ -206,11 +216,9 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* Domyślnie obcina prawą połowę zdjęcia - wyświetla lewe 50% */
             clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
         }
 
-        /* Niewidzialny natywny suwak do sterowania */
         .slider-control {
             position: absolute;
             top: 0;
@@ -223,7 +231,6 @@
             margin: 0;
         }
 
-        /* Kreska i przycisk przesuwający się po ekranie */
         .slider-line {
             position: absolute;
             top: 0;
@@ -258,7 +265,6 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.8);
         }
 
-        /* Etykiety rożne: Przed / Po */
         .badge {
             position: absolute;
             top: 15px;
@@ -310,13 +316,13 @@
         <div class="gallery-grid">
             
             <div class="ba-card">
-                <div class="ba-title">SPA KOMPUTERA</div>
+                <div class="ba-title">SPA KOMPUTERA - SILVER MONKEY</div>
                 <div class="ba-slider-container">
                     <div class="badge badge-before">PRZED</div>
                     <div class="badge badge-after">PO</div>
                     
-                    <img src="a1.png" class="img-after" alt="Po naprawie">
-                    <img src="b1.png" class="img-before" alt="Przed naprawą">
+                    <img src="a1.png" class="img-after" alt="Po czyszczeniu">
+                    <img src="b1.png" class="img-before" alt="Przed czyszczeniem">
                     
                     <div class="slider-line"></div>
                     <div class="slider-btn">↔</div>
@@ -325,13 +331,13 @@
             </div>
 
             <div class="ba-card">
-                <div class="ba-title">CZYSZCZENIE I WYMIANA PASTY</div>
+                <div class="ba-title">LUTOWANIE: WYMIANA GNIAZDA AM5</div>
                 <div class="ba-slider-container">
                     <div class="badge badge-before">PRZED</div>
                     <div class="badge badge-after">PO</div>
                     
-                    <img src="a2.png" class="img-after" alt="Po naprawie">
-                    <img src="b2.png" class="img-before" alt="Przed naprawą">
+                    <img src="a2.png" class="img-after" alt="Po przylutowaniu">
+                    <img src="b2.png" class="img-before" alt="Przed przylutowaniem">
                     
                     <div class="slider-line"></div>
                     <div class="slider-btn">↔</div>
@@ -376,12 +382,9 @@
                 const line = container.querySelector('.slider-line');
                 const btn = container.querySelector('.slider-btn');
 
-                // Aktualizacja wyglądu przy przeciąganiu suwaka
                 input.addEventListener('input', (e) => {
                     const val = e.target.value;
-                    // Maska CSS - odcina prawą część obrazka na wartości suwaka
                     imgBefore.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
-                    // Przesunięcie wizualnej linii i przycisku
                     line.style.left = `${val}%`;
                     btn.style.left = `${val}%`;
                 });
