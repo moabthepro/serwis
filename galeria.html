@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BYTES | GALERIA USŁUG</title>
+
+    <meta name="description" content="Zobacz efekty naszej pracy. Galeria napraw serwisowych Przed / Po: lutowanie PCB, tuning, czyszczenie i budowa PC w Zero Bytes.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ZERO BYTES | Galeria Napraw">
+    <meta property="og:description" content="Efekty naszej pracy w serwisie elektroniki Zero Bytes. Zobacz różnicę Przed i Po naprawie.">
+    <meta property="og:image" content="https://zerobytes.pl/og-image.png">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --bg-color: #000000;
+            --accent-red: #8b0000;
+            --text-color: #e0e0e0;
+            --card-bg: #111111;
+            --main-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --nvidia-green: #76b900;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2px 20px 20px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px; 
+        }
+
+        .header-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 440px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: -10px;
+            padding: 0;
+        }
+
+        .logo-area a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .main-logo {
+            width: 100%; 
+            max-width: 400px;
+            height: auto;
+            margin-top: -30px; 
+            margin-bottom: -20px; 
+            display: block;
+            flex-shrink: 0;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            font-family: var(--main-font);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .btn-header {
+            max-width: 100%;
+            margin-top: 15px; 
+            position: relative;
+            z-index: 10; 
+        }
+
+        @media (hover: hover) {
+            .btn:hover {
+                background-color: #1a1a1a;
+                border-left-width: 12px;
+                transform: translateX(5px);
+            }
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            letter-spacing: 2.5px;
+            margin-bottom: 35px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- GALERIA - SLIDERY BEFORE/AFTER --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 40px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 slidery w rzędzie na komputerze */
+                gap: 30px;
+            }
+        }
+
+        .ba-card {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ba-title {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .ba-slider-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #000;
+            border: 1px solid #333;
+            /* Zabezpieczenie przed zachowaniem domyślnym przy przeciąganiu */
+            touch-action: pan-y; 
+        }
+
+        .ba-slider-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+            pointer-events: none; /* Blokada przeciągania samego obrazka */
+            user-select: none;
+        }
+
+        .img-after {
+            position: relative;
+            z-index: 1;
+        }
+
+        .img-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            /* Domyślnie obcina prawą połowę zdjęcia - wyświetla lewe 50% */
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+
+        /* Niewidzialny natywny suwak do sterowania */
+        .slider-control {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            opacity: 0;
+            cursor: ew-resize;
+            margin: 0;
+        }
+
+        /* Kreska i przycisk przesuwający się po ekranie */
+        .slider-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--accent-red);
+            transform: translateX(-50%);
+            z-index: 5;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-red);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 6;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 900;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        /* Etykiety rożne: Przed / Po */
+        .badge {
+            position: absolute;
+            top: 15px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 8;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .badge-before {
+            left: 15px;
+            border-left: 3px solid #ff4444;
+        }
+
+        .badge-after {
+            right: 15px;
+            border-right: 3px solid #44ff44;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="logo.png" alt="ZERO BYTES" class="main-logo">
+                </a>
+            </div>
+            <a href="index.html" class="btn btn-header">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="page-title">EFEKTY NASZEJ PRACY</div>
+
+        <div class="gallery-grid">
+            
+            <div class="ba-card">
+                <div class="ba-title">SPA KOMPUTERA</div>
+                <div class="ba-slider-container">
+                    <div class="badge badge-before">PRZED</div>
+                    <div class="badge badge-after">PO</div>
+                    
+                    <img src="a1.png" class="img-after" alt="Po naprawie">
+                    <img src="b1.png" class="img-before" alt="Przed naprawą">
+                    
+                    <div class="slider-line"></div>
+                    <div class="slider-btn">↔</div>
+                    <input type="range" min="0" max="100" value="50" class="slider-control">
+                </div>
+            </div>
+
+            <div class="ba-card">
+                <div class="ba-title">CZYSZCZENIE I WYMIANA PASTY</div>
+                <div class="ba-slider-container">
+                    <div class="badge badge-before">PRZED</div>
+                    <div class="badge badge-after">PO</div>
+                    
+                    <img src="a2.png" class="img-after" alt="Po naprawie">
+                    <img src="b2.png" class="img-before" alt="Przed naprawą">
+                    
+                    <div class="slider-line"></div>
+                    <div class="slider-btn">↔</div>
+                    <input type="range" min="0" max="100" value="50" class="slider-control">
+                </div>
+            </div>
+
+            <div class="ba-card">
+                <div class="ba-title">CABLE MANAGEMENT W CUSTOM PC</div>
+                <div class="ba-slider-container">
+                    <div class="badge badge-before">PRZED</div>
+                    <div class="badge badge-after">PO</div>
+                    
+                    <img src="a3.png" class="img-after" alt="Po układaniu kabli">
+                    <img src="b3.png" class="img-before" alt="Przed układaniem kabli">
+                    
+                    <div class="slider-line"></div>
+                    <div class="slider-btn">↔</div>
+                    <input type="range" min="0" max="100" value="50" class="slider-control">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-actions" style="width: 100%; max-width: 440px; margin: 0 auto;">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn">↑ POWRÓT NA GÓRĘ</button>
+            <a href="index.html" class="btn">← POWRÓT DO STRONY GŁÓWNEJ</a>
+        </div>
+
+        <div class="footer-links">
+            © 2026 ZERO BYTES. Wszelkie prawa zastrzeżone.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliders = document.querySelectorAll('.ba-slider-container');
+
+            sliders.forEach(container => {
+                const input = container.querySelector('.slider-control');
+                const imgBefore = container.querySelector('.img-before');
+                const line = container.querySelector('.slider-line');
+                const btn = container.querySelector('.slider-btn');
+
+                // Aktualizacja wyglądu przy przeciąganiu suwaka
+                input.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    // Maska CSS - odcina prawą część obrazka na wartości suwaka
+                    imgBefore.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+                    // Przesunięcie wizualnej linii i przycisku
+                    line.style.left = `${val}%`;
+                    btn.style.left = `${val}%`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
