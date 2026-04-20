@@ -125,7 +125,6 @@
             100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 5px currentColor; }
         }
 
-        /* ANIMACJA DLA PRZYCISKU ZGŁOŚ NAPRAWĘ */
         .pulse-urgent {
             animation: pulse-btn 2s infinite ease-in-out;
         }
@@ -560,15 +559,15 @@
             </div>
             
             <div class="slider-container">
-                <button class="slider-btn prev" onclick="scrollSlider(-1)">&#10094;</button>
+                <button class="slider-btn prev" onclick="scrollSlider(-1)">❮</button>
                 
                 <div class="slider-viewport" id="reviewsViewport">
                     
                     <div class="review-card">
                         <div class="review-top">
                             <div>
-                                <div class="review-author">Imię Nazwisko 1</div>
-                                <div class="review-date">Miesiąc temu</div>
+                                <div class="review-author">Krzysztof Jankowski</div>
+                                <div class="review-date">3 tygodnie temu</div>
                             </div>
                             <div class="stars-container">
                                 <svg class="star-icon"><use href="#icon-star"></use></svg>
@@ -579,14 +578,33 @@
                             </div>
                         </div>
                         <div class="review-text">
-                            Tutaj wklejasz treść pierwszej opinii. Możesz powielać cały blok "review-card", aby dodawać kolejne.
+                            Rewelacyjne podejście do klienta. Firmę tworzą ludzie, a ten Pan jest po prostu świetnym fachowcem i człowiekiem. Naprawa przebiegła profesjonalnie, na każdym etapie byłem informowany o kosztach i przebiegu prac. Wszystko jasno, konkretnie …
                         </div>
                     </div>
 
                     <div class="review-card">
                         <div class="review-top">
                             <div>
-                                <div class="review-author">Imię Nazwisko 2</div>
+                                <div class="review-author">Jędrzej Antonik</div>
+                                <div class="review-date">miesiąc temu</div>
+                            </div>
+                            <div class="stars-container">
+                                <svg class="star-icon"><use href="#icon-star"></use></svg>
+                                <svg class="star-icon"><use href="#icon-star"></use></svg>
+                                <svg class="star-icon"><use href="#icon-star"></use></svg>
+                                <svg class="star-icon"><use href="#icon-star"></use></svg>
+                                <svg class="star-icon"><use href="#icon-star"></use></svg>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            Świetna i sprawna obsługa, laptop naprawiony bardzo szybko na duży plus zasługuje kontakt z klientem. Polecam
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-top">
+                            <div>
+                                <div class="review-author">ziareeek</div>
                                 <div class="review-date">2 miesiące temu</div>
                             </div>
                             <div class="stars-container">
@@ -598,32 +616,13 @@
                             </div>
                         </div>
                         <div class="review-text">
-                            Serwis na najwyższym poziomie. Pełen profesjonalizm i świetny kontakt.
-                        </div>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-top">
-                            <div>
-                                <div class="review-author">Imię Nazwisko 3</div>
-                                <div class="review-date">3 miesiące temu</div>
-                            </div>
-                            <div class="stars-container">
-                                <svg class="star-icon"><use href="#icon-star"></use></svg>
-                                <svg class="star-icon"><use href="#icon-star"></use></svg>
-                                <svg class="star-icon"><use href="#icon-star"></use></svg>
-                                <svg class="star-icon"><use href="#icon-star"></use></svg>
-                                <svg class="star-icon"><use href="#icon-star"></use></svg>
-                            </div>
-                        </div>
-                        <div class="review-text">
-                            Polecam z czystym sumieniem. Szybka diagnoza i skuteczna naprawa.
+                            Jestem bardzo zadowolony z usługi którą wykonał dla mnie ten serwis. Zalałem komputer i uszkodziłem kartę graficzną okoliczne serwisy odsyłały mnie z kwitkiem nie chcąc podjąć się naprawy a Zero Bytes bez zawahania przyjął zlecenie. Cały …
                         </div>
                     </div>
 
                 </div>
                 
-                <button class="slider-btn next" onclick="scrollSlider(1)">&#10095;</button>
+                <button class="slider-btn next" onclick="scrollSlider(1)">❯</button>
             </div>
         </div>
 
