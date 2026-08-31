@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Specjalistyczny serwis elektroniki przemysłowej i mikrolutowanie PCB. Szybkie SLA < 2h, naprawy komponentów BGA/SMD bez pośredników. Sprawdź!">
+  <title>Hardware Lab, Serwis PCB & Mikrolutowanie | Zero Bytes</title>
+  
+  <link rel="canonical" href="https://zerobytes.pl/hardware-lab.html">
+  <link rel="alternate" hreflang="pl" href="https://zerobytes.pl/hardware-lab.html">
+  <link rel="alternate" hreflang="en" href="https://zerobytes.pl/hardware-lab.html?lang=en">
+  <link rel="alternate" hreflang="de" href="https://zerobytes.pl/hardware-lab.html?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://zerobytes.pl/hardware-lab.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zerobytes.pl/hardware-lab.html">
+  <meta property="og:title" content="Hardware Lab, Serwis PCB & Mikrolutowanie | Zero Bytes">
+  <meta property="og:description" content="Zaawansowane naprawy elektroniki przemysłowej (BGA/SMD) i mikrolutowanie. Poznaj inżynierię precyzyjną z SLA < 2h.">
+  <meta property="og:image" content="https://zerobytes.pl/assets/images/og-image-cyberpunk.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://zerobytes.pl/hardware-lab.html">
+  <meta name="twitter:title" content="Hardware Lab, Serwis PCB & Mikrolutowanie | Zero Bytes">
+  <meta name="twitter:description" content="Zaawansowane naprawy elektroniki przemysłowej (BGA/SMD) i mikrolutowanie. Poznaj inżynierię precyzyjną z SLA < 2h.">
+  <meta name="twitter:image" content="https://zerobytes.pl/assets/images/og-image-cyberpunk.jpg">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0D0D0D">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  
+  <script>
+    // Tailwind Config Customization
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cyberBlack: '#0D0D0D',
+            cyberCard: '#1A1A1A',
+            cyberRed: '#FF1E27',
+            cyberRedHover: '#E50914',
+            cyberText: '#F5F5F5',
+            cyberTextMuted: '#888888',
+            cyberBorder: '#262626',
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ComputerRepairService",
+        "@id": "https://zerobytes.pl/#localbusiness",
+        "name": "Zero Bytes - Precision Hardware Engineering",
+        "image": "https://zerobytes.pl/assets/images/og-image-cyberpunk.jpg",
+        "url": "https://zerobytes.pl/",
+        "telephone": "+48000000000",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Słubice",
+          "postalCode": "69-100",
+          "addressCountry": "PL"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-cyberBlack text-cyberText font-sans selection:bg-cyberRed selection:text-white">
+
+  <!-- ==================== HEADER & NAVIGATION ==================== -->
+  <header class="sticky top-0 z-50 w-full border-b border-cyberBorder bg-cyberBlack/85 backdrop-blur-md transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Container -->
+      <a href="index.html" class="flex items-center gap-3 group shrink-0">
+        <div class="relative w-10 h-10 flex items-center justify-center bg-cyberCard border border-cyberRed/40 rounded group-hover:border-cyberRed transition-all duration-300">
+          <svg class="w-6 h-6 text-cyberRed group-hover:scale-110 transition-transform duration-300" role="img" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+          </svg>
+        </div>
+        <span class="font-mono text-xl font-bold tracking-wider text-white uppercase">Zero<span class="text-cyberRed">_</span>Bytes</span>
+      </a>
+
+      <!-- Desktop Navigation Links (Zablokowane inne sekcje) -->
+      <nav class="hidden lg:flex items-center gap-6">
+        <a href="hardware-lab.html" class="nav-link text-sm uppercase tracking-wider whitespace-nowrap text-cyberRed font-bold" data-i18n="nav_hardware">Serwis PCB & Lab</a>
+        <a class="nav-link text-sm uppercase tracking-wider whitespace-nowrap opacity-40 cursor-not-allowed pointer-events-none" data-i18n="nav_b2b">Opieka IT (B2B)</a>
+        <a class="nav-link text-sm uppercase tracking-wider whitespace-nowrap opacity-40 cursor-not-allowed pointer-events-none" data-i18n="nav_web">Web & Automatyzacje</a>
+      </nav>
+
+      <!-- Right Utility Actions -->
+      <div class="flex items-center gap-4 shrink-0">
+        <!-- Language Switcher -->
+        <div class="relative inline-block text-left" id="lang-selector">
+          <button type="button" id="lang-btn" aria-label="Wybierz język" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-2 px-3 py-1.5 rounded border border-cyberBorder bg-cyberCard font-mono text-sm uppercase tracking-wide hover:border-cyberRed transition-all duration-200">
+            <span id="active-lang">PL</span>
+            <svg class="w-4 h-4 text-cyberTextMuted" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          
+          <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-28 origin-top-right rounded-md bg-cyberCard border border-cyberBorder shadow-lg focus:outline-none z-50">
+            <div class="py-1">
+              <button type="button" onclick="switchLanguage('pl')" class="w-full text-left px-4 py-2 text-sm font-mono hover:bg-cyberBorder hover:text-white transition-colors duration-150">PL</button>
+              <button type="button" onclick="switchLanguage('en')" class="w-full text-left px-4 py-2 text-sm font-mono hover:bg-cyberBorder hover:text-white transition-colors duration-150">EN</button>
+              <button type="button" onclick="switchLanguage('de')" class="w-full text-left px-4 py-2 text-sm font-mono hover:bg-cyberBorder hover:text-white transition-colors duration-150">DE</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portal Button -->
+        <a href="index.html#ticket-portal" class="hidden sm:flex items-center gap-2 border border-cyberRed text-cyberRed hover:bg-cyberRed hover:text-white px-4 py-2 rounded text-xs font-bold font-mono tracking-widest uppercase transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+          <span data-i18n="btn_quick_ticket">Panel Zgłoszeń</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button type="button" id="mobile-menu-btn" aria-label="Otwórz menu mobilne" class="lg:hidden p-2 text-cyberTextMuted hover:text-white focus:outline-none">
+          <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-cyberBorder bg-cyberBlack/95 px-4 py-6 space-y-4">
+      <a href="hardware-lab.html" class="block text-sm uppercase font-mono text-cyberRed hover:text-white transition-colors py-2" data-i18n="nav_hardware">Serwis PCB & Lab</a>
+      <a class="block text-sm uppercase font-mono text-cyberTextMuted opacity-40 cursor-not-allowed pointer-events-none py-2" data-i18n="nav_b2b">Opieka IT (B2B)</a>
+      <a class="block text-sm uppercase font-mono text-cyberTextMuted opacity-40 cursor-not-allowed pointer-events-none py-2" data-i18n="nav_web">Web & Automatyzacje</a>
+      <a href="index.html#ticket-portal" class="block border border-cyberRed text-cyberRed hover:bg-cyberRed hover:text-white w-full text-center py-3 mt-4 rounded uppercase font-bold font-mono tracking-widest transition-colors">
+        <span data-i18n="btn_quick_ticket">Panel Zgłoszeń</span>
+      </a>
+    </div>
+  </header>
+
+<main>
+  <!-- HERO B2C -->
+  <section class="pt-24 pb-16 px-4 text-center max-w-5xl mx-auto">
+    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyberRed/30 bg-cyberRed/10 text-xs font-mono text-cyberRed uppercase tracking-wider mb-6">
+      <span class="w-2 h-2 rounded-full bg-cyberRed animate-pulse"></span>
+      Hardware Lab
+    </span>
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6 text-white" data-i18n="hero_lab_title">
+      Zaawansowana diagnostyka i<br><span class="text-cyberRed">naprawy komponentowe PCB.</span>
+    </h1>
+  </section>
+
+  <!-- KATEGORIE URZĄDZEŃ -->
+  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  
+      <!-- Laptopy -->
+      <div class="cyber-card p-6 group bg-cyberCard border border-cyberBorder rounded-xl hover:border-cyberRed/50 transition-colors">
+        <div class="mb-6 rounded-lg overflow-hidden border border-cyberBorder h-48 relative">
+          <img src="assets/images/laptop-repair.jpg" alt="Naprawa płyty głównej" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-4" data-i18n="cat_1_title">Laptopy i Komputery</h3>
+        <p class="text-sm text-cyberTextMuted" data-i18n="cat_1_desc">Wymiana uszkodzonych gniazd, naprawa sekcji zasilania, czyszczenie po zalaniu cieczą, reballing układów BGA oraz modernizacje sprzętowe.</p>
+      </div>
+      
+      <!-- Konsole -->
+      <div class="cyber-card p-6 group bg-cyberCard border border-cyberBorder rounded-xl hover:border-cyberRed/50 transition-colors">
+        <div class="mb-6 rounded-lg overflow-hidden border border-cyberBorder h-48 relative">
+          <img src="assets/images/console-repair.jpg" alt="Naprawa konsol do gier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-4" data-i18n="cat_2_title">Konsole do gier</h3>
+        <p class="text-sm text-cyberTextMuted" data-i18n="cat_2_desc">PlayStation, Xbox, Nintendo. Pełne SPA, wymiana portów HDMI, naprawa układów zasilania (brak reakcji na włącznik) i naprawy płyt.</p>
+      </div>
+      
+      <!-- Custom PC -->
+      <div class="cyber-card p-6 group bg-cyberCard border border-cyberBorder rounded-xl hover:border-cyberRed/50 transition-colors">
+        <div class="mb-6 rounded-lg overflow-hidden border border-cyberBorder h-48 relative">
+          <img src="assets/images/custom-pc.jpg" alt="Budowa Custom PC" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-4" data-i18n="cat_3_title">Custom PC & Tuning</h3>
+        <p class="text-sm text-cyberTextMuted" data-i18n="cat_3_desc">Składanie potężnych stacji roboczych, undervolting (UV) procesorów i kart graficznych, ciche chłodzenie i optymalizacja pod montaż/gry.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KROKI PROCESU -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-cyberCard/30 rounded-xl border border-cyberBorder mt-8">
+    <h2 class="text-2xl font-bold text-center text-white mb-12" data-i18n="process_title">Jak działamy? Proces Serwisowy</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      
+      <!-- Krok 1 -->
+      <div class="text-center relative z-10">
+        <div class="w-12 h-12 bg-cyberRed text-white font-mono font-bold flex items-center justify-center rounded-full mx-auto mb-4 border-4 border-cyberBlack shadow-lg shadow-cyberRed/20">1</div>
+        <h4 class="font-bold text-white mb-2" data-i18n="step_1_title">Dostarczenie</h4>
+        <p class="text-xs text-cyberTextMuted" data-i18n="step_1_desc">Wysyłka kurierem, paczkomatem lub wizyta osobista.</p>
+      </div>
+      <!-- Krok 2 -->
+      <div class="text-center relative z-10">
+        <div class="w-12 h-12 bg-cyberCard text-white font-mono font-bold flex items-center justify-center rounded-full mx-auto mb-4 border-2 border-cyberBorder">2</div>
+        <h4 class="font-bold text-white mb-2" data-i18n="step_2_title">Diagnostyka</h4>
+        <p class="text-xs text-cyberTextMuted" data-i18n="step_2_desc">Wycena kosztorysowa i pełna diagnoza przed naprawą.</p>
+      </div>
+      <!-- Krok 3 -->
+      <div class="text-center relative z-10">
+        <div class="w-12 h-12 bg-cyberCard text-white font-mono font-bold flex items-center justify-center rounded-full mx-auto mb-4 border-2 border-cyberBorder">3</div>
+        <h4 class="font-bold text-white mb-2" data-i18n="step_3_title">Naprawa</h4>
+        <p class="text-xs text-cyberTextMuted" data-i18n="step_3_desc">Precyzyjna naprawa na laminacie z zachowaniem reżimu ESD.</p>
+      </div>
+      <!-- Krok 4 -->
+      <div class="text-center relative z-10">
+        <div class="w-12 h-12 bg-cyberCard text-white font-mono font-bold flex items-center justify-center rounded-full mx-auto mb-4 border-2 border-cyberBorder">4</div>
+        <h4 class="font-bold text-white mb-2" data-i18n="step_4_title">Testy & Gwarancja</h4>
+        <p class="text-xs text-cyberTextMuted" data-i18n="step_4_desc">Testy obciążeniowe i wydanie sprzętu z pisemną gwarancją.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 text-center px-4 max-w-7xl mx-auto">
+    <a href="https://svc.zerobytes.pl" target="_blank" rel="noopener noreferrer" class="bg-cyberRed hover:bg-cyberRedHover text-white font-bold font-mono uppercase tracking-widest px-8 py-4 rounded transition-all inline-flex justify-center items-center gap-2 group shadow-lg shadow-cyberRed/20 hover:shadow-cyberRed/40">
+      <span data-i18n="cta_bottom">Zgłoś sprzęt do serwisu</span>
+      <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+    </a>
+  </section>
+</main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-cyberBorder bg-cyberBlack py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2">
+        <span class="font-mono text-md font-bold tracking-wider text-white uppercase">Zero<span class="text-cyberRed">_</span>Bytes</span>
+        <span class="text-xs text-cyberTextMuted font-mono">© 2026. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== BASE JAVASCRIPT ==================== -->
+  <script>
+    const i18n = {
+      pl: {
+        nav_hardware: "Serwis PCB & Lab",
+        nav_b2b: "Opieka IT (B2B)",
+        nav_web: "Web & Automatyzacje",
+        btn_quick_ticket: "Panel Zgłoszeń",
+        
+        hero_lab_title: "Zaawansowana diagnostyka i<br><span class="text-cyberRed">naprawy komponentowe PCB.</span>",
+        
+        cat_1_title: "Laptopy i Komputery",
+        cat_1_desc: "Wymiana uszkodzonych gniazd, naprawa sekcji zasilania, czyszczenie po zalaniu cieczą, reballing układów BGA oraz modernizacje sprzętowe.",
+        cat_2_title: "Konsole do gier",
+        cat_2_desc: "PlayStation, Xbox, Nintendo. Pełne SPA, wymiana portów HDMI, naprawa układów zasilania (brak reakcji na włącznik) i naprawy płyt.",
+        cat_3_title: "Custom PC & Tuning",
+        cat_3_desc: "Składanie potężnych stacji roboczych, undervolting (UV) procesorów i kart graficznych, ciche chłodzenie i optymalizacja pod montaż/gry.",
+        
+        process_title: "Jak działamy? Proces Serwisowy",
+        step_1_title: "Dostarczenie",
+        step_1_desc: "Wysyłka kurierem, paczkomatem lub wizyta osobista.",
+        step_2_title: "Diagnostyka",
+        step_2_desc: "Wycena kosztorysowa i pełna diagnoza przed naprawą.",
+        step_3_title: "Naprawa",
+        step_3_desc: "Precyzyjna naprawa na laminacie z zachowaniem reżimu ESD.",
+        step_4_title: "Testy & Gwarancja",
+        step_4_desc: "Testy obciążeniowe i wydanie sprzętu z pisemną gwarancją.",
+        
+        cta_bottom: "Zgłoś sprzęt do serwisu"
+      },
+      en: {
+        nav_hardware: "Hardware & PCB Lab",
+        nav_b2b: "Managed IT (B2B)",
+        nav_web: "Web & CRM",
+        btn_quick_ticket: "Ticket Portal",
+        
+        hero_lab_title: "Advanced diagnostics and<br><span class="text-cyberRed">component-level PCB repairs.</span>",
+        
+        cat_1_title: "Laptops and Computers",
+        cat_1_desc: "Socket replacement, power phase repairs, liquid damage restoration, BGA reballing, and hardware modernization.",
+        cat_2_title: "Gaming Consoles",
+        cat_2_desc: "PlayStation, Xbox, Nintendo. Deep cleaning, HDMI port replacement, power supply logic fixes, and board repairs.",
+        cat_3_title: "Custom PC & Tuning",
+        cat_3_desc: "Building powerful workstations, CPU/GPU undervolting (UV), silent cooling, and gaming/editing optimization.",
+        
+        process_title: "How it works? Repair Process",
+        step_1_title: "Delivery",
+        step_1_desc: "Send via courier, parcel locker, or drop off in person.",
+        step_2_title: "Diagnostics",
+        step_2_desc: "Detailed cost estimate and full diagnostic check before repair.",
+        step_3_title: "Repair",
+        step_3_desc: "Precision logic board repair under strict ESD regimes.",
+        step_4_title: "Testing & Warranty",
+        step_4_desc: "Stress testing and return delivery with written warranty.",
+        
+        cta_bottom: "Submit hardware to service"
+      },
+      de: {
+        nav_hardware: "PCB Labor",
+        nav_b2b: "IT Betreuung (B2B)",
+        nav_web: "Web & Automatisierung",
+        btn_quick_ticket: "Service Portal",
+        
+        hero_lab_title: "Erweiterte Diagnostik und<br><span class="text-cyberRed">PCB-Komponentenreparaturen.</span>",
+        
+        cat_1_title: "Laptops und Computer",
+        cat_1_desc: "Austausch von Buchsen, Reparatur von Stromphasen, Wiederherstellung nach Flüssigkeitsschäden, BGA-Reballing und Hardware-Modernisierung.",
+        cat_2_title: "Spielkonsolen",
+        cat_2_desc: "PlayStation, Xbox, Nintendo. Tiefenreinigung, Austausch von HDMI-Ports, Reparatur von Netzteillogik und Platinenreparaturen.",
+        cat_3_title: "Custom PC & Tuning",
+        cat_3_desc: "Bau von Workstations, CPU/GPU-Undervolting (UV), leise Kühlung und Optimierung für Gaming/Schnitt.",
+        
+        process_title: "Wie wir arbeiten? Der Reparaturprozess",
+        step_1_title: "Lieferung",
+        step_1_desc: "Versand per Kurier, Paketstation oder persönliche Abgabe.",
+        step_2_title: "Diagnose",
+        step_2_desc: "Detaillierter Kostenvoranschlag und vollständige Diagnose vor der Reparatur.",
+        step_3_title: "Reparatur",
+        step_3_desc: "Präzisionsreparatur der Logikplatine unter strengen ESD-Richtlinien.",
+        step_4_title: "Test & Garantie",
+        step_4_desc: "Belastungstests und Rückgabe mit schriftlicher Garantie.",
+        
+        cta_bottom: "Gerät zur Reparatur anmelden"
+      }
+    };
+
+    let currentLang = 'pl';
+
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.getElementById('lang-dropdown');
+    
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = langDropdown.classList.contains('hidden') === false;
+      langBtn.setAttribute('aria-expanded', !isExpanded);
+      langDropdown.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', () => {
+      langDropdown.classList.add('hidden');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    function switchLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('active-lang').innerText = lang.toUpperCase();
+      
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          element.innerHTML = i18n[lang][key]; 
+        }
+      });
+      
+      document.documentElement.lang = lang;
+    }
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      switchLanguage('pl');
+    });
+  </script>
+</body>
+</html>

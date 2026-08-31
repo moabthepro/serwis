@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Specjalistyczny serwis elektroniki przemysłowej i profesjonalne wsparcie IT dla B2B. Szybkie SLA < 2h, naprawy komponentów PCB/BGA bez pośredników. Sprawdź!">
+  <title>Serwis PCB, Mikrolutowanie i Obsługa IT Firm | Zero Bytes</title>
+
+  <link rel="canonical" href="https://zerobytes.pl/">
+  <link rel="alternate" hreflang="pl" href="https://zerobytes.pl/">
+  <link rel="alternate" hreflang="en" href="https://zerobytes.pl/?lang=en">
+  <link rel="alternate" hreflang="de" href="https://zerobytes.pl/?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://zerobytes.pl/">
+
+  <meta name="theme-color" content="#0D0D0D">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+
+  <script>
+    // Tailwind Config
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cyberBlack: '#0D0D0D',
+            cyberCard: '#1A1A1A',
+            cyberRed: '#FF1E27',
+            cyberRedHover: '#D41018',
+            cyberText: '#F5F5F5',
+            cyberTextMuted: '#888888',
+            cyberBorder: '#262626',
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-cyberBlack text-cyberText font-sans selection:bg-cyberRed selection:text-white">
+
+  <header class="sticky top-0 z-50 w-full border-b border-cyberBorder bg-cyberBlack/90 backdrop-blur-md transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <a href="index.html" class="flex items-center gap-3 group shrink-0">
+        <div class="relative w-10 h-10 flex items-center justify-center bg-cyberCard border border-cyberRed/40 rounded group-hover:border-cyberRed transition-all duration-300">
+          <svg class="w-6 h-6 text-cyberRed group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+          </svg>
+        </div>
+        <span class="font-mono text-xl font-bold tracking-wider text-white uppercase">Zero<span class="text-cyberRed">_</span>Bytes</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6">
+        <a href="hardware-lab.html" class="nav-link text-sm uppercase tracking-wider whitespace-nowrap hover:text-cyberRed transition-colors" data-i18n="nav_hardware">Serwis PCB & Lab</a>
+        <a class="nav-link text-sm uppercase tracking-wider whitespace-nowrap opacity-40 cursor-not-allowed pointer-events-none" data-i18n="nav_b2b">Opieka IT (B2B)</a>
+        <a class="nav-link text-sm uppercase tracking-wider whitespace-nowrap opacity-40 cursor-not-allowed pointer-events-none" data-i18n="nav_web">Web & Automatyzacje</a>
+      </nav>
+
+      <div class="flex items-center gap-4 shrink-0">
+        <div class="relative inline-block text-left" id="lang-selector">
+          <button type="button" id="lang-btn" class="flex items-center gap-2 px-3 py-1.5 rounded border border-cyberBorder bg-cyberCard font-mono text-sm uppercase tracking-wide hover:border-cyberRed transition-all duration-200">
+            <span id="active-lang">PL</span>
+            <svg class="w-4 h-4 text-cyberTextMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+
+          <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-28 origin-top-right rounded-md bg-cyberCard border border-cyberBorder shadow-lg focus:outline-none z-50">
+            <div class="py-1">
+              <button type="button" onclick="switchLanguage('pl')" class="w-full text-left px-4 py-2 text-sm font-mono hover:bg-cyberBorder hover:text-white transition-colors">PL</button>
+              <button type="button" onclick="switchLanguage('en')" class="w-full text-left px-4 py-2 text-sm font-mono hover:bg-cyberBorder hover:text-white transition-colors">EN</button>
+              <button type="button" onclick="switchLanguage('de')" class="w-full text-left px-4 py-2 text-sm font-mono hover:bg-cyberBorder hover:text-white transition-colors">DE</button>
+            </div>
+          </div>
+        </div>
+
+        <a href="#ticket-portal" class="hidden sm:flex items-center gap-2 border border-cyberRed text-cyberRed hover:bg-cyberRed hover:text-white px-4 py-2 rounded text-xs font-bold font-mono tracking-widest uppercase transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+          <span data-i18n="btn_quick_ticket">Panel Zgłoszeń</span>
+        </a>
+
+        <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 text-cyberTextMuted hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-cyberBorder bg-cyberBlack px-4 py-6 space-y-4">
+      <a href="hardware_lab.html" class="block text-sm uppercase font-mono text-cyberTextMuted hover:text-white py-2" data-i18n="nav_hardware">Serwis PCB & Lab</a>
+      <a class="block text-sm uppercase font-mono text-cyberTextMuted opacity-40 cursor-not-allowed pointer-events-none py-2" data-i18n="nav_b2b">Opieka IT (B2B)</a>
+      <a class="block text-sm uppercase font-mono text-cyberTextMuted opacity-40 cursor-not-allowed pointer-events-none py-2" data-i18n="nav_web">Web & Automatyzacje</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative min-h-[calc(100vh-5rem)] flex flex-col justify-center py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto rounded-b-3xl overflow-hidden border-b border-cyberBorder">
+
+      <div class="absolute inset-0 z-0">
+        <img src="assets/images/hero-bg.jpg" alt="" class="w-full h-full object-cover opacity-50">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyberBlack/30 via-cyberBlack/60 to-cyberBlack"></div>
+      </div>
+
+      <div class="relative z-10 w-full">
+        <div class="mb-6 flex justify-start">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyberRed/30 bg-cyberRed/10 text-xs font-mono text-cyberRed uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyberRed animate-pulse"></span>
+            <span data-i18n="hero_badge">Gwarantowana odpowiedź SLA &lt; 2H</span>
+          </span>
+        </div>
+
+        <div class="max-w-4xl mb-16">
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
+            <span class="text-white" data-i18n="hero_title_1">Zero Bytes – Serwis PCB, Mikrolutowanie</span><br>
+            <span class="text-cyberRed" data-i18n="hero_title_2">i Obsługa IT dla Firm</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-cyberTextMuted max-w-2xl leading-relaxed font-medium" data-i18n="hero_subtitle">
+            Od podstawowych i zaawansowanych napraw komponentowych PCB po bezawaryjną infrastrukturę serwerową dla firm.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <div class="cyber-card p-0 flex flex-col justify-between min-h-[450px] group overflow-hidden bg-cyberCard border border-cyberBorder hover:border-cyberRed transition-colors duration-300 rounded-xl">
+            <div class="h-56 w-full overflow-hidden border-b border-cyberBorder relative">
+              <img src="assets/images/lab-card.jpg" alt="Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80">
+              <div class="absolute top-4 right-4 bg-cyberBlack/80 backdrop-blur border border-cyberRed/40 px-3 py-1 rounded">
+                <span class="font-mono text-xs text-cyberRed tracking-widest uppercase">LAB // HW-01</span>
+              </div>
+            </div>
+
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold mb-4 text-white" data-i18n="card1_title">Sprzęt komputerowy & Lab</h3>
+
+              <ul class="space-y-3 mb-8 text-sm text-cyberTextMuted font-mono flex-grow">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-cyberRed rounded-full shrink-0"></span>
+                  <span data-i18n="card1_highlight_1">Mikrolutowanie PCB (wymiana układów SMD)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-cyberRed rounded-full shrink-0"></span>
+                  <span data-i18n="card1_highlight_2">Serwis komputerów, laptopów oraz konsol</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-cyberRed rounded-full shrink-0"></span>
+                  <span data-i18n="card1_highlight_3">Diagnostyka oscyloskopowa i sekcje zasilania</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-cyberRed rounded-full shrink-0"></span>
+                  <span data-i18n="card1_highlight_4">Optymalizacja systemów zasilania (OC/UV)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-cyberRed rounded-full shrink-0"></span>
+                  <span data-i18n="card1_highlight_5">Custom PC & Tuning</span>
+                </li>
+              </ul>
+
+              <a href="hardware-lab.html" class="w-full border border-cyberRed text-cyberRed hover:bg-cyberRed hover:text-white transition-all duration-300 py-3 rounded text-sm font-bold font-mono tracking-wider uppercase flex justify-center items-center gap-2 group/btn">
+                <span data-i18n="card1_cta">Zgłoś naprawę sprzętu</span>
+                <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="cyber-card p-0 flex flex-col justify-between min-h-[450px] relative overflow-hidden bg-cyberCard border border-cyberBorder opacity-60 pointer-events-none rounded-xl">
+  
+ <div class="absolute top-0 right-0 w-36 h-36 overflow-hidden pointer-events-none z-20">
+  <div class="absolute top-8 -right-10 w-48 bg-cyberRed text-white text-[9px] sm:text-[10px] font-bold font-mono tracking-wider py-1 rotate-45 text-center shadow-lg uppercase">
+    WKRÓTCE DOSTĘPNE
+  </div>
+</div>
+            
+            <div class="absolute inset-0 bg-cyberBlack/30 z-10"></div> <div class="h-56 w-full overflow-hidden border-b border-cyberBorder relative z-0">
+              <img src="assets/images/it-card.jpg" alt="IT" class="w-full h-full object-cover opacity-80">
+              <div class="absolute top-4 right-4 bg-cyberBlack/80 backdrop-blur border border-cyberBorder px-3 py-1 rounded">
+                <span class="font-mono text-xs text-cyberTextMuted tracking-widest uppercase">B2B // SOC-02</span>
+              </div>
+            </div>
+
+            <div class="p-8 flex flex-col flex-grow relative z-0">
+              <h3 class="text-2xl font-bold mb-4 text-white" data-i18n="card2_title">IT & Automatyzacje dla Biznesu</h3>
+
+              <ul class="space-y-3 mb-8 text-sm text-cyberTextMuted font-mono flex-grow">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span>
+                  <span data-i18n="card2_highlight_1">Zdalny i stacjonarny Helpdesk 24/7</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span>
+                  <span data-i18n="card2_highlight_2">Automatyczne kopie bezpieczeństwa 3-2-1</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span>
+                  <span data-i18n="card2_highlight_3">Projektowanie sieci i bezpieczne struktury chmurowe</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span>
+                  <span data-i18n="card2_highlight_4">Strony internetowe, aplikacje webowe</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span>
+                  <span data-i18n="card2_highlight_5">Systemy CRM, RCP i automatyzacje</span>
+                </li>
+              </ul>
+
+              <a class="w-full bg-cyberBorder text-cyberTextMuted py-3 rounded text-sm font-bold font-mono tracking-wider uppercase flex justify-center items-center gap-2 cursor-not-allowed">
+                <span data-i18n="card2_cta">Umów bezpłatny audyt</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white mb-12" data-i18n="why_title">Dlaczego Zero Bytes? Stos technologiczny i standardy pracy</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="bg-cyberCard border border-cyberBorder p-8 rounded-xl hover:border-cyberRed/50 transition-colors">
+          <div class="w-12 h-12 bg-cyberBlack rounded-lg border border-cyberBorder flex items-center justify-center mb-6 text-cyberRed">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white" data-i18n="why_1_title">Gwarantowane SLA &lt; 2h i monitoring 24/7/365</h3>
+          <p class="text-cyberTextMuted text-sm leading-relaxed" data-i18n="why_1_desc">Błyskawiczna reakcja na awarie i ciągły nadzór nad infrastrukturą krytyczną.</p>
+        </div>
+
+        <div class="bg-cyberCard border border-cyberBorder p-8 rounded-xl hover:border-cyberRed/50 transition-colors">
+          <div class="w-12 h-12 bg-cyberBlack rounded-lg border border-cyberBorder flex items-center justify-center mb-6 text-cyberRed">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white" data-i18n="why_2_title">Profesjonalne laboratorium mikrolutownicze i diagnostyczne</h3>
+          <p class="text-cyberTextMuted text-sm leading-relaxed" data-i18n="why_2_desc">Własne zaplecze techniczne do napraw na poziomie komponentów (BGA/SMD).</p>
+        </div>
+
+        <div class="bg-cyberCard border border-cyberBorder p-8 rounded-xl hover:border-cyberRed/50 transition-colors">
+          <div class="w-12 h-12 bg-cyberBlack rounded-lg border border-cyberBorder flex items-center justify-center mb-6 text-cyberRed">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white" data-i18n="why_3_title">Bezpieczeństwo danych w standardzie 3-2-1 backup</h3>
+          <p class="text-cyberTextMuted text-sm leading-relaxed" data-i18n="why_3_desc">Zautomatyzowane kopie zapasowe, ochrona przed ransomware i audyty bezpieczeństwa.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="ticket-portal" class="bg-cyberCard/40 border-t border-b border-cyberBorder py-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          <div class="space-y-8">
+            <div>
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyberBorder bg-cyberBlack text-xs font-mono text-cyberTextMuted uppercase tracking-wider mb-4">
+                <svg class="w-3.5 h-3.5 text-cyberRed" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span data-i18n="portal_badge">Panel Klienta</span>
+              </span>
+              <h2 class="text-3xl font-extrabold tracking-tight mt-2 text-white" data-i18n="portal_title">
+                Zgłoszenia Serwisowe i Status RMA
+              </h2>
+              <p class="text-cyberTextMuted mt-4 leading-relaxed" data-i18n="portal_desc">
+                Skorzystaj z naszego dedykowanego systemu, aby zgłosić nowe urządzenie do naprawy lub błyskawicznie sprawdzić aktualny status swojego zlecenia.
+              </p>
+            </div>
+
+            <div class="bg-cyberBlack border border-cyberBorder p-8 rounded-xl relative overflow-hidden flex flex-col items-start sm:items-center sm:text-center">
+              <div class="absolute top-0 left-0 w-full h-1 bg-cyberRed"></div>
+
+              <div class="w-12 h-12 bg-cyberCard border border-cyberBorder rounded-full flex items-center justify-center text-cyberRed mb-5">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </div>
+
+              <h3 class="font-mono text-lg font-bold mb-2 text-white" data-i18n="portal_cta_title">Przejdź do systemu zleceniowego</h3>
+              <p class="text-cyberTextMuted text-sm mb-6" data-i18n="portal_cta_desc">Zaloguj się lub utwórz nowe zgłoszenie bez konieczności zakładania konta.</p>
+
+              <a href="https://svc.zerobytes.pl" target="_blank" rel="noopener noreferrer" class="bg-cyberRed hover:bg-cyberRedHover text-white font-bold font-mono uppercase tracking-widest text-sm px-8 py-4 rounded transition-all w-full sm:w-auto inline-flex justify-center items-center gap-2 group/link">
+                <span data-i18n="portal_btn">Otwórz Panel Klienta</span>
+                <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-cyberBlack border border-cyberBorder p-8 rounded-xl relative">
+            <h3 class="text-2xl font-bold mb-2 text-white" data-i18n="form_title">Napisz do nas</h3>
+            <p class="text-cyberTextMuted text-sm mb-6 pb-6 border-b border-cyberBorder" data-i18n="form_subtitle">Wyślij zapytanie ogólne, zapytaj o wycenę sprzętu lub umów audyt IT.</p>
+
+            <form id="contact-form" class="space-y-5" onsubmit="handleFormSubmit(event)">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="client-name" class="block text-xs uppercase font-mono text-cyberTextMuted mb-2" data-i18n="label_name">Imię i nazwisko *</label>
+                  <input type="text" id="client-name" required class="w-full bg-cyberCard border border-cyberBorder rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-cyberRed transition-colors" placeholder="Jan Kowalski">
+                </div>
+                <div>
+                  <label for="client-contact" class="block text-xs uppercase font-mono text-cyberTextMuted mb-2" data-i18n="label_contact">E-mail / Telefon *</label>
+                  <input type="text" id="client-contact" required class="w-full bg-cyberCard border border-cyberBorder rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-cyberRed transition-colors" placeholder="kontakt@domena.pl">
+                </div>
+              </div>
+
+              <div>
+                <label for="topic-select" class="block text-xs uppercase font-mono text-cyberTextMuted mb-2" data-i18n="label_topic">Wybierz temat zapytania *</label>
+                <select id="topic-select" class="w-full bg-cyberCard border border-cyberBorder rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-cyberRed transition-colors font-sans appearance-none">
+                  <option value="general" data-i18n="opt_general">Zapytanie ogólne</option>
+                  <option value="hardware" data-i18n="opt_hw">Serwis sprzętu / elektroniki</option>
+                  <option value="it" data-i18n="opt_it" disabled>Wsparcie IT dla Biznesu (B2B)</option>
+                  <option value="web" data-i18n="opt_web" disabled>Strony, aplikacje Web i Automatyzacje</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="message-desc" class="block text-xs uppercase font-mono text-cyberTextMuted mb-2" data-i18n="label_desc">Treść wiadomości *</label>
+                <textarea id="message-desc" required class="w-full bg-cyberCard border border-cyberBorder rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-cyberRed transition-colors h-32 resize-none" placeholder="W czym możemy pomóc?"></textarea>
+              </div>
+
+              <button type="submit" class="w-full bg-cyberRed hover:bg-cyberRedHover text-white font-bold font-mono tracking-widest uppercase text-sm py-4 rounded transition-colors flex justify-center items-center gap-2">
+                <span data-i18n="btn_send">Wyślij wiadomość</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-cyberBlack">
+    
+    <div class="border-t border-cyberBorder py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="text-white font-bold mb-4 uppercase tracking-wider" data-i18n="footer_company">Dane firmy</h4>
+          <ul class="text-sm text-cyberTextMuted space-y-2 font-mono">
+            <li>Zero Bytes Konrad Benderowicz</li>
+            <li>NIP: 5981662682</li>
+            <li>REGON: 543979466</li>
+            <li>BDO: 000705795</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4 uppercase tracking-wider" data-i18n="footer_contact">Kontakt</h4>
+          <ul class="text-sm text-cyberTextMuted space-y-2 font-mono">
+            <li>Email: serwis@zerobytes.pl</li>
+            <li>Tel: +48 790 709 814</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4 uppercase tracking-wider" data-i18n="footer_address">Adres siedziby</h4>
+          <ul class="text-sm text-cyberTextMuted space-y-2 font-mono">
+            <li>ul. 1 Maja 5/1</li>
+            <li>69-100 Słubice</li>
+            <li>Polska / Poland</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-cyberBorder py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-md font-bold tracking-wider text-white uppercase">Zero<span class="text-cyberRed">_</span>Bytes</span>
+          <span class="text-xs text-cyberTextMuted font-mono">© 2026. All Rights Reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      pl: {
+        nav_hardware: "Hardware & Lab",
+        nav_b2b: "Opieka IT (B2B)",
+        nav_web: "Web & Automatyzacje",
+        btn_quick_ticket: "Panel Zgłoszeń",
+        hero_badge: "Gwarantowana odpowiedź SLA < 2H",
+        hero_title_1: "Zero Bytes – Serwis PCB, Mikrolutowanie",
+        hero_title_2: "i Obsługa IT dla Firm",
+        hero_subtitle: "Od podstawowych i zaawansowanych napraw komponentowych PCB po bezawaryjną infrastrukturę serwerową dla firm.",
+
+        coming_soon: "WKRÓTCE DOSTĘPNE",
+
+        card1_title: "Hardware Lab & Elektronika",
+        card1_highlight_1: "Mikrolutowanie PCB (wymiana układów SMD)",
+        card1_highlight_2: "Serwis komputerów, laptopów oraz konsol",
+        card1_highlight_3: "Diagnostyka oscyloskopowa i sekcje zasilania",
+        card1_highlight_4: "Optymalizacja systemów zasilania (OC/UV)",
+        card1_highlight_5: "Custom PC & Tuning",
+        card1_cta: "Zgłoś naprawę sprzętu",
+
+        card2_title: "IT & Automatyzacje dla Biznesu",
+        card2_highlight_1: "Zdalny i stacjonarny Helpdesk 24/7",
+        card2_highlight_2: "Automatyczne kopie bezpieczeństwa 3-2-1",
+        card2_highlight_3: "Projektowanie sieci i bezpieczne struktury chmurowe",
+        card2_highlight_4: "Strony internetowe, aplikacje webowe",
+        card2_highlight_5: "Systemy CRM, RCP i automatyzacje",
+        card2_cta: "Umów bezpłatny audyt",
+
+        why_title: "Dlaczego Zero Bytes? Stos technologiczny i standardy pracy",
+        why_1_title: "Gwarantowane SLA < 2h i monitoring 24/7/365",
+        why_1_desc: "Błyskawiczna reakcja na awarie i ciągły nadzór nad infrastrukturą krytyczną.",
+        why_2_title: "Profesjonalne laboratorium mikrolutownicze i diagnostyczne",
+        why_2_desc: "Własne zaplecze techniczne do napraw na poziomie komponentów (BGA/SMD).",
+        why_3_title: "Bezpieczeństwo danych w standardzie 3-2-1 backup",
+        why_3_desc: "Zautomatyzowane kopie zapasowe, ochrona przed ransomware i audyty bezpieczeństwa.",
+
+        portal_badge: "Panel Klienta",
+        portal_title: "Śledzenie Statusu Naprawy (RMA)",
+        portal_desc: "Panel służy wyłącznie do monitorowania bieżących zleceń serwisowych. Wprowadź swój numer RMA, aby natychmiast sprawdzić aktualny etap prac diagnostycznych lub naprawczych nad Twoim sprzętem.",
+        portal_cta_title: "Przejdź do systemu zleceniowego",
+        portal_cta_desc: "Zaloguj się lub utwórz nowe zgłoszenie bez konieczności zakładania konta.",
+        portal_btn: "Otwórz Panel Klienta",
+
+        form_title: "Napisz do nas",
+        form_subtitle: "Wyślij zapytanie ogólne, zapytaj o wycenę sprzętu lub umów audyt IT.",
+        label_name: "Imię i nazwisko *",
+        label_contact: "E-mail lub Telefon *",
+        label_topic: "Wybierz temat zapytania *",
+        opt_general: "Zapytanie ogólne",
+        opt_hw: "Serwis sprzętu / elektroniki",
+        opt_it: "Wsparcie IT dla Biznesu (B2B)",
+        opt_web: "Strony, aplikacje Web i Automatyzacje",
+        label_desc: "Treść wiadomości *",
+        btn_send: "Wyślij wiadomość",
+
+        footer_company: "Dane firmy",
+        footer_contact: "Kontakt",
+        footer_address: "Adres siedziby"
+      },
+      en: {
+        nav_hardware: "Hardware & Lab",
+        nav_b2b: "Managed IT (B2B)",
+        nav_web: "Web & Automations",
+        btn_quick_ticket: "Ticket Portal",
+        hero_badge: "Guaranteed SLA Response < 2H",
+        hero_title_1: "Zero Bytes – Professional PCB Repair",
+        hero_title_2: "& Managed IT Solutions",
+        hero_subtitle: "From component-level electronics troubleshooting to reliable enterprise server infrastructure.",
+
+        coming_soon: "COMING SOON",
+
+        card1_title: "Hardware Lab & Electronics",
+        card1_highlight_1: "PCB Micro-soldering (BGA/SMD reballing)",
+        card1_highlight_2: "PC, Laptop, and Console Repair Service",
+        card1_highlight_3: "Oscilloscope diagnostics & power rails",
+        card1_highlight_4: "Power system optimization (OC/UV)",
+        card1_highlight_5: "Custom PC & Tuning",
+        card1_cta: "Report Hardware Issue",
+
+        card2_title: "IT & Automations for Business",
+        card2_highlight_1: "Remote and Onsite Helpdesk 24/7",
+        card2_highlight_2: "Automated 3-2-1 secure backups",
+        card2_highlight_3: "Network design and secure cloud architecture",
+        card2_highlight_4: "Websites and Web Applications",
+        card2_highlight_5: "CRM, Time Attendance, and Automations",
+        card2_cta: "Book a Free IT Audit",
+
+        why_title: "Why Zero Bytes? Tech Stack and Work Standards",
+        why_1_title: "Guaranteed SLA < 2h and 24/7/365 monitoring",
+        why_1_desc: "Instant reaction to failures and continuous supervision of critical infrastructure.",
+        why_2_title: "Professional micro-soldering and diagnostic lab",
+        why_2_desc: "In-house technical facilities for component-level repairs (BGA/SMD).",
+        why_3_title: "Data security in 3-2-1 backup standard",
+        why_3_desc: "Automated backups, ransomware protection, and security audits.",
+
+        portal_badge: "Client Panel",
+        portal_title: "Track RMA Repair Status",
+        portal_desc: "This panel is used exclusively for monitoring current service orders. Enter your RMA number to instantly check the current stage of diagnostic or repair work on your equipment.",
+        portal_cta_title: "Go to ticketing system",
+        portal_cta_desc: "Log in or create a new ticket without creating an account.",
+        portal_btn: "Open Client Panel",
+
+        form_title: "Contact Us",
+        form_subtitle: "Send a general inquiry, ask for a hardware quote, or schedule an IT audit.",
+        label_name: "Full Name *",
+        label_contact: "Email or Phone *",
+        label_topic: "Select inquiry topic *",
+        opt_general: "General Inquiry",
+        opt_hw: "Hardware / Electronics Repair",
+        opt_it: "B2B IT Support",
+        opt_web: "Websites, Web Apps & Automations",
+        label_desc: "Message *",
+        btn_send: "Send Message",
+
+        footer_company: "Company Details",
+        footer_contact: "Contact",
+        footer_address: "Address"
+      },
+      de: {
+        nav_hardware: "Hardware & Lab",
+        nav_b2b: "IT Betreuung (B2B)",
+        nav_web: "Web & Automatisierung",
+        btn_quick_ticket: "Service Portal",
+        hero_badge: "Garantierte SLA-Antwortzeit < 2h",
+        hero_title_1: "Zero Bytes – Präzisions-Hardware-Reparatur",
+        hero_title_2: "& Managed IT Lösungen",
+        hero_subtitle: "Von fortgeschrittenen PCB-Komponentenreparaturen bis hin zu zuverlässiger Serverinfrastruktur.",
+
+        coming_soon: "BALD VERFÜGBAR",
+
+        card1_title: "Hardware Lab & Elektronik",
+        card1_highlight_1: "PCB-Mikrolöten (BGA/SMD-Reballing)",
+        card1_highlight_2: "PC-, Laptop- und Konsolen-Reparaturservice",
+        card1_highlight_3: "Oszilloskop-Diagnostik & Strompfade",
+        card1_highlight_4: "Stromsystem-Optimierung (OC/UV)",
+        card1_highlight_5: "Custom PC & Tuning",
+        card1_cta: "Gerätereparatur melden",
+
+        card2_title: "IT & Automatisierung für Unternehmen",
+        card2_highlight_1: "Remote- und Vor-Ort-Helpdesk rund um die Uhr",
+        card2_highlight_2: "Automatisierte 3-2-1 sichere Backups",
+        card2_highlight_3: "Netzwerkdesign und sichere Cloud-Architektur",
+        card2_highlight_4: "Websites und Webanwendungen",
+        card2_highlight_5: "CRM, Zeiterfassung und Automatisierungen",
+        card2_cta: "Kostenloses IT-Audit buchen",
+
+        why_title: "Warum Zero Bytes? Tech-Stack und Arbeitsstandards",
+        why_1_title: "Garantiertes SLA < 2h und 24/7/365 Überwachung",
+        why_1_desc: "Sofortige Reaktion auf Ausfälle und ständige Überwachung kritischer Infrastrukturen.",
+        why_2_title: "Professionelles Mikrolöt- und Diagnoselabor",
+        why_2_desc: "Interne technische Einrichtungen für Reparaturen auf Komponentenebene (BGA/SMD).",
+        why_3_title: "Datensicherheit im 3-2-1 Backup-Standard",
+        why_3_desc: "Automatisierte Backups, Ransomware-Schutz und Sicherheitsaudits.",
+
+        portal_badge: "Kundenportal",
+        portal_title: "RMA-Reparaturstatus verfolgen",
+        portal_desc: "Dieses Panel dient ausschließlich der Überwachung aktueller Serviceaufträge. Geben Sie Ihre RMA-Nummer ein, um sofort den aktuellen Stand der Diagnose- oder Reparaturarbeiten an Ihrem Gerät zu überprüfen.",
+        portal_cta_title: "Zum Ticketsystem",
+        portal_cta_desc: "Melden Sie sich an oder erstellen Sie ein neues Ticket ohne Konto.",
+        portal_btn: "Kundenportal öffnen",
+
+        form_title: "Kontaktieren Sie uns",
+        form_subtitle: "Senden Sie eine allgemeine Anfrage, fordern Sie ein Hardware-Angebot an oder planen Sie ein IT-Audit.",
+        label_name: "Vollständiger Name *",
+        label_contact: "E-Mail oder Telefon *",
+        label_topic: "Thema der Anfrage auswählen *",
+        opt_general: "Allgemeine Anfrage",
+        opt_hw: "Hardware- / Elektronikreparatur",
+        opt_it: "B2B IT-Support",
+        opt_web: "Websites, Web-Apps & Automatisierungen",
+        label_desc: "Nachricht *",
+        btn_send: "Nachricht senden",
+
+        footer_company: "Firmendetails",
+        footer_contact: "Kontakt",
+        footer_address: "Adresse"
+      }
+    };
+
+    let currentLang = 'pl';
+
+    function switchLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('active-lang').innerText = lang.toUpperCase();
+
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = i18n[lang][key];
+          } else {
+            element.innerHTML = i18n[lang][key];
+          }
+        }
+      });
+      document.documentElement.lang = lang;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      switchLanguage('pl');
+    });
+
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.getElementById('lang-dropdown');
+
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', () => {
+      langDropdown.classList.add('hidden');
+    });
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    function mockTracker() {
+      const rmaInput = document.getElementById('rma-input').value;
+      const trackerResult = document.getElementById('tracker-result');
+      if (rmaInput.trim() !== '') {
+        trackerResult.classList.remove('hidden');
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert(currentLang === 'pl' ? 'Dziękujemy! Wiadomość została wysłana.' : 'Thank you! Message sent.');
+      document.getElementById('contact-form').reset();
+    }
+  </script>
+</body>
+</html>
